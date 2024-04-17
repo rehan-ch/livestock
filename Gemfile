@@ -69,3 +69,4 @@ end
 gem "bootstrap", "~> 5.3"
 gem "sassc-rails"
 gem "devise", "~> 4.9"
+gem 'pg', '~> 1.5', '>= 1.5.6'
