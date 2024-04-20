@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  category: one
+  status: 1
+  name: MyString
+  short_description: MyString
+  long_description: MyText
+  age_in_years: 1
+  age_in_months: 1
+  sex: 1
+  breed: MyString
+  height: 1.5
+  wight: 1.5
+  teeth: 1
+  castrated: false
+  price: 1
+  quantity: 1
+  city: MyString
+  countary: MyString
+  state: MyString
+  address: MyString
+  self_stock: false
+  verified: false
+
+two:
+  user: two
+  category: two
+  status: 1
+  name: MyString
+  short_description: MyString
+  long_description: MyText
+  age_in_years: 1
+  age_in_months: 1
+  sex: 1
+  breed: MyString
+  height: 1.5
+  wight: 1.5
+  teeth: 1
+  castrated: false
+  price: 1
+  quantity: 1
+  city: MyString
+  countary: MyString
+  state: MyString
+  address: MyString
+  self_stock: false
+  verified: false
