@@ -18,22 +18,18 @@ module Users
     def create
       @product = current_user.products.new(product_params)
 
-      respond_to do |format|
-        if @product.save
-          redirect_to new_users_product_path(@product), notice: "Product was successfully created."
-        else
-          render :new, status: :unprocessable_entity
-        end
+      if @product.save
+        redirect_to users_product_path(@product), notice: "Product was successfully created."
+      else
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
-      respond_to do |format|
-        if @product.update(product_params)
-          redirect_to new_users_product_path(@product), notice: "Product was successfully updated."
-        else
-          render :edit, status: :unprocessable_entity
-        end
+      if @product.update(product_params)
+        redirect_to users_product_path(@product), notice: "Product was successfully updated."
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
 
