@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :products
+  resources :categories
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,4 +10,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  namespace :users, path: 'my_ads' do
+    resources :products, path: ''
+  end
+
 end
