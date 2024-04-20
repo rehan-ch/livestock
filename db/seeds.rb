@@ -4,6 +4,8 @@
 #
 # Example:
 #
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+["test", "test1", "test2", "test3"].each do |user_name|
+    User.find_or_create_by(name: user_name, email: "#{user_name}@gmail.com") do |user|
+        user.password = "12345678"
+    end
+end

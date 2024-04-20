@@ -2,19 +2,19 @@ class Product < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  enum status: {
+  enum status: [
     :draft,
     :pending,
     :rejected,
     :approved
-  }
-  enum sex: {
+  ]
+  enum sex: [
     :male,
     :female,
     :other
-  }
-  enum product_type: {
+  ]
+  enum product_type: [
     :free,  
     :paid
-  }
+  ]
 end
