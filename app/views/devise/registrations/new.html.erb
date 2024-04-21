@@ -1,0 +1,99 @@
+<!--<h2>Sign up</h2>-->
+
+<%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
+
+<!--  <div class="field">-->
+<!--    <%#= f.label :email %><br />-->
+    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= f.label :password %>
+    <%# if @minimum_password_length %>
+<!--    <em>(<%#= @minimum_password_length %> characters minimum)</em>-->
+<!--    <%# end %><br />-->
+    <%#= f.password_field :password, autocomplete: "new-password" %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+<!--    <%#= f.label :password_confirmation %><br />-->
+    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+    <%#= f.submit "Sign up" %>
+<!--  </div>-->
+<%# end %>
+
+<%#= render "devise/shared/links" %>
+
+<main>
+  <!-- section -->
+
+  <section class="my-lg-14 my-8">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+          <!-- img -->
+          <img src="/assets/theme/svg-graphics/signup-g.svg" alt="" class="img-fluid" />
+        </div>
+        <!-- col -->
+        <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
+          <div class="mb-lg-9 mb-5">
+            <h1 class="mb-1 h2 fw-bold">Get Start Shopping</h1>
+            <p>Welcome to FreshCart! Enter your email to get started.</p>
+          </div>
+          <!-- form -->
+          <form class="needs-validation" novalidate>
+            <div class="row g-3">
+              <!-- col -->
+              <div class="col">
+                <!-- input -->
+                <label for="formSignupfname" class="form-label visually-hidden">First Name</label>
+                <input type="text" class="form-control" id="formSignupfname" placeholder="First Name" required />
+                <div class="invalid-feedback">Please enter first name.</div>
+              </div>
+              <div class="col">
+                <!-- input -->
+                <label for="formSignuplname" class="form-label visually-hidden">Last Name</label>
+                <input type="text" class="form-control" id="formSignuplname" placeholder="First Name" required />
+                <div class="invalid-feedback">Please enter last name.</div>
+              </div>
+              <div class="col-12">
+                <!-- input -->
+                <label for="formSignupEmail" class="form-label visually-hidden">Email address</label>
+                <input type="email" class="form-control" id="formSignupEmail" placeholder="Email" required />
+                <div class="invalid-feedback">Please enter email.</div>
+              </div>
+              <div class="col-12">
+                <div class="password-field position-relative">
+                  <label for="formSignupPassword" class="form-label visually-hidden">Password</label>
+                  <div class="password-field position-relative">
+                    <input type="password" class="form-control fakePassword" id="formSignupPassword" placeholder="*****" required />
+                    <span><i class="bi bi-eye-slash passwordToggler"></i></span>
+                    <div class="invalid-feedback">Please enter password.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- btn -->
+              <div class="col-12 d-grid"><button type="submit" class="btn btn-primary">Register</button></div>
+
+              <!-- text -->
+              <p>
+                <small>
+                  By continuing, you agree to our
+                  <a href="#!">Terms of Service</a>
+                  &
+                  <a href="#!">Privacy Policy</a>
+                </small>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

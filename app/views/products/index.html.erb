@@ -1,12 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<!--<p style="color: green"><%#= notice %></p>-->
 
-<h1>Products</h1>
+<!--<h1>Products</h1>-->
 
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
-</div>
+<!--<div id="products">-->
+  <%# @products.each do |product| %>
+    <%#= render product %>
+<!--    <p>-->
+      <%#= link_to "Show this product", product %>
+<!--    </p>-->
+  <%# end %>
+<!--</div>-->
+
+
+<main>
+  <!-- section-->
+<%= render partial: "products/shared/bread_crum" %>
+
+  <!-- section -->
+  <div class="mt-8 mb-lg-14 mb-8">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row gx-10">
+        <!-- col -->
+       <%= render partial: "products/shared/side_bar" %>
+       <%= render partial: "products/shared/products_listing" %>
+
+      </div>
+    </div>
+  </div>
+</main>
