@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  namespace :users, path: 'my_ads' do
-    resources :products, path: ''
+  namespace :users do
+    resources :categories
+    resources :products, path: 'my_ads'
+    resources :dashboard, only: [:index]
   end
-
 end

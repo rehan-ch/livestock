@@ -1,0 +1,2 @@
+module CaategoriesHelper
+end

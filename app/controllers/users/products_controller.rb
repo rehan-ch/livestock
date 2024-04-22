@@ -1,6 +1,5 @@
 module Users
-  class ProductsController < ApplicationController
-    before_action :authenticate_user!
+  class ProductsController < Users::BaseController
     before_action :set_product, only: %i[ show edit update destroy ]
 
     def index

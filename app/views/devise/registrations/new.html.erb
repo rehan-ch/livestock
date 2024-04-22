@@ -30,7 +30,6 @@
 
 <main>
   <!-- section -->
-
   <section class="my-lg-14 my-8">
     <!-- container -->
     <div class="container">
@@ -47,53 +46,45 @@
             <p>Welcome to FreshCart! Enter your email to get started.</p>
           </div>
           <!-- form -->
-          <form class="needs-validation" novalidate>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation", novalidate: true }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
             <div class="row g-3">
               <!-- col -->
-              <div class="col">
-                <!-- input -->
-                <label for="formSignupfname" class="form-label visually-hidden">First Name</label>
-                <input type="text" class="form-control" id="formSignupfname" placeholder="First Name" required />
-                <div class="invalid-feedback">Please enter first name.</div>
-              </div>
-              <div class="col">
-                <!-- input -->
-                <label for="formSignuplname" class="form-label visually-hidden">Last Name</label>
-                <input type="text" class="form-control" id="formSignuplname" placeholder="First Name" required />
-                <div class="invalid-feedback">Please enter last name.</div>
-              </div>
               <div class="col-12">
                 <!-- input -->
-                <label for="formSignupEmail" class="form-label visually-hidden">Email address</label>
-                <input type="email" class="form-control" id="formSignupEmail" placeholder="Email" required />
+                <%= f.label :email, class: "form-label visually-hidden" %>
+                <%= f.email_field :email, class: "form-control", id: "formSignupEmail", placeholder: "Email", required: true %>
                 <div class="invalid-feedback">Please enter email.</div>
               </div>
               <div class="col-12">
-                <div class="password-field position-relative">
-                  <label for="formSignupPassword" class="form-label visually-hidden">Password</label>
-                  <div class="password-field position-relative">
-                    <input type="password" class="form-control fakePassword" id="formSignupPassword" placeholder="*****" required />
-                    <span><i class="bi bi-eye-slash passwordToggler"></i></span>
-                    <div class="invalid-feedback">Please enter password.</div>
-                  </div>
-                </div>
+                <!-- input -->
+                <%= f.label :phone_no, class: "form-label visually-hidden" %>
+                <%= f.text_field :phone_no, class: "form-control", id: "formSignupEmail", placeholder: "Phone Number", required: true %>
+                <div class="invalid-feedback">Please enter Phone Number.</div>
+              </div>
+              <div class="col-12">
+                <!-- input -->
+                <%= f.label :password, class: "form-label visually-hidden" %>
+                <%= f.password_field :password, class: "form-control fakePassword", id: "formSignupPassword", placeholder: "*****", required: true %>
+                <span><i class="bi bi-eye-slash passwordToggler"></i></span>
+                <div class="invalid-feedback">Please enter password.</div>
               </div>
               <!-- btn -->
-              <div class="col-12 d-grid"><button type="submit" class="btn btn-primary">Register</button></div>
-
-              <!-- text -->
-              <p>
-                <small>
-                  By continuing, you agree to our
-                  <a href="#!">Terms of Service</a>
-                  &
-                  <a href="#!">Privacy Policy</a>
-                </small>
-              </p>
+              <div class="col-12 d-grid"><%= f.submit "Register", class: "btn btn-primary" %></div>
             </div>
-          </form>
+            <!-- text -->
+            <p>
+              <small>
+                By continuing, you agree to our
+                <a href="#!">Terms of Service</a>
+                &
+                <a href="#!">Privacy Policy</a>
+              </small>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
   </section>
+
 </main>
