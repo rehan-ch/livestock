@@ -283,13 +283,23 @@
                 </ul>
                 <div class="mt-2 d-grid">
                   <a href="#" class="btn btn-primary">Checkout</a>
-                  <a href="#" class="btn btn-light mt-2">View Cart</a>
+                  <a href="#" class="btn btn-light mt-2">Vi ew Cart</a>
                 </div>
               </div>
             </div>
           </div>
           <div class="list-inline-item">
-            <a href="../pages/signin.html" class="btn btn-dark d-none d-xl-block">Sign In</a>
+            <% if current_user %>
+              <div class='d-flex'>
+                <%= link_to "Dashboard", users_dashboard_index_path, class: 'btn btn-primary d-none me-2 d-xl-block' %>
+                <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-light d-none d-xl-block' %>
+              </div>
+            <% else %>
+            <div class='d-flex'>
+              <%= link_to "Sign In", new_user_session_path ,class: 'btn btn-primary d-none d-xl-block me-2' %>
+              <%= link_to "Sign Up", new_user_registration_path ,class: 'btn btn-dark d-none d-xl-block' %>
+            </div>
+            <% end %>
           </div>
         </div>
       </div>
