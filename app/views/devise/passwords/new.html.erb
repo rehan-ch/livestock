@@ -1,16 +1,39 @@
-<h2>Forgot your password?</h2>
+<main>
+  <!-- section -->
+  <section class="my-lg-14 my-8">
+    <div class="container">
+      <!-- row -->
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+          <!-- img -->
+          <img src="/assets/theme/svg-graphics/signin-g.svg" alt="" class="img-fluid" />
+        </div>
+        <!-- col -->
+        <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
+          <div class="mb-lg-9 mb-5">
+            <h1 class="mb-1 h2 fw-bold">Forgot your password?</h1>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "needs-validation", novalidate: true }) do |f| %>
+            <div class="row g-3">
+              <!-- row -->
+              <div class="col-12">
+                <!-- input -->
+                <%= f.label :email, class: "form-label visually-hidden" %>
+                <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Email", required: true %>
+                <div class="invalid-feedback">Please enter email.</div>
+              </div>
+              <!-- btn -->
+              <div class="col-12 d-grid"><%= f.submit "Sign In", class: "btn btn-primary" %></div>
+              <!-- link -->
+              <div>
+                Don’t have an account?
+                <%= link_to "Sign Up", new_user_registration_path %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
