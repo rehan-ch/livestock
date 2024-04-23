@@ -20,4 +20,11 @@ class Product < ApplicationRecord
     :free,  
     :paid
   ]
+  enum quantity_unit: {
+    piece: 0,
+    gram: 1,
+    kilogram: 2,
+    liter: 3,
+    milliliter: 4
+  }
 end
