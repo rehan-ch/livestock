@@ -90,7 +90,9 @@
                   <div class="mb-3">
                     <h4 class="mb-3 h5">Location</h4>
                     <input type="text" class="form-control" placeholder="Title" />
-                    <button class="btn btn-danger mt-2"> Use Current Location </button>
+                    <div data-controller="geolocation">
+                      <button data-action="geolocation#search">Get Current Location</button>
+                    </div>
                   </div>
 
                 <div class="mb-3 col-lg-6">
