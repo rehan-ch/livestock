@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @product %>
+
+<div>
+  <%= link_to "Edit this product", edit_users_product_path(@product) if @product.user == current_user %> |
+  <%= link_to "Back to products", admin_products_path %>
+
+  <%= button_to "Destroy this product", users_product_path, method: :delete if @product.user == current_user %>
+</div>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Livestock</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta content="Codescandy" name="author"/>
+  <title>Live Stock</title>
+  <!--  <link href="/assets/tiny-slider/dist/tiny-slider.css" rel="stylesheet"/>-->
+  <!--  <link href="/assets/slick-carousel/slick/slick.css" rel="stylesheet"/>-->
+  <!--  <link href="/assets/slick-carousel/slick/slick-theme.css" rel="stylesheet"/>-->
+
+  <!--  <link rel="shortcut icon" type="image/x-icon" href="/assets/theme/favicon/favicon.ico"/>-->
+
+  <!--  <link href="/assets/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet"/>-->
+  <!--  <link href="/assets/feather-webfont/dist/feather-icons.css" rel="stylesheet"/>-->
+  <!--  <link href="/assets/simplebar/dist/simplebar.min.css" rel="stylesheet"/>-->
+
+  <!--  <link href="/assets/nouislider/dist/nouislider.min.css" rel="stylesheet"/>-->
+  <!--  <link href="/assets/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>-->
+
+</head>
+
+<body>
+<%= render partial: 'layouts/admin/header' %>
+<div>
+  <!-- navbar -->
+
+  <div class="main-wrapper">
+    <!-- navbar vertical -->
+    <!-- navbar -->
+
+    <%= render partial: 'layouts/admin/sidebar' %>
+    <%= render partial: 'layouts/admin/mobile_nav_bar' %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </div>
+</div>
+</body>
+
+<!-- Javascript-->
+<!-- Libs JS -->
+<!-- <script src="assets/jquery/dist/jquery.min.js"></script> -->
+<script src="/assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/simplebar/dist/simplebar.min.js"></script>
+
+<!-- Theme JS -->
+<!--  <script src="/assets/theme.min.js"></script>-->
+
+<script src="/assets/vendors/jquery.min.js"></script>
+<script src="/assets/slick-carousel/slick/slick.min.js"></script>
+<script src="/assets/vendors/slick-slider.js"></script>
+<script src="/assets/tiny-slider/dist/min/tiny-slider.js"></script>
+<script src="/assets/vendors/tns-slider.js"></script>
+<script src="/assets/vendors/zoom.js"></script>
+
+<script src="/assets/vendors/validation.js"></script>
+<script src="/assets/rater-js/index.js"></script>
+
+<script src="/assets/dropzone/dist/min/dropzone.min.js"></script>
+
+<script src="/assets/vendors/dropzone.js"></script>
+
+<script src="/assets/nouislider/dist/nouislider.min.js"></script>
+<script src="/assets/wnumb/wNumb.min.js"></script>
+</html>

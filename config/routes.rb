@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   resources :products, only: [:index, :show]
   resources :categories, only: [:index, :show]
   devise_for :users
@@ -15,5 +17,11 @@ Rails.application.routes.draw do
     resources :categories
     resources :products, path: 'my_ads'
     get '/', to: 'dashboard#index'
+  end
+
+  namespace :admin do
+    get '/', to: 'dashboard#index'
+    resources :categories
+    resources :products, path: 'my_ads'
   end
 end
