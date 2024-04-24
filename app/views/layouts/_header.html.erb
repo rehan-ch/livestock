@@ -291,7 +291,7 @@
           <div class="list-inline-item">
             <% if current_user %>
               <div class='d-flex'>
-                <%= link_to "Dashboard", users_dashboard_index_path, class: 'btn btn-primary d-none me-2 d-xl-block' %>
+                <%= link_to "Dashboard", dashboard_path, class: 'btn btn-primary d-none me-2 d-xl-block' %>
                 <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-light d-none d-xl-block' %>
               </div>
             <% else %>

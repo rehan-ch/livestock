@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  namespace :users do
+  namespace :dashboard do
     resources :categories
     resources :products, path: 'my_ads'
-    resources :dashboard, only: [:index]
+    get '/', to: 'dashboard#index'
   end
 end

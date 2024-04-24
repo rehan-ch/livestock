@@ -8,10 +8,10 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item">
-              <a href="<%= users_dashboard_index_path %>" class="text-inherit">Dashboard</a></li>
+              <a href="<%= dashboard_path %>" class="text-inherit">Dashboard</a></li>
             <% unless action_name == "index" %>
               <li class="breadcrumb-item">
-                <a href="<%= users_products_path %>" class="text-inherit"><%= controller_name.classify %></a></li>
+                <a href="<%= dashboard_products_path %>" class="text-inherit"><%= controller_name.classify %></a></li>
               <li class="breadcrumb-item active" aria-current="page"><%= "#{action_name.classify} #{controller_name.classify}" %></li>
             <% else %>
               <li class="breadcrumb-item active" aria-current="page"><%= "#{controller_name.classify}" %></li>
@@ -21,7 +21,7 @@
       </div>
       <!-- button -->
       <div>
-        <a href="<%= send("new_users_#{controller_name.classify.downcase}_path") %>" class="btn btn-primary">Add <%= controller_name.classify %></a>
+        <a href="<%= send("new_dashboard_#{controller_name.classify.downcase}_path") %>" class="btn btn-primary">Add <%= controller_name.classify %></a>
       </div>
     </div>
   </div>

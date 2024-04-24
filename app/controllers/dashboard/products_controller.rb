@@ -1,5 +1,5 @@
-module Users
-  class ProductsController < Users::BaseController
+module Dashboard
+  class ProductsController < Dashboard::BaseController
     before_action :set_product, only: %i[ show edit update destroy ]
 
     def index
@@ -18,7 +18,7 @@ module Users
       @product = current_user.products.new(product_params)
 
       if @product.save
-        redirect_to users_products_path, notice: "Product was successfully created."
+        redirect_to dashboard_products_path, notice: "Product was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -26,7 +26,7 @@ module Users
 
     def update
       if @product.update(product_params)
-        redirect_to users_products_path, notice: "Product was successfully updated."
+        redirect_to dashboard_products_path, notice: "Product was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -34,7 +34,7 @@ module Users
 
     def destroy
       @product.destroy!
-      redirect_to users_products_path, notice: "Product was successfully destroyed."
+      redirect_to dashboard_products_path, notice: "Product was successfully destroyed."
     end
 
     private
