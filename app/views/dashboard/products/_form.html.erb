@@ -87,29 +87,29 @@
                   <%= form.check_box :castrated, class: "form-check-input" %>
                 </div>
 
-                  <div class="mb-3">
-                    <h4 class="mb-3 h5">Location</h4>
-                    <input type="text" class="form-control" placeholder="Title" />
-                    <div data-controller="geolocation">
-                      <button data-action="geolocation#search">Get Current Location</button>
-                    </div>
-                  </div>
+                <div class="mb-3">
+                  <h4 class="mb-3 h5">Location</h4>
+                  <input type="text" class="form-control" placeholder="Title" />
 
-                <div class="mb-3 col-lg-6">
-                  <%= form.label :city, class: "form-label" %>
-                  <%= form.text_field :city, class: "form-control" %>
                 </div>
-                <div class="mb-3 col-lg-6">
-                  <%= form.label :countary, class: "form-label" %>
-                  <%= form.text_field :countary, class: "form-control" %>
+                <div data-controller='geolocation'>
+                  <button data-action="geolocation#search">Get Current Location</button>
+                  <div class="mb-3 col-lg-6">
+                    <%= form.label :city, class: "form-label" %>
+                    <%= form.text_field :city, class: "form-control", "data-geolocation-target": "city" %>
+                  </div>
+                  <div class="mb-3 col-lg-6">
+                    <%= form.label :countary, class: "form-label" %>
+                    <%= form.text_field :countary, class: "form-control", "data-geolocation-target": "countary" %>
+                  </div>
+                  <div class="mb-3 col-lg-12">
+                    <%= form.label :address, class: "form-label" %>
+                    <%= form.text_area :address, class: "form-control", "data-geolocation-target": "address" %>
+                  </div>
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label :state, class: "form-label" %>
                   <%= form.text_field :state, class: "form-control" %>
-                </div>
-                <div class="mb-3 col-lg-12">
-                  <%= form.label :address, class: "form-label" %>
-                  <%= form.text_area :address, class: "form-control" %>
                 </div>
 <!--                <div class="mb-3 col-lg-6">-->
                   <%#= form.label :self_stock, class: "form-label" %>

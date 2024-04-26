@@ -1,14 +1,15 @@
 // app/javascript/controllers/geolocation_controller.js
 import { Controller } from "@hotwired/stimulus"
-
 const options = {
   enableHighAccuracy: true,
   maximumAge: 0
 };
 
+
 // Connects to data-controller="geolocation"
 export default class extends Controller {
   static values = { url: String }
+  static targets = ["city", "countary", "address"]
 
   search(event) {
     event.preventDefault();
@@ -19,8 +20,8 @@ export default class extends Controller {
     const crd = pos.coords;
     // redirect with coordinates in params
     const csrfToken = document
-      .querySelector('meta[name="csrf-token"]')
-      .getAttribute("content");
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute("content");
     fetch("/dashboard/my_ads/get_address", {
       method: "POST",
       headers: {
@@ -30,13 +31,15 @@ export default class extends Controller {
       },
       body: JSON.stringify({ lat: crd.latitude, long: crd.longitude }),
     })
-      .then((response) => response.json())
+    .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        this.cityTarget.value = data.city
+        this.countaryTarget.value = data.country
+        this.addressTarget.value = data.address
       });
+    }
+    error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
   }
-
-  error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-}
