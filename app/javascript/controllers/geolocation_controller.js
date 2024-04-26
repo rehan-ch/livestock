@@ -10,15 +10,30 @@ const options = {
 export default class extends Controller {
   static values = { url: String }
 
-  search() {
-    alert("adfadf")
+  search(event) {
+    event.preventDefault();
     navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error, options);
   }
   
   success(pos) {
     const crd = pos.coords;
     // redirect with coordinates in params
-    location.assign(`/locations/?place=${crd.latitude},${crd.longitude}`)
+    const csrfToken = document
+      .querySelector('meta[name="csrf-token"]')
+      .getAttribute("content");
+    fetch("/dashboard/my_ads/get_address", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken,
+      },
+      body: JSON.stringify({ lat: crd.latitude, long: crd.longitude }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   }
 
   error(err) {

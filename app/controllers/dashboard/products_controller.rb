@@ -37,6 +37,15 @@ module Dashboard
       redirect_to dashboard_products_path, notice: "Product was successfully destroyed."
     end
 
+    def get_address
+      results = Geocoder.search([params[:lat], params[:long]])
+      address = results.first.address
+      city = results.first.city
+      country = results.first.country
+      address_data = { address: address, country: country, city: city } # Define your address data here
+      render json: address_data
+    end
+
     private
       def set_product
         @product = current_user.products.find(params[:id])
