@@ -9,7 +9,7 @@ const options = {
 // Connects to data-controller="geolocation"
 export default class extends Controller {
   static values = { url: String }
-  static targets = ["city", "countary", "address"]
+  static targets = ["city", "country", "state", "address"]
 
   search(event) {
     event.preventDefault();
@@ -35,8 +35,9 @@ export default class extends Controller {
       .then((data) => {
         console.log(data);
         this.cityTarget.value = data.city
-        this.countaryTarget.value = data.country
+        this.countryTarget.value = data.country
         this.addressTarget.value = data.address
+        this.stateTarget.value = data.state
       });
     }
     error(err) {

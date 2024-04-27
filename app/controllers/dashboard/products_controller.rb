@@ -39,11 +39,23 @@ module Dashboard
 
     def get_address
       results = Geocoder.search([params[:lat], params[:long]])
-      address = results.first.address
-      city = results.first.city
-      country = results.first.country
-      address_data = { address: address, country: country, city: city } # Define your address data here
-      render json: address_data
+
+      if results.present? && (result = results.first)
+        address = result.address
+        state = result.state
+        city = result.city
+        country = result.country
+
+        if result.data.present? && (address_data = result.data["address"])
+          city = (address_data["district"] || address_data["subdistrict"])&.gsub(/\bDistrict\b/, "")&.strip || city
+          state = address_data["state"] || state
+        end
+
+        address_data = { address: address, city: city, state: state, country: country }
+        render json: address_data
+      else
+        render json: { error: "Address information not found" }, status: :not_found
+      end
     end
 
     private
