@@ -30,6 +30,11 @@
                 <div class="col-12">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
               <% end %>
 
+                <div class="col-12">
+                  <!-- input -->
+                  <%= f.label :avatar, class: "form-label" %><br />
+                  <%= f.file_field :avatar, class: "form-control" %>
+                </div>
               <div class="col-12">
                 <!-- input -->
                 <%= f.label :password, class: "form-label" %> <i>(leave blank if you don't want to change it)</i><br />
@@ -38,7 +43,6 @@
                   <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
               </div>
-
               <div class="col-12">
                 <!-- input -->
                 <%= f.label :password_confirmation, class: "form-label" %><br />
