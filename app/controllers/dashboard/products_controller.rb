@@ -37,6 +37,27 @@ module Dashboard
       redirect_to dashboard_products_path, notice: "Product was successfully destroyed."
     end
 
+    def get_address
+      results = Geocoder.search([params[:lat], params[:long]])
+
+      if results.present? && (result = results.first)
+        address = result.address
+        state = result.state
+        city = result.city
+        country = result.country
+
+        if result.data.present? && (address_data = result.data["address"])
+          city = (address_data["district"] || address_data["subdistrict"])&.gsub(/\bDistrict\b/, "")&.strip || city
+          state = address_data["state"] || state
+        end
+
+        address_data = { address: address, city: city, state: state, country: country }
+        render json: address_data
+      else
+        render json: { error: "Address information not found" }, status: :not_found
+      end
+    end
+
     private
       def set_product
         @product = current_user.products.find(params[:id])

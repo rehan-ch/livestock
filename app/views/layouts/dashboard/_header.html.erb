@@ -112,7 +112,11 @@
           </li>
           <li class="dropdown ms-4">
             <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.avatar.attached? %>
+              <%= image_tag url_for(current_user.avatar), class: "avatar avatar-md rounded-circle" %>
+            <% else %>
               <img src="/assets/theme/avatar/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle" />
+            <% end %>
             </a>
 
             <div class="dropdown-menu dropdown-menu-end p-0">
@@ -126,9 +130,8 @@
                   <a class="dropdown-item" href="#!">Home</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#!">Profile</a>
+                  <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
                 </li>
-
                 <li>
                   <a class="dropdown-item" href="#!">Settings</a>
                 </li>

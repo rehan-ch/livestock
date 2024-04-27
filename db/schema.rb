@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_201828) do
     t.text "long_description"
     t.integer "age_in_years"
     t.integer "age_in_months"
+    t.integer "quantity_unit"
     t.integer "sex"
     t.string "breed"
     t.float "height"
@@ -70,14 +71,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_201828) do
     t.integer "price"
     t.integer "quantity"
     t.string "city"
-    t.string "countary"
+    t.string "country"
     t.string "state"
     t.string "address"
     t.boolean "self_stock"
     t.boolean "verified"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity_unit"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end

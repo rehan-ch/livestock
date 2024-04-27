@@ -8,28 +8,29 @@
     <div class="navbar-vertical-content flex-grow-1" data-simplebar="">
       <ul class="navbar-nav flex-column" id="sideNavbar">
         <li class="nav-item">
-          <a class="nav-link active" href="<%= dashboard_path %>">
+          <%= link_to dashboard_path, class: "nav-link #{'active' if active_tab('dashboard')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-house"></i></span>
               <span class="nav-link-text">Dashboard</span>
             </div>
-          </a>
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<%= dashboard_products_path %>">
+          <%= link_to dashboard_products_path, class: "nav-link #{'active' if active_tab('products')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
               <span class="nav-link-text">Products</span>
             </div>
-          </a>
+          <% end %>
+
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<%= dashboard_categories_path %>">
+          <%= link_to dashboard_categories_path, class: "nav-link #{'active' if active_tab('categories')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
               <span class="nav-link-text">Categories</span>
             </div>
-          </a>
+          <% end %>
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">

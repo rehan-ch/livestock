@@ -2,7 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
-import "./theme.min"
+// import "./theme.min"
 //= require jquery
 //= require bootstrap
 //= require_tree .

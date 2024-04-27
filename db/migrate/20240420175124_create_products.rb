@@ -10,6 +10,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.text :long_description
       t.integer :age_in_years
       t.integer :age_in_months
+      t.integer :quantity_unit
       t.integer :sex
       t.string :breed
       t.float :height
@@ -19,7 +20,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.integer :price
       t.integer :quantity
       t.string :city
-      t.string :countary
+      t.string :country
       t.string :state
       t.string :address
       t.boolean :self_stock
