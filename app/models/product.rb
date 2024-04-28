@@ -5,6 +5,10 @@ class Product < ApplicationRecord
   has_one_attached :primary_image
   has_many_attached :images
 
+  delegate :name, to: :category, prefix: true
+  delegate :name, to: :user, prefix: true
+
+
   enum status: [
     :draft,
     :pending,

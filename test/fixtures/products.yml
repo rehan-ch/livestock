@@ -12,13 +12,13 @@ one:
   sex: 1
   breed: MyString
   height: 1.5
-  wight: 1.5
+  veigth: 1.5
   teeth: 1
   castrated: false
   price: 1
   quantity: 1
   city: MyString
-  countary: MyString
+  country: MyString
   state: MyString
   address: MyString
   self_stock: false
@@ -36,13 +36,13 @@ two:
   sex: 1
   breed: MyString
   height: 1.5
-  wight: 1.5
+  veigth: 1.5
   teeth: 1
   castrated: false
   price: 1
   quantity: 1
   city: MyString
-  countary: MyString
+  country: MyString
   state: MyString
   address: MyString
   self_stock: false

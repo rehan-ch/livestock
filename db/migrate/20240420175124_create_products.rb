@@ -14,7 +14,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.integer :sex
       t.string :breed
       t.float :height
-      t.float :wight
+      t.float :weight
       t.integer :teeth
       t.boolean :castrated
       t.integer :price
