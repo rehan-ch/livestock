@@ -75,8 +75,8 @@
                   <%= form.text_field :height, class: "form-control" %>
                 </div>
                 <div class="mb-3 col-lg-6">
-                  <%= form.label :wight, class: "form-label" %>
-                  <%= form.text_field :wight, class: "form-control" %>
+                  <%= form.label :weight, class: "form-label" %>
+                  <%= form.text_field :weight, class: "form-control" %>
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label :teeth, class: "form-label" %>
@@ -123,9 +123,13 @@
 
                 <!-- input -->
                 <div id="my-dropzone" class="dropzone mt-4 border-dashed rounded-2 min-h-100">
-                  <%= form.file_field :images, multiple: true, class: "d-none" %>
+                  <%= form.file_field :images, multiple: true %>
                   <!-- Add a button for uploading images via Dropzone -->
-                  <button type="button" id="uploadImagesBtn" class="btn btn-primary">Upload Images</button>
+                  <%
+=begin%>
+ <button type="button" id="uploadImagesBtn" class="btn btn-primary">Upload Images</button> 
+<%
+=end%>
                 </div>
               </div>
 

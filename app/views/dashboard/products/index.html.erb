@@ -58,7 +58,10 @@
                     </div>
                   </td>
                   <td>
-                    <a href="#!"><img src="/assets/theme/products/product-img-1.jpg" alt="" class="icon-shape icon-md" /></a>
+                    <a href="#!">
+                      <%= image_tag url_for(product.primary_image), alt: product.short_description, class: 'icon-shape icon-md' if product.primary_image.attached? %>
+                    </a>
+
                   </td>
                   <td><a href="#" class="text-reset"><%= product.name %></a></td>
                   <td><%= product.category.name %></td>

@@ -21,7 +21,7 @@ class ProductsTest < ApplicationSystemTestCase
     check "Castrated" if @product.castrated
     fill_in "Category", with: @product.category_id
     fill_in "City", with: @product.city
-    fill_in "Countary", with: @product.countary
+    fill_in "Country", with: @product.country
     fill_in "Height", with: @product.height
     fill_in "Long description", with: @product.long_description
     fill_in "Name", with: @product.name
@@ -35,7 +35,7 @@ class ProductsTest < ApplicationSystemTestCase
     fill_in "Teeth", with: @product.teeth
     fill_in "User", with: @product.user_id
     check "Verified" if @product.verified
-    fill_in "Wight", with: @product.wight
+    fill_in "veigth", with: @product.veigth
     click_on "Create Product"
 
     assert_text "Product was successfully created"
@@ -53,7 +53,7 @@ class ProductsTest < ApplicationSystemTestCase
     check "Castrated" if @product.castrated
     fill_in "Category", with: @product.category_id
     fill_in "City", with: @product.city
-    fill_in "Countary", with: @product.countary
+    fill_in "Country", with: @product.country
     fill_in "Height", with: @product.height
     fill_in "Long description", with: @product.long_description
     fill_in "Name", with: @product.name
@@ -67,7 +67,7 @@ class ProductsTest < ApplicationSystemTestCase
     fill_in "Teeth", with: @product.teeth
     fill_in "User", with: @product.user_id
     check "Verified" if @product.verified
-    fill_in "Wight", with: @product.wight
+    fill_in "veigth", with: @product.veigth
     click_on "Update Product"
 
     assert_text "Product was successfully updated"

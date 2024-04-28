@@ -48,17 +48,21 @@
                   <% if product.primary_image.attached? %>
                     <%= image_tag url_for(product.primary_image), alt: product.short_description, class: "mb-3 img-fluid" %>
                   <% else %>
-                    <img src="/assets/theme/products/product-img-18.jpg" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" />
+                    <%= image_tag 'theme/png/no-image.png', alt: product.short_description, class: "mb-3 img-fluid" %>
                   <% end %>
                 <% end %>
                 <!-- action btn -->
-                <div class="card-product-action">
+                <%
+=begin%>
+ <div class="card-product-action">
                   <a href="#!" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal">
                     <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i>
                   </a>
                   <a href="../pages/shop-wishlist.html" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i class="bi bi-heart"></i></a>
                   <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-                </div>
+                </div> 
+<%
+=end%>
               </div>
               <!-- title -->
               <div class="text-small mb-1">

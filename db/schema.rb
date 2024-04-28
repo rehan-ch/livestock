@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_201828) do
     t.integer "sex"
     t.string "breed"
     t.float "height"
-    t.float "wight"
+    t.float "weight"
     t.integer "teeth"
     t.boolean "castrated"
     t.integer "price"
