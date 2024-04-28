@@ -1,3 +1,4 @@
 @import "bootstrap";
 @import "theme.min";
-@import "custom"
+@import "custom";
+@import "public/nav_bar.css";
