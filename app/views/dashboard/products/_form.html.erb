@@ -111,6 +111,10 @@
                     <%= form.text_area :address, class: "form-control", "data-geolocation-target": "address" %>
                   </div>
                 </div>
+                  <div class="mb-3 col-lg-12">
+                    <%= form.label :primary_image, class: "form-label" %>
+                    <%= form.file_field :primary_image, class: "form-control" %>
+                  </div>
 <!--                <div class="mb-3 col-lg-6">-->
                   <%#= form.label :self_stock, class: "form-label" %>
                   <%#= form.check_box :self_stock, class: "form-check-input" %>
