@@ -33,7 +33,7 @@ end
     city: Faker::Address.city,
     country: Faker::Address.country,
     state: Faker::Address.state,
-    address: Faker::Address.full_address
+    address: Faker::Address.full_address,
     status: 'approved'
   }
 
