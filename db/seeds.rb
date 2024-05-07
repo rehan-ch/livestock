@@ -10,44 +10,31 @@
     end
 end
 
-FactoryBot.define do
-    factory :product do
-      user_id { User.first&.id }
-      category_id { Category.first&.id }
-      product_type { nil }
-      name { Faker::Commerce.product_name }
-      short_description { Faker::Lorem.sentence(word_count: 5) }
-      long_description { Faker::Lorem.paragraph(sentence_count: 2) }
-      age_in_years { rand(1..30) }
-      age_in_months { rand(1..12) }
-      quantity_unit { ["liter", "milliliter", "gram"].sample }
-      sex { ["male", "female", "other"].sample }
-      breed { Faker::Creature::Animal.name }
-      height { Faker::Number.decimal(l_digits: 2) }
-      weight { Faker::Number.decimal(l_digits: 2) }
-      teeth { rand(20..32) }
-      castrated { Faker::Boolean.boolean }
-      price { Faker::Commerce.price(range: 0..100.0) }
-      quantity { Faker::Number.between(from: 1, to: 1000) }
-      city { Faker::Address.city }
-      country { Faker::Address.country }
-      state { Faker::Address.state }
-      address { Faker::Address.full_address }
-      created_at { Time.current }
-      updated_at { Time.current }
-    end
-  end
-  
-  
-  
-  
-  
-  9:12
-  # lib/tasks/populate_products.rake
-  namespace :populate do
-    desc "Generate sample products using FactoryBot and Faker"
-    task products: :environment do
-      number_to_create = (ENV['COUNT'] || 10).to_i  # Allows setting the count via COUNT env variable or defaults to 10
-      puts "Creating #{number_to_create} products..."
-      number_to_create.times do
-        FactoryBo
+
+100.times do
+  params = {
+    user_id: User.first&.id, 
+    category_id: Category.first&.id,
+    product_type: nil,
+    name: Faker::Commerce.product_name,
+    short_description: Faker::Lorem.sentence(word_count: 5),
+    long_description: Faker::Lorem.paragraph(sentence_count: 2),
+    age_in_years: rand(1..30),
+    age_in_months: rand(1..12),
+    quantity_unit: ["liter", "milliliter", "gram"].sample,
+    sex: ["male", "female", "other"].sample,
+    breed: Faker::Creature::Animal.name,
+    height: Faker::Number.decimal(l_digits: 2),
+    weight: Faker::Number.decimal(l_digits: 2),
+    teeth: rand(20..32),
+    castrated: Faker::Boolean.boolean,
+    price: Faker::Commerce.price(range: 0..100.0),
+    quantity: Faker::Number.between(from: 1, to: 1000),
+    city: Faker::Address.city,
+    country: Faker::Address.country,
+    state: Faker::Address.state,
+    address: Faker::Address.full_address
+  }
+
+  Product.create(params)
+end
