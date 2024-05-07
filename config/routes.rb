@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resources :categories
+    resources :paid_ads
     resources :products, path: 'my_ads' do
       collection do
         post :get_address
