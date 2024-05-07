@@ -58,7 +58,10 @@
                     </div>
                   </td>
                   <td>
-                    <a href="#!"><img src="/assets/theme/products/product-img-1.jpg" alt="" class="icon-shape icon-md" /></a>
+                    <a href="#!">
+                      <%= image_tag url_for(product.primary_image), alt: product.short_description, class: 'icon-shape icon-md' if product.primary_image.attached? %>
+                    </a>
+
                   </td>
                   <td><a href="#" class="text-reset"><%= product.name %></a></td>
                   <td><%= product.category.name %></td>
@@ -69,6 +72,10 @@
                   <td><%= product.price %></td>
                   <td><%= product.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                   <td>
+                    <%= link_to edit_admin_product_path(product) do %>
+                      <i class="bi bi-pencil-square me-3"></i>
+                      Edit
+                    <% end %>
                     <div class="dropdown">
                       <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
                         <i class="feather-icon icon-more-vertical fs-5"></i>
@@ -81,10 +88,10 @@
                           </a>
                         </li>
                         <li>
-                          <a class="dropdown-item" href="#">
+                          <%= link_to edit_admin_product_path(product), class: "dropdown-item" do %>
                             <i class="bi bi-pencil-square me-3"></i>
                             Edit
-                          </a>
+                          <% end %>
                         </li>
                       </ul>
                     </div>

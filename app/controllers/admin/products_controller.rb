@@ -26,7 +26,7 @@ module Admin
 
     def update
       if @product.update(product_params)
-        redirect_to dashboard_products_path, notice: "Product was successfully updated."
+        redirect_to admin_products_path, notice: "Product was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
