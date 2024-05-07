@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Paid ads</h1>
+
+<div id="paid_ads">
+  <% @paid_ads.each do |paid_ad| %>
+    <%= render paid_ad %>
+    <p>
+      <%= link_to "Show this paid ad", paid_ad %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New paid ad", new_paid_ad_path %>

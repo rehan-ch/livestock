@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @paid_ad %>
+
+<div>
+  <%= link_to "Edit this paid ad", edit_paid_ad_path(@paid_ad) %> |
+  <%= link_to "Back to paid ads", paid_ads_path %>
+
+  <%= button_to "Destroy this paid ad", @paid_ad, method: :delete %>
+</div>
