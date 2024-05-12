@@ -3,7 +3,13 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.approved
+    products = Product.approved
+    @search = params[:q]
+    @products = if @search.blank?
+                products.page(params[:page]).per(2)
+             else
+                products.where('LOWER(name) LIKE :search', search: "%#{@search.downcase}%").page(params[:page]).per(2)
+              end
   end
 
   # GET /products/1 or /products/1.json

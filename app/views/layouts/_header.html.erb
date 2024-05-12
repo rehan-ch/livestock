@@ -9,10 +9,10 @@
             <img src="/assets/theme/logo/logo.svg" alt="eCommerce HTML Template" style="width: 50px" />
           </a>
           <div class="w-100 ms-4 d-none d-lg-block">
-            <form action="#">
-              <div class="input-group">
-                <input class="form-control rounded" type="search" placeholder="Search for products" />
-                <span class="input-group-append">
+          <%= form_with url: products_path, method: :get, data: { turbo_frame: 'project_listings' } do |form| %>
+            <div class="input-group">
+              <%= form.search_field :q, class: 'form-control rounded', placeholder: "Search for Ads", value: params[:q]%>
+              <span class="input-group-append">
                                  <button class="btn bg-white border border-start-0 ms-n10 rounded-0 rounded-end" type="button">
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -30,8 +30,8 @@
                                     </svg>
                                  </button>
                               </span>
-              </div>
-            </form>
+            </div>
+          <% end %>
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center w-100 d-lg-none">
