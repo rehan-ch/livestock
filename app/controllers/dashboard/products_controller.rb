@@ -3,7 +3,7 @@ module Dashboard
     before_action :set_product, only: %i[ show edit update destroy ]
 
     def index
-      @products = current_user.products.page(page).per(per)
+      @products = current_user.products.filter_by_status(params[:type]).page(page).per(per)
     end
 
     def show; end

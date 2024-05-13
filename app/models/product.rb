@@ -10,6 +10,10 @@ class Product < ApplicationRecord
   delegate :name, to: :category, prefix: true
   delegate :name, to: :user, prefix: true
 
+  scope :filter_by_status, -> (status){
+    where(status: status) if status.present?
+  }
+
 
   enum status: [
     :draft,
