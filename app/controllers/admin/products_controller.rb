@@ -25,8 +25,8 @@ module Admin
     end
 
     def update
-      if @product.update(product_params)
-        redirect_to dashboard_products_path, notice: "Product was successfully updated."
+      if @product.approved!
+        redirect_to admin_products_path, notice: "Product was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -39,11 +39,11 @@ module Admin
 
     private
       def set_product
-        @product = current_user.products.find(params[:id])
+        @product = Product.find(params[:id])
       end
 
       def product_params
-        params.require(:product).permit(:user_id, :category_id, :status, :name, :short_description, :long_description, :age_in_years, :age_in_months, :sex, :breed, :height, :weight, :teeth, :castrated, :price, :quantity, :city, :country, :state, :address, :self_stock, :verified, :quantity_unit)
+        params.require(:product).permit(:user_id, :category_id, :status, :name, :short_description, :long_description, :age_in_years, :age_in_months, :sex, :breed, :height, :weight, :teeth, :castrated, :price, :quantity, :city, :country, :state, :address, :self_stock, :verified, :quantity_unit, :primary_image, images: [])
       end
   end
 end
