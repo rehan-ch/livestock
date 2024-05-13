@@ -6,9 +6,9 @@ class ProductsController < ApplicationController
     products = Product.approved
     @search = params[:q]
     @products = if @search.blank?
-                products.page(params[:page]).per(2)
+                products.page(page).per(per)
              else
-                products.where('LOWER(name) LIKE :search', search: "%#{@search.downcase}%").page(params[:page]).per(2)
+                products.where('LOWER(name) LIKE :search', search: "%#{@search.downcase}%").page(page).per(per)
               end
   end
 

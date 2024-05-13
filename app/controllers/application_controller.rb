@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+    def page
+        params[:page].present? ? params[:page] : 1
+    end
+
+    def per
+        params[:per].present? ? params[:per] : 10
+    end
+
     protected
 
         def configure_permitted_parameters

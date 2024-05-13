@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show], path: 'ads' do
+
+  end 
   resources :categories, only: [:index, :show]
   resources :contacts, only: [:index]
   resources :abouts, only: [:index]
