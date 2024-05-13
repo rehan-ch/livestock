@@ -59,7 +59,7 @@
                   </td>
                   <td>
                     <a href="#!">
-                      <%= image_tag url_for(product.primary_image), alt: product.short_description, class: 'icon-shape icon-md' if product.primary_image.attached? %>
+                      <%= image_tag url_for(product.images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
                     </a>
 
                   </td>

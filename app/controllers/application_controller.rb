@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
         params[:page].present? ? params[:page] : 1
     end
 
-    def per
-        params[:per].present? ? params[:per] : 10
+    def per(per_page = 10)
+        params[:per].present? ? params[:per] : per_page
     end
 
     protected

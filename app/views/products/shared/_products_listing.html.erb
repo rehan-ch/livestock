@@ -80,8 +80,8 @@
                 <span class="badge bg-danger">Sale</span>
               </div>
                 <%= link_to product_path(product) do %>
-                  <% if product.primary_image.attached? %>
-                    <%= image_tag url_for(product.primary_image), alt: product.short_description, class: "mb-3 img-fluid" %>
+                  <% if product.images.attached? %>
+                    <%= image_tag url_for(product.images.first), alt: product.short_description, class: "mb-3 img-fluid" %>
                   <% else %>
                     <%= image_tag 'theme/png/no-image.png', alt: product.short_description, class: "mb-3 img-fluid" %>
                   <% end %>

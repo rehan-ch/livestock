@@ -5,5 +5,8 @@ class Category < ApplicationRecord
   has_many :sub_categories, class_name: 'Category', foreign_key: :parent_id
   belongs_to :parent, class_name: 'Category', foreign_key: :parent_id, optional: true
 
+  default_scope -> { order(created_at: :desc) }
+
   scope :parent_categories, -> { where(parent_id: nil)}
+
 end

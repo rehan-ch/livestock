@@ -16,7 +16,6 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <!-- img slide -->
           <div class="product" id="product">
           <% @product.images.each do |image| %>
               <div>
@@ -26,13 +25,13 @@
               </div>
           <% end %>
           </div>
-          <!-- product tools -->
+
           <div class="product-tools">
             <div class="thumbnails row g-3" id="productThumbnails">
             <% @product.images.each do |image| %>
               <div class="col-3">
                 <div class="thumbnails-img product-thumbnails">
-                  <!-- img -->
+                   img
                   <%= image_tag url_for(image) %>
                 </div>
               </div>
@@ -326,3 +325,41 @@
   <!-- section -->
   <%= render partial: "products/shared/related_products" %>
 </main>
+
+<div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-8">
+        <div class="position-absolute top-0 end-0 me-3 mt-3">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="product" id="product">
+              <% @product.images.each do |image| %>
+                <div>
+                  <div class="zoom" onmousemove="zoom(event)" style="background-image: url(<%= image_url(image) %>)">
+                    <%= image_tag url_for(image) %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="product-tools">
+              <div class="thumbnails row g-3" id="productThumbnails">
+                <% @product.images.each do |image| %>
+                  <div class="col-3">
+                    <div class="thumbnails-img product-thumbnails">
+                      img
+                      <%= image_tag url_for(image) %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
