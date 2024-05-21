@@ -7,49 +7,85 @@
     </div>
     <div class="navbar-vertical-content flex-grow-1" data-simplebar="">
       <ul class="navbar-nav flex-column" id="sideNavbar">
+
         <li class="nav-item">
-          <a class="nav-link active" href="<%= admin_path %>">
+          <%= link_to admin_path, class: "nav-link #{active_tab('dashboard')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-house"></i></span>
               <span class="nav-link-text">Dashboard</span>
             </div>
-          </a>
+          <% end %>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="<%= admin_products_path %>">
-            <div class="d-flex align-items-center">
-              <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
-              <span class="nav-link-text">Products</span>
-            </div>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= admin_categories_path %>">
+          <%= link_to admin_categories_path, class: "nav-link #{active_tab('categories')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
               <span class="nav-link-text">Categories</span>
             </div>
-          </a>
+          <% end %>
         </li>
+
+<!--        <li class="nav-item">-->
+          <%#= link_to dashboard_paid_ads_path, class: "nav-link #{active_tab('paid_ads')}" do %>
+<!--            <div class="d-flex align-items-center">-->
+<!--              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>-->
+<!--              <span class="nav-link-text">Paid Ads</span>-->
+<!--            </div>-->
+          <%# end %>
+<!--        </li>-->
+
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
+          <a class="nav-link <%= "collapse" if active_tab('products').present? %> " href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-bag"></i></span>
-              <span class="nav-link-text">Orders</span>
+              <span class="nav-link-text">All Ads</span>
             </div>
           </a>
-          <div id="navCategoriesOrders" class="collapse" data-bs-parent="#sideNavbar">
+          <div id="navCategoriesOrders" class="collapse  <%= " show" if active_tab('products').present? %>" data-bs-parent="#sideNavbar">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="../dashboard/order-list.html">List</a>
+                <%= link_to admin_products_path(type: 'all'), class: "nav-link  #{active_tab_with_tabs('products', 'all')}" do %>
+                  <span class="nav-link-text">All Adds</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_products_path(type: 'draft'), class: "nav-link #{active_tab_with_tabs("products", 'draft')}" do %>
+                  <span class="nav-link-text">Draft</span>
+                <% end %>
               </li>
               <!-- Nav item -->
               <li class="nav-item">
-                <a class="nav-link" href="../dashboard/order-single.html">Single</a>
+                <%= link_to admin_products_path(type: 'pending'), class: "nav-link #{active_tab_with_tabs("products", 'pending')}" do %>
+                  <span class="nav-link-text">Pending</span>
+                <% end %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to admin_products_path(type: 'approved'), class: "nav-link #{active_tab_with_tabs("products", 'approved')}" do %>
+                  <span class="nav-link-text">Approved</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_products_path(type: 'rejected'), class: "nav-link #{active_tab_with_tabs("products", 'rejected')}" do %>
+                  <span class="nav-link-text">Rejected</span>
+                <% end %>
               </li>
             </ul>
           </div>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#!">
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-gear"></i></span>
+              <span class="nav-link-text">Store Settings</span>
+            </div>
+          </a>
+        </li>
+
+
+
 
         <li class="nav-item">
           <a class="nav-link disabled" href="#!">

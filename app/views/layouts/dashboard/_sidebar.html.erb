@@ -25,16 +25,16 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link <%= "collapse active" if active_tab('products').present? %> " href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
+          <a class="nav-link <%= "collapse" if active_tab('products').present? %> " href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-bag"></i></span>
               <span class="nav-link-text">My Ads</span>
             </div>
           </a>
-          <div id="navCategoriesOrders" class="collapse" data-bs-parent="#sideNavbar">
+          <div id="navCategoriesOrders" class="collapse  <%= " show" if active_tab('products').present? %>" data-bs-parent="#sideNavbar">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <%= link_to dashboard_products_path, class: "nav-link  #{active_tab_with_tabs('products', '')}" do %>
+                <%= link_to dashboard_products_path(type: 'all'), class: "nav-link  #{active_tab_with_tabs('products', 'all')}" do %>
                   <span class="nav-link-text">All Adds</span>
                 <% end %>
               </li>
@@ -45,18 +45,19 @@
               </li>
               <!-- Nav item -->
               <li class="nav-item">
-                <%= link_to dashboard_products_path(type: 'pending'), class: "nav-link" do %>
+                <%= link_to dashboard_products_path(type: 'pending'), class: "nav-link #{active_tab_with_tabs("products", 'pending')}" do %>
                   <span class="nav-link-text">Pending</span>
                 <% end %>
               </li>
+
               <li class="nav-item">
-                <%= link_to dashboard_products_path(type: 'rejected'), class: "nav-link" do %>
-                  <span class="nav-link-text">Rejected</span>
+                <%= link_to dashboard_products_path(type: 'approved'), class: "nav-link #{active_tab_with_tabs("products", 'approved')}" do %>
+                  <span class="nav-link-text">Approved</span>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to dashboard_products_path(type: 'approved'), class: "nav-link" do %>
-                  <span class="nav-link-text">Approved</span>
+                <%= link_to dashboard_products_path(type: 'rejected'), class: "nav-link #{active_tab_with_tabs("products", 'rejected')}" do %>
+                  <span class="nav-link-text">Rejected</span>
                 <% end %>
               </li>
             </ul>
@@ -71,6 +72,7 @@
             </div>
           </a>
         </li>
+
 
         <li class="nav-item mt-6 mb-3">
           <span class="nav-label">Support</span>

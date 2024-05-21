@@ -3,7 +3,7 @@ module Admin
     before_action :set_product, only: %i[ show edit update destroy ]
 
     def index
-      @products = Product.all
+      @products = Product.filter_by_status(params[:type]).page(page).per(per)
     end
 
     def show; end
