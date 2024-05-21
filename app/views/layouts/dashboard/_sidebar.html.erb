@@ -8,7 +8,7 @@
     <div class="navbar-vertical-content flex-grow-1" data-simplebar="">
       <ul class="navbar-nav flex-column" id="sideNavbar">
         <li class="nav-item">
-          <%= link_to dashboard_path, class: "nav-link #{'active' if active_tab('dashboard')}" do %>
+          <%= link_to dashboard_path, class: "nav-link #{active_tab('dashboard')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-house"></i></span>
               <span class="nav-link-text">Dashboard</span>
@@ -17,7 +17,7 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to dashboard_paid_ads_path, class: "nav-link #{'active' if active_tab('paid_ads')}" do %>
+          <%= link_to dashboard_paid_ads_path, class: "nav-link #{active_tab('paid_ads')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
               <span class="nav-link-text">Paid Ads</span>
@@ -25,16 +25,21 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
+          <a class="nav-link <%= "collapse active" if active_tab('products').present? %> " href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-bag"></i></span>
-              <span class="nav-link-text">Ads</span>
+              <span class="nav-link-text">My Ads</span>
             </div>
           </a>
           <div id="navCategoriesOrders" class="collapse" data-bs-parent="#sideNavbar">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <%= link_to dashboard_products_path(type: 'draft'), class: "nav-link" do %>
+                <%= link_to dashboard_products_path, class: "nav-link  #{active_tab_with_tabs('products', '')}" do %>
+                  <span class="nav-link-text">All Adds</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to dashboard_products_path(type: 'draft'), class: "nav-link #{active_tab_with_tabs("products", 'draft')}" do %>
                   <span class="nav-link-text">Draft</span>
                 <% end %>
               </li>
