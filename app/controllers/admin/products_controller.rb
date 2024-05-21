@@ -25,7 +25,13 @@ module Admin
     end
 
     def update
-      if @product.approved!
+      if @product.update(product_params.reject { |k| k["images"] })
+        if product_params[:images].present?
+          product_params[:images].each do |image|
+            @product.images.attach(image)
+          end
+        end
+
         redirect_to admin_products_path, notice: "Product was successfully updated."
       else
         render :edit, status: :unprocessable_entity

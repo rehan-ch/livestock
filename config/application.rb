@@ -17,7 +17,9 @@ module Livestock
     config.autoload_lib(ignore: %w(assets tasks))
     config.assets.paths << Rails.root.join('lib')
     config.assets.paths << Rails.root.join('js')
-
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
