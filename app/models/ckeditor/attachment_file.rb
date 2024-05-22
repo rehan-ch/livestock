@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Ckeditor::AttachmentFile < Ckeditor::Asset
-  # for validation, see https://github.com/igorkasyanchuk/active_storage_validations
+  mount_uploader :data, CkeditorAttachmentFileUploader, mount_on: :data_file_name
 
   def url_thumb
     @url_thumb ||= Ckeditor::Utils.filethumb(filename)

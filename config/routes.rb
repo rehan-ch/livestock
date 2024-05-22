@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   end 
   resources :categories, only: [:index, :show]
+  resources :services, only: %i[index show]
   resources :contacts, only: [:index]
   resources :abouts, only: [:index]
 
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'dashboard#index'
     resources :categories
+    resources :services
     resources :products, path: 'my_ads'
   end
 end
