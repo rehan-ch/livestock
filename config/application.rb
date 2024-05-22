@@ -20,6 +20,8 @@ module Livestock
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
+    
+    config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

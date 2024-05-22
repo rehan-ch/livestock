@@ -76,3 +76,7 @@ gem 'geocoder'
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'kaminari'
+
+
+gem 'ckeditor', github: 'galetahub/ckeditor'
+gem "mini_magick"
