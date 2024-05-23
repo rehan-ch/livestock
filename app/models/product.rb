@@ -10,31 +10,25 @@ class Product < ApplicationRecord
   delegate :name, to: :category, prefix: true
   delegate :name, to: :user, prefix: true
 
-  scope :filter_by_status, -> (status){
-    where(status: status) if status.present?
-  }
-  scope :filter_by_query, -> (query){
-    where('LOWER(name) LIKE :search', search: "%#{query.downcase}%")
-  }
-  scope :filter_by_category, -> (category_id){
-    where(category_id: category_id)
-  }
-  scope :filter_by_city, -> (city){
-    where('LOWER(city) LIKE :search', search: "%#{city.downcase}%")
-  }
-  scope :filter_by_price, ->(min, max) {
-  if min.present? && max.present?
-    where('price > ? AND price < ?', min, max)
-  elsif min.present?
-    where('price > ?', min)
-  elsif max.present?
-    where('price < ?', max)
-  end
-}
+  scope :filter_by_status, ->(status) { where(status: status) if status.present? }
 
-  scope :filter_by_self_stock, -> (self_stock){
-    where(self_stock: self_stock)
+  scope :filter_by_query, ->(query) { where('LOWER(name) LIKE ?', "%#{query.downcase}%") if query.present? }
+
+  scope :filter_by_category, ->(category_id) { where(category_id: category_id) if category_id.present? }
+
+  scope :filter_by_city, ->(city) { where('LOWER(city) LIKE ?', "%#{city.downcase}%") if city.present? }
+
+  scope :filter_by_price, ->(min, max) {
+    if min.present? && max.present?
+      where('price >= ? AND price <= ?', min, max)
+    elsif min.present?
+      where('price >= ?', min)
+    elsif max.present?
+      where('price <= ?', max)
+    end
   }
+
+  scope :filter_by_self_stock, ->(self_stock) { where(self_stock: true) if self_stock == '1' }
 
   enum status: [
     :draft,
