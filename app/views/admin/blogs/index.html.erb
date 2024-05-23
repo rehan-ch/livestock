@@ -1,0 +1,113 @@
+<main class="main-content-wrapper">
+  <div class="container">
+    <%= render partial: "/admin/shared/breadcrum" %>
+    <!-- row -->
+    <div class="row">
+      <div class="col-xl-12 col-12 mb-5">
+        <!-- card -->
+        <div class="card h-100 card-lg">
+          <div class="px-6 py-6">
+            <div class="row justify-content-between">
+              <!-- form -->
+              <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0">
+                <form class="d-flex" role="search">
+                  <input class="form-control" type="search" placeholder="Search blogs" aria-label="Search" />
+                </form>
+              </div>
+              <!-- select option -->
+              <div class="col-lg-2 col-md-4 col-12">
+                <select class="form-select">
+                  <option selected>Status</option>
+                  <option value="1">Active</option>
+                  <option value="2">Deactive</option>
+                  <option value="3">Draft</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- card body -->
+          <% unless @blogs.present? %>
+            <p>No blogs found</p>
+          <% else %>
+          
+            <div class="card-body p-0">
+              <!-- table -->
+              <div class="table-responsive">
+                  <table class="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
+                    <thead class="bg-light">
+                      <tr>
+                        <th>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkAll" />
+                            <label class="form-check-label" for="checkAll"></label>
+                          </div>
+                        </th>
+                        <th>Cover Image</th>
+                        <th>Banner Image</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Published At</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @blogs.each do |blog| %>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="blogOne" />
+                              <label class="form-check-label" for="blogOne"></label>
+                            </div>
+                          </td>
+                          <td>
+                            <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "icon-shape icon-md" if blog.cover_image.attached? %>
+                          </td>
+                           <td>
+                            <%= image_tag url_for(blog.banner_image), alt: blog.title, class: "icon-shape icon-md" if blog.banner_image.attached? %>
+                          </td>
+                          <td><a href="#" class="text-reset"><%= blog.title %></a></td>
+                          <td><%= blog.status %></td>
+                          <td><%= blog.published_at.present? ? blog.published_at.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %></td>
+                          <td>
+                            <%= link_to edit_admin_blog_path(blog) do %>
+                              <i class="bi bi-pencil-square me-3"></i>
+                              Edit
+                            <% end %>
+                            <%= link_to admin_blog_path(blog) do %>
+                              <i class="bi bi-pencil-square me-3"></i>
+                              Show
+                            <% end %>
+                            <div class="dropdown">
+                              <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
+                                <i class="feather-icon icon-more-vertical fs-5"></i>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <i class="bi bi-trash me-3"></i>
+                                    Delete
+                                  </a>
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <i class="bi bi-pencil-square me-3"></i>
+                                    Edit
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <%= paginate @blogs %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

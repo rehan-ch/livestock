@@ -78,7 +78,14 @@
             <ul class="nav flex-column">
               <li class="nav-item mb-2"><a href="#!" class="nav-link">Company</a></li>
               <li class="nav-item mb-2"><a href="#!" class="nav-link">About</a></li>
-              <li class="nav-item mb-2"><a href="#!" class="nav-link">Blog</a></li>
+              <li class="nav-item mb-2">
+                <%= link_to blogs_path, class: "nav-link #{active_tab('blogs')}" do %>
+                  <div class="d-flex align-items-center">
+                    <span class="nav-link-text">Blogs</span>
+                  </div>
+                <% end %>
+              </li>
+
               <li class="nav-item mb-2"><a href="#!" class="nav-link">Help Center</a></li>
               <li class="nav-item mb-2"><a href="#!" class="nav-link">Our Value</a></li>
             </ul>

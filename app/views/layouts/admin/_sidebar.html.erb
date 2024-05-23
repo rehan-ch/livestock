@@ -35,6 +35,15 @@
           <% end %>
         </li>
 
+        <li class="nav-item">
+          <%= link_to admin_blogs_path, class: "nav-link #{active_tab('blogs')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">Blogs</span>
+            </div>
+          <% end %>
+        </li>
+
 <!--        <li class="nav-item">-->
           <%#= link_to dashboard_paid_ads_path, class: "nav-link #{active_tab('paid_ads')}" do %>
 <!--            <div class="d-flex align-items-center">-->
