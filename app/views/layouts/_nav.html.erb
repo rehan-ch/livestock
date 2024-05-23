@@ -80,33 +80,6 @@
                           <% end %>
                         </ul>
                       </div>
-
-                      <%
-=begin%>
- <div>
-                        <ul class="list-unstyled">
-                          <li>
-                            <a href="javascript:void(0)" class="dropdown-item">Banana &amp; Papaya</a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)" class="dropdown-item">Kiwi, Citrus Fruit</a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)" class="dropdown-item">Apples &amp; Pomegranate</a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)" class="dropdown-item">Seasonal Fruits</a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)" class="dropdown-item">Mangoes</a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)" class="dropdown-item">Fruit Baskets</a>
-                          </li>
-                        </ul>
-                      </div>
-<%
-=end%>
                     </div>
                   <% end %>
                 </li>
@@ -117,10 +90,13 @@
               <a class="nav-link <%= active_class('home') %>" href="<%= root_path %>" role="button" aria-expanded="false">Home</a>
             </li>
             <li class="nav-item ">
-              <%= link_to "All Ads", products_path, class: 'nav-link', role: 'button', 'aria-expanded': 'false' %>
+              <%= link_to "All Ads", products_path,  class: "nav-link #{active_class('products')}", role: 'button', 'aria-expanded': 'false' %>
             </li>
             <li class="nav-item ">
-              <%= link_to "Services", services_path, class: 'nav-link', role: 'button', 'aria-expanded': 'false' %>
+              <%= link_to "Services", services_path, class: "nav-link #{active_class('services')}", role: 'button', 'aria-expanded': 'false' %>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "Blogs", blogs_path, class: "nav-link #{active_class('blogs')}", role: 'button', 'aria-expanded': 'false' %>
             </li>
             <li class="nav-item ">
               <a class="nav-link <%= active_class('contacts') %> " href="<%= contacts_path %>" role="button" aria-expanded="false">Contact Us</a>
