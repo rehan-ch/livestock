@@ -1,0 +1,77 @@
+<main class="main-content-wrapper">
+  <div class="container">
+    <div class="content custom-content">
+      <div class="row d-flex">
+        <section>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="pull-right-flex">
+                  <%= link_to 'Back', admin_blogs_path, class: 'btn btn-primary px-4 py-2 fnt-12 m-b-20 docs-creator' %>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="cv-view-header">
+                    <div class="left d-flex align-items-center justify-content-start">
+                      <h3><%= @blog.title %></h3>
+                    </div>
+                  </div>
+                  <table class="table table-hover mb-0">
+                    <tbody>
+                      <tr>
+                        <td class="title">Status</td>
+                        <td class="detail"><%= @blog.status.humanize %></td>
+                      </tr>
+                       <tr>
+                        <td class="title">Published At</td>
+                        <td class="detail"><%= @blog.published_at %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Cover Image</td>
+                        <td class="detail"><%= image_tag url_for(@blog.cover_image), alt: @blog.title, class: "icon-shape icon-md" if @blog.cover_image.attached? %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Banner Image</td>
+                        <td class="detail"><%= image_tag url_for(@blog.banner_image), alt: @blog.title, class: "icon-shape icon-md" if @blog.banner_image.attached? %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Slug</td>
+                        <td class="detail"><%= @blog.slug %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Tag Keywords</td>
+                        <td class="detail"><%= @blog.tag_keywords.html_safe %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Meta Title</td>
+                        <td class="detail"><%= @blog.meta_title %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Meta Keywords</td>
+                        <td class="detail"><%= @blog.meta_keywords.html_safe %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Short Description</td>
+                        <td class="detail"><%= @blog.short_description.html_safe %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Meta Description</td>
+                        <td class="detail"><%= @blog.meta_description.html_safe %></td>
+                      </tr>
+                      <tr>
+                        <td class="title">Content</td>
+                        <td colspan="12" class="detail"><%= @blog.body.html_safe %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>

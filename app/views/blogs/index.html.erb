@@ -1,0 +1,50 @@
+<section>
+  <% if @blogs.present? %>
+    <div class="container">
+      <div class="blog-container">
+        <div class="row">
+          <% @blogs.each do |blog| %>
+            <div class="col-sm-12">
+              <div class="row hover-effect border-bottom border padding-y">
+                <div class="col-sm-4">
+                  <div class="feature-new-warp">
+                    <a href="<%= blog_path(blog.slug) %>">
+                      <%= image_tag url_for(blog.cover_image), alt: blog.title, style: "width: 100%; height: auto; max-width: 600px; display: block; margin: 0 auto;" if blog.cover_image.attached? %>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-8 structure">
+                  <div class="text-data">
+                    <h2>
+                      <%= link_to blog.title, blog_path(blog.slug) %>
+                    </h2>
+                    <div class="row">
+                      <div class="col-sm-3 col-md-3">
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i><%= blog.published_at %></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tapo">
+                    <p><%= blog.short_description.html_safe %></p>
+                  </div>
+                  <%= link_to "Read More", blog_path(blog.slug), class: "col-sm-3 ot-btn btn-sub-color" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="col-md-12 custom-pagination">
+            <%= paginate @blogs %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="container">
+      <div class="news-list-warp">
+        <h1 class="text-align-center mx-auto">
+          No Blogs Here!
+        </h1>
+      </div>
+    </div>
+  <% end %>
+</section>

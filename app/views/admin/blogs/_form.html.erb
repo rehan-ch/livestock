@@ -1,0 +1,82 @@
+<main class="main-content-wrapper">
+  <div class="container">
+    <%= render partial: "/admin/shared/breadcrum" %>
+
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        <div class="card mb-6 card-lg">
+          <div class="card-body p-6">
+            <h4 class="mb-4 h5"> Blog Information</h4>
+            <%= form_with(model: [:admin, blog]) do |form| %>
+              <% if blog.errors.any? %>
+                <div style="color: red">
+                  <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+                  <ul>
+                    <% blog.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <div class="row">
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :title %>
+                  <%= form.text_field :title %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :meta_title %>
+                  <%= form.text_field :meta_title %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :tag_keywords %>
+                  <%= form.text_field :tag_keywords %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :status %>
+                  <%= form.select(:status, Blog.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :cover_image, class: "form-label" %>
+                  <%= form.file_field :cover_image, class: "form-control" %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :banner_image, class: "form-label" %>
+                  <%= form.file_field :banner_image, class: "form-control" %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :short_description %>
+                  <%= form.cktext_area :short_description %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :meta_keywords %>
+                  <%= form.cktext_area :meta_keywords %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :meta_description %>
+                  <%= form.cktext_area :meta_description %>
+                </div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :body %>
+                  <%= form.cktext_area :body %>
+                </div>
+              </div>
+              <div class="mb-3">
+                <%= form.submit class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
