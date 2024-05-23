@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_22_134956) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_23_094518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -40,6 +40,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_134956) do
     t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "blogs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "status", default: 0
+    t.datetime "published_at"
+    t.string "tag_keywords"
+    t.text "short_description"
+    t.string "meta_title"
+    t.text "meta_keywords"
+    t.text "meta_description"
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_blogs_on_slug", unique: true
   end
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
