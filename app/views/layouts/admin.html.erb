@@ -40,10 +40,15 @@
 
     <%= render partial: 'layouts/admin/sidebar' %>
     <%= render partial: 'layouts/admin/mobile_nav_bar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
+    <div class="flash-message-container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    
     <%= yield %>
   </div>
+
 </div>
 </body>
 
