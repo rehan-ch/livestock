@@ -78,4 +78,3 @@ gem 'faker'
 gem 'kaminari'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem "mini_magick"
-gem 'jquery-rails'
