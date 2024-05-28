@@ -32,6 +32,11 @@
                   <%= form.label :image, class: "form-label" %>
                   <%= form.file_field :image, class: "form-control" %>
                 </div>
+                <div id="dash_category_image_preview" class="image-preview-container"></div>
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :image, class: "form-label" %>
+                  <%= form.file_field :image, class: "form-control image-preview-input", data: { preview_target: '#dash_category_image_preview' } %>
+                </div>
               </div>
               <div class="mb-3">
                 <%= form.submit class: "btn btn-primary" %>
