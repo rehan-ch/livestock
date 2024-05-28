@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products, dependent: :destroy
   has_many :paid_ads, dependent: :destroy
+  has_many :bought_chats, class_name: 'Chat', foreign_key: 'buyer_id', dependent: :destroy
+  has_many :sold_chats, class_name: 'Chat', foreign_key: 'seller_id', dependent: :destroy
 
   has_one_attached :avatar
 
