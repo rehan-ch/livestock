@@ -16,3 +16,16 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+
+/*contact-us block start*/
+.contact-us-block {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 20px;
+  margin-top: 10px;
+}
+
+/*contact-us block end*/
