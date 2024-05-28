@@ -1,0 +1,28 @@
+<div class="col-12 col-md-6 col-lg-4 mb-10">
+  <div class="mb-4">
+    <%= link_to blog_path(blog.slug) do %>
+      <!-- img -->
+      <div class="img-zoom">
+        <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "icon-shape  img-fluid w-100 icon-md" if blog.cover_image.attached? %>
+      </div>
+    <% end %>
+  </div>
+  <!-- text -->
+  <div>
+    <h2 class="h5">
+      <%= link_to blog.title.humanize, blog_path(blog), class: "text-inherit" %>
+    </h2>
+    <p>
+      <%= truncate(strip_tags(blog.short_description), length: 100) %>
+    </p>
+    <div class="d-flex justify-content-between text-muted mt-4">
+      <span><small><%= blog.published_at.strftime('%d %B %Y') %></small></span>
+      <span>
+                      <small>
+                         Read time:
+                         <span class="text-dark fw-bold">12min</span>
+                      </small>
+                   </span>
+    </div>
+  </div>
+</div>
