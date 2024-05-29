@@ -1,0 +1,8 @@
+<div class="flash-message-container">
+  <% flash.each do |key, message| %>
+    <div class="flash-message <%= key %>  mt-3">
+      <%= message %>
+      <button class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+    </div>
+  <% end %>
+</div>

@@ -30,21 +30,27 @@
 </head>
 
 <body>
-<%= render partial: 'layouts/admin/header' %>
-<div>
-  <!-- navbar -->
-
-  <div class="main-wrapper">
-    <!-- navbar vertical -->
+  <div>
+    <%= render partial: 'layouts/admin/header' %>
     <!-- navbar -->
 
-    <%= render partial: 'layouts/admin/sidebar' %>
-    <%= render partial: 'layouts/admin/mobile_nav_bar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div id="flash_messages">
+      <%= render 'layouts/dashboard/flash_messages' %>
+    </div>
+
+    <div class="main-wrapper">
+      <!-- navbar vertical -->
+      <!-- navbar -->
+
+      <%= render partial: 'layouts/admin/sidebar' %>
+      <%= render partial: 'layouts/admin/mobile_nav_bar' %>
+      <main class="main-content-wrapper mt-3">
+          
+        <%= yield %>
+      </main>
+
+    </div>
   </div>
-</div>
 </body>
 
 <!-- Javascript-->
