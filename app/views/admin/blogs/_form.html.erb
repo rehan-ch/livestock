@@ -38,20 +38,25 @@
                 <%= form.text_field :tag_keywords, class: "form-control" %>
               </div>
 
-              <div class="mb-6 col-lg-12">
-                <%= form.label :meta_keywords, class: "form-label" %>
-                <%= form.text_area :meta_keywords, class: "form-control" %>
-              </div>
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :status %>
+                  <%= form.select(:status, Blog.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
+                </div>
 
-              <div class="mb-6 col-lg-12">
-                <%= form.label :cover_image, class: "form-label" %>
-                <%= form.file_field :cover_image, class: "form-control" %>
-              </div>
+                <div id="cover_image_preview" class="image-preview-container"></div>
 
-              <div class="mb-6 col-lg-12">
-                <%= form.label :banner_image, class: "form-label" %>
-                <%= form.file_field :banner_image, class: "form-control" %>
-              </div>
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :cover_image, class: "form-label" %>
+                  <%= form.file_field :cover_image, class: "form-control image-preview-input", data: { preview_target: '#cover_image_preview' } %>
+                </div>
+
+                <div id="banner_image_preview" class="image-preview-container"></div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :banner_image, class: "form-label" %>
+                  <%= form.file_field :banner_image, class: "form-control image-preview-input", data: { preview_target: '#banner_image_preview' } %>
+                </div>
+
 
               <div class="mb-6 col-lg-12">
                 <%= form.label :short_description, class: "form-label" %>

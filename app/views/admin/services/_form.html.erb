@@ -28,15 +28,16 @@
                 <%= form.select(:status, Service.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
               </div>
 
-              <div class="mb-6 col-lg-12">
-                <%= form.label :cover_image, class: "form-label" %>
-                <%= form.file_field :cover_image, class: "form-control" %>
-              </div>
+                <div id="cover_image_preview" class="image-preview-container"></div>
 
-              <div class="mb-6 col-lg-12">
-                <%= form.label :content, class: "form-label" %>
-                <%= form.cktext_area :content, class: 'form-control ckeditor', required: true %>
-              </div>
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :cover_image, class: "form-label" %>
+                  <%= form.file_field :cover_image, class: "form-control image-preview-input", data: { preview_target: '#cover_image_preview' } %>
+                </div>
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :content, class: "form-label" %>
+                  <%= form.cktext_area :content, class: 'form-control ckeditor', required: true %>
+                </div>
             </div>
             <div class="mb-3">
               <%= form.submit class: "btn btn-primary" %>

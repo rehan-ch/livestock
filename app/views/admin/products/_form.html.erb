@@ -120,8 +120,16 @@
 
               <!-- input -->
 <!--                <div id="my-dropzone" class="dropzone mt-4 border-dashed rounded-2 min-h-100">-->
-                <%= form.file_field :images, multiple: true %>
-                <!-- Add a button for uploading images via Dropzone -->
+
+                <div id="product_images_preview" class="image-preview-container"></div>
+
+                <div class="mb-6 col-lg-12">
+                  <%= form.label :images, class: "form-label" %>
+                  <%= form.file_field :images, multiple: true, class: "form-control image-preview-input", data: { preview_target: '#product_images_preview' } %>
+                </div>
+
+
+                  <!-- Add a button for uploading images via Dropzone -->
 <!--                  <button type="button" id="uploadImagesBtn" class="btn btn-primary">Upload Images</button>-->
 <!--                </div>-->
             </div>
