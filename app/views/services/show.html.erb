@@ -1,18 +1,18 @@
   <!-- design one  -->
-  <!--<div class="container">
+<div class="container">
   <div class="sub-header overlay mt-5">
-    <h1><%#= @service.title.humanize %></h1>
+    <h1><%= @service.title.humanize %></h1>
   </div>
 
-  <div class="row">-->
+  <div class="row">
     <!-- Cover Image -->
-    <!-- <div class="col-md-8 mb-8">
-      <%#= image_tag url_for(@service.cover_image), alt: @service.title, class: "img-fluid rounded w-100" if @service.cover_image.attached? %>
-    </div>-->
+    <div class="col-md-8 mb-8">
+      <%= image_tag url_for(@service.cover_image), alt: @service.title, class: "img-fluid rounded w-100" if @service.cover_image.attached? %>
+    </div>
 
     <!-- Contact Us Block -->
-    <!--<div class="col-md-4 mb-8">
-      <%#= render partial: "shared/contact_us" %>
+    <div class="col-md-4 mb-8">
+      <%= render partial: "shared/contact_us" %>
     </div>
 
   </div>
@@ -23,23 +23,22 @@
         <div class="col-8">
           <div class="new-detail-warp">
             <div class="content-detail content-new-detail">
-              <%#= raw @service.content %>
+              <%= raw @service.content %>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-</div>-->
+</div>
 
 
 
-  <!-- design two  -->
-<div class="mt-4">
+  <!-- design one  -->
+<!--<div class="mt-4">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <!-- breadcrumb -->
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="#!">Home</a></li>
@@ -51,16 +50,14 @@
     </div>
   </div>
 </div>
-<!-- section -->
 <section class="my-lg-14 my-8">
   <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <!-- text -->
         <div class="mb-5">
-          <h1 class="fw-bold text-center"><%= @service.title.humanize %></h1>
+          <h1 class="fw-bold text-center"><%#= @service.title.humanize %></h1>
           <div class="d-flex justify-content-center text-muted mt-4">
-            <span class="me-2"><small><%= @service.created_at.strftime('%d %B %Y') %></small></span>
+            <span class="me-2"><small><%#= @service.created_at.strftime('%d %B %Y') %></small></span>
             <span>
                             <small>
                                Read time:
@@ -69,19 +66,17 @@
                          </span>
           </div>
         </div>
-        <!-- img -->
         <div class="mb-8">
-          <%= image_tag url_for(@service.cover_image), alt: @service.title, class: "img-fluid rounded" if @service.cover_image.attached? %>
+          <%#= image_tag url_for(@service.cover_image), alt: @service.title, class: "img-fluid rounded" if @service.cover_image.attached? %>
         </div>
 
         <div>
-          <!-- text -->
           <div class="mb-4">
-            <%= raw @service.content %>
+            <%#= raw @service.content %>
           </div>
         </div>
         <hr class="mt-8 mb-5" />
       </div>
     </div>
   </div>
-</section>
+</section>-->
