@@ -11,7 +11,7 @@
               <a href="<%= admin_path %>" class="text-inherit">Dashboard</a></li>
             <% unless action_name == "index" %>
               <li class="breadcrumb-item">
-                <a href="<%= admin_products_path %>" class="text-inherit"><%= controller_name.classify %></a></li>
+                <a href="<%= dynamic_breadcrum_path %>" class="text-inherit"><%= controller_name.classify %></a></li>
               <li class="breadcrumb-item active" aria-current="page"><%= "#{action_name.classify} #{controller_name.classify}" %></li>
             <% else %>
               <li class="breadcrumb-item active" aria-current="page"><%= "#{controller_name.classify}" %></li>
