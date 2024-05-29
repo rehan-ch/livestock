@@ -1,5 +1,4 @@
-<main class="main-content-wrapper">
-  <div class="container">
+<div class="container">
 <%= render partial: "/dashboard/shared/breadcrum" %>
 
     <div class="row">
@@ -115,10 +114,11 @@
                     <%= form.text_area :address, class: "form-control", "data-geolocation-target": "address" %>
                   </div>
                 </div>
-                  <div class="mb-3 col-lg-12">
-                    <%= form.label :primary_image, class: "form-label" %>
-                    <%= form.file_field :primary_image, class: "form-control" %>
-                  </div>
+                <div id="dash_prime_image_preview" class="image-preview-container"></div>
+                <div class="mb-3 col-lg-12">
+                  <%= form.label :primary_image, class: "form-label" %>
+                  <%= form.file_field :primary_image, class: "form-control image-preview-input", data: { preview_target: '#dash_prime_image_preview' } %>
+                </div>
 <!--                <div class="mb-3 col-lg-6">-->
                   <%#= form.label :self_stock, class: "form-label" %>
                   <%#= form.check_box :self_stock, class: "form-check-input" %>
@@ -128,10 +128,15 @@
               <div class="mb-3 col-lg-12 mt-5">
                 <!-- heading -->
                 <h4 class="mb-3 h5">Product Images</h4>
+                  <div id="dash_product_images_preview" class="image-preview-container"></div>
 
+                  <div class="mb-6 col-lg-12">
+                    <%= form.label :images, class: "form-label" %>
+                    <%= form.file_field :images, multiple: true, class: "form-control image-preview-input", data: { preview_target: '#dash_product_images_preview' } %>
+                  </div>
                 <!-- input -->
 <!--                <div id="my-dropzone" class="dropzone mt-4 border-dashed rounded-2 min-h-100">-->
-                  <%= form.file_field :images, multiple: true %>
+                  <%#= form.file_field :images, multiple: true %>
                 </div>
 <!--              </div>-->
 
@@ -144,4 +149,3 @@
       </div>
     </div>
   </div>
-</main>

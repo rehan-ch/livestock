@@ -1,52 +1,51 @@
-<main class="main-content-wrapper">
-  <div class="container">
-    <%= render partial: "/admin/shared/breadcrum" %>
+<div class="container">
+  <%= render partial: "/admin/shared/breadcrum" %>
 
-    <div class="row">
-      <div class="col-lg-8 col-12">
-        <div class="card mb-6 card-lg">
-          <div class="card-body p-6">
-            <h4 class="mb-4 h5">service Information</h4>
-            <%= form_with(model: [:admin, service]) do |form| %>
-              <% if service.errors.any? %>
-                <div style="color: red">
-                  <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
-                  <ul>
-                    <% service.errors.each do |error| %>
-                      <li><%= error.full_message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              <% end %>
-              <div class="row">
+  <div class="row">
+    <div class="col-lg-12 col-12">
+      <div class="card mb-6 card-lg">
+        <div class="card-body p-6">
+          <h4 class="mb-4 h5">Service Information</h4>
+          <%= form_with(model: [:admin, service]) do |form| %>
+            <% if service.errors.any? %>
+              <div style="color: red">
+                <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
+                <ul>
+                  <% service.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="row">
+              <div class="mb-3 col-lg-6">
+                <%= form.label :title, class: "form-label" %>
+                <%= form.text_field :title, class: "form-control" %>
+              </div>
+
+              <div class="mb-3 col-lg-6">
+                <%= form.label :status, class: "form-label" %>
+                <%= form.select(:status, Service.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
+              </div>
+
+                <div id="cover_image_preview" class="image-preview-container"></div>
+
                 <div class="mb-6 col-lg-12">
-                  <%= form.label :title, class: "form-label" %>
-                  <%= form.text_field :title, class: "form-control" %>
+                  <%= form.label :cover_image, class: "form-label" %>
+                  <%= form.file_field :cover_image, class: "form-control image-preview-input", data: { preview_target: '#cover_image_preview' } %>
                 </div>
-
-                <div class="mb-6 col-lg-12">
-                  <%= form.label :status, class: "form-label" %>
-                  <%= form.select(:status, Service.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
-                </div>
-
                 <div class="mb-6 col-lg-12">
                   <%= form.label :content, class: "form-label" %>
                   <%= form.cktext_area :content, class: 'form-control ckeditor', required: true %>
                 </div>
-
-                <div class="mb-6 col-lg-12">
-                  <%= form.label :cover_image, class: "form-label" %>
-                  <%= form.file_field :cover_image, class: "form-control" %>
-                </div>
-              </div>
-              <div class="mb-3">
-                <%= form.submit class: "btn btn-primary" %>
-              </div>
-            <% end %>
-          </div>
+            </div>
+            <div class="mb-3">
+              <%= form.submit class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-</main>
+</div>
 
