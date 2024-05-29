@@ -1,22 +1,22 @@
 <div class="col-12 col-md-6 col-lg-4 mb-10">
   <div class="mb-4">
-    <%= link_to service_path(service.id) do %>
+    <%= link_to blog_path(blog.slug) do %>
       <!-- img -->
       <div class="img-zoom">
-        <%= image_tag url_for(service.cover_image), alt: service.title, class: "icon-shape  img-fluid w-100 icon-md" if service.cover_image.attached? %>
+        <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "icon-shape  img-fluid w-100 icon-md" if blog.cover_image.attached? %>
       </div>
     <% end %>
   </div>
   <!-- text -->
   <div>
     <h2 class="h5">
-      <%= link_to service.title.humanize, service_path(service), class: "text-inherit" %>
+      <%= link_to blog.title.humanize, blog_path(blog), class: "text-inherit" %>
     </h2>
     <p>
-      <%= truncate(strip_tags(service.content), length: 100) %>
+      <%= truncate(strip_tags(blog.short_description), length: 100) %>
     </p>
     <div class="d-flex justify-content-between text-muted mt-4">
-      <span><small><%= service.created_at.strftime('%d %B %Y') %></small></span>
+      <span><small><%= blog.published_at.strftime('%d %B %Y') %></small></span>
       <span>
                       <small>
                          Read time:

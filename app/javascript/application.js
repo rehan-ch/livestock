@@ -7,6 +7,7 @@ import "controllers"
 //= require_tree .
 
 import "bootstrap"
+import "@fortawesome/fontawesome-free"
 import "attachment_preview"
 
 // import "./theme.min"

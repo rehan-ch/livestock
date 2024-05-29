@@ -1,5 +1,82 @@
-<%= render @service %>
+  <!-- design one  -->
+<div class="container">
+  <div class="sub-header overlay mt-5">
+    <h1><%= @service.title.humanize %></h1>
+  </div>
 
-<div>
-  <%= link_to "Back to services", services_path %>
+  <div class="row">
+    <!-- Cover Image -->
+    <div class="col-md-8 mb-8">
+      <%= image_tag url_for(@service.cover_image), alt: @service.title, class: "img-fluid rounded w-100" if @service.cover_image.attached? %>
+    </div>
+
+    <!-- Contact Us Block -->
+    <div class="col-md-4 mb-8">
+      <%= render partial: "shared/contact_us" %>
+    </div>
+
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <div class="new-detail-warp">
+            <div class="content-detail content-new-detail">
+              <%= raw @service.content %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+
+
+
+  <!-- design one  -->
+<!--<div class="mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#!">Home</a></li>
+            <li class="breadcrumb-item"><a href="#!">service</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Service Single</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="my-lg-14 my-8">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="mb-5">
+          <h1 class="fw-bold text-center"><%#= @service.title.humanize %></h1>
+          <div class="d-flex justify-content-center text-muted mt-4">
+            <span class="me-2"><small><%#= @service.created_at.strftime('%d %B %Y') %></small></span>
+            <span>
+                            <small>
+                               Read time:
+                               <span class="text-dark fw-bold">12min</span>
+                            </small>
+                         </span>
+          </div>
+        </div>
+        <div class="mb-8">
+          <%#= image_tag url_for(@service.cover_image), alt: @service.title, class: "img-fluid rounded" if @service.cover_image.attached? %>
+        </div>
+
+        <div>
+          <div class="mb-4">
+            <%#= raw @service.content %>
+          </div>
+        </div>
+        <hr class="mt-8 mb-5" />
+      </div>
+    </div>
+  </div>
+</section>-->
