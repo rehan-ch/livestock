@@ -1,5 +1,10 @@
 class ChatsController < ApplicationController
     before_action :authenticate_user!
+
+    def def index
+      @chats = current_user.all_chats
+    end
+
     def create
       @chat = Chat.new(chat_params)
       if @chat.save
