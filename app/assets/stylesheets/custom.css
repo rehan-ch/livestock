@@ -16,7 +16,7 @@
   justify-content: flex-end;
   align-items: center;
 }
-
+/* flash msg css start */
 .flash-message-container {
     height: 84px;
     display: flex;
@@ -55,6 +55,7 @@
   cursor: pointer;
   margin-left: 10px;
 }
+/* flash msg css end */
 
 
 /*contact-us block start*/
@@ -66,5 +67,25 @@
   padding: 20px;
   margin-top: 10px;
 }
-
 /*contact-us block end*/
+
+.fixed-dimension-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.placeholder {
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.placeholder::before {
+  content: "No Image Available";
+  color: #999;
+  font-size: 16px;
+}

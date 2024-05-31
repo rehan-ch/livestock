@@ -1,0 +1,29 @@
+<div class="col-12 col-md-6 col-lg-3 mb-8">
+  <div class="mb-4">
+    <%= link_to service_path(service.id) do %>
+      <div class="img-zoom">
+        <% if service.cover_image.attached? %>
+          <%= image_tag url_for(service.cover_image), alt: service.title, class: "img-fluid rounded w-100 fixed-dimension-img" %>
+        <% else %>
+          <div class="fixed-dimension-img placeholder"></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <h4 class="h5">
+      <%= link_to service.title.humanize, service_path(service), class: "text-inherit" %>
+    </h4>
+    <p><%= truncate(strip_tags(service.content), length: 100) %></p>
+    <div class="d-flex align-items-center lh-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-clock text-dark" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+      </svg>
+      <small class="ms-1">
+        <span class="text-dark fw-bold">15</span>
+        min
+      </small>
+    </div>
+  </div>
+</div>

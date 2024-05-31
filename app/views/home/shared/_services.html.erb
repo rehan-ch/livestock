@@ -1,43 +1,53 @@
-
-<div class="my-lg-14 my-8">
+<section class="my-lg-14 my-8">
   <div class="container">
-    <!-- row -->
-    <div class="table-responsive-xxl pb-6 pb-lg-0">
-      <div class="row flex-nowrap">
-        <div class="col">
-          <div class="card border-0 card-hover">
-            <a href="#" class="img-zoom"><img src="/assets/theme/banner/ad-banner-4.jpg" alt="" class="rounded" /></a>
-            <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
-              <a href="#" class="text-white d-flex align-items-center btn-transition">
-                Offer
-                <i class="feather-icon icon-chevron-right fs-5"></i>
-              </a>
+    <div class="row align-items-center mb-8">
+      <div class="col-md-8 col-12">
+        <!-- heading -->
+        <div class="d-flex">
+          <div class="mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-journal text-primary" viewBox="0 0 16 16">
+              <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
+              <path
+                d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
+            </svg>
+          </div>
+          <div class="ms-3">
+            <h3 class="mb-0">Our Services</h3>
+            <p class="mb-0">Check out most our services.</p>
+          </div>
+          <div></div>
+        </div>
+      </div>
+      <!-- button -->
+      <div class="col-md-4 text-end d-none d-md-block">
+        <%= link_to "View all services", services_path, class: "btn btn-primary", role: 'button', 'aria-expanded': 'false' %>
+      </div>
+    </div>
+    <!-- slider -->
+    <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% if @published_services.present? %>
+          <% @published_services.each_slice(4).with_index do |services, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <div class="row">
+                <% services.each do |service| %>
+                  <%= render partial: "services/service_slider", locals: { service: service } %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="news-list-warp">
+                <h1 class="text-align-center mx-auto">
+                  No services available!
+                </h1>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card border-0">
-            <a href="#" class="img-zoom"><img src="/assets/theme/banner/ad-banner-5.jpg" alt="" class="rounded" /></a>
-            <div class="position-absolute bg-dark-warning w-100 bottom-0 py-3 px-4 rounded-bottom">
-              <a href="#" class="text-white d-flex align-items-center btn-transition">
-                Fresh Food & Bakery
-                <i class="feather-icon icon-chevron-right fs-5"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0">
-            <a href="#" class="img-zoom"><img src="/assets/theme/banner/ad-banner-6.jpg" alt="" class="rounded" /></a>
-            <div class="position-absolute bg-dark-danger w-100 bottom-0 py-3 px-4 rounded-bottom">
-              <a href="#" class="text-white d-flex align-items-center btn-transition">
-                Mixed and Assorted fruits
-                <i class="feather-icon icon-chevron-right fs-5"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
+</section>
