@@ -1,42 +1,23 @@
-
 <div class="my-lg-14 my-8">
   <div class="container">
     <!-- row -->
     <div class="table-responsive-xxl pb-6 pb-lg-0">
       <div class="row flex-nowrap">
-        <div class="col">
-          <div class="card border-0 card-hover">
-            <a href="#" class="img-zoom"><img src="/assets/theme/banner/ad-banner-4.jpg" alt="" class="rounded" /></a>
-            <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
-              <a href="#" class="text-white d-flex align-items-center btn-transition">
-                Offer
-                <i class="feather-icon icon-chevron-right fs-5"></i>
+        <% @blogs.each do |blog| %>
+          <div class="col">
+            <div class="card border-0 card-hover">
+              <a href="#" class="img-zoom">
+                <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "img-fluid rounded w-100 fixed-dimension-img" %>
               </a>
+              <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
+                <a href="#" class="text-white d-flex align-items-center btn-transition">
+                  <%= blog.title %>
+                  <i class="feather-icon icon-chevron-right fs-5"></i>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card border-0">
-            <a href="#" class="img-zoom"><img src="/assets/theme/banner/ad-banner-5.jpg" alt="" class="rounded" /></a>
-            <div class="position-absolute bg-dark-warning w-100 bottom-0 py-3 px-4 rounded-bottom">
-              <a href="#" class="text-white d-flex align-items-center btn-transition">
-                Fresh Food & Bakery
-                <i class="feather-icon icon-chevron-right fs-5"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0">
-            <a href="#" class="img-zoom"><img src="/assets/theme/banner/ad-banner-6.jpg" alt="" class="rounded" /></a>
-            <div class="position-absolute bg-dark-danger w-100 bottom-0 py-3 px-4 rounded-bottom">
-              <a href="#" class="text-white d-flex align-items-center btn-transition">
-                Mixed and Assorted fruits
-                <i class="feather-icon icon-chevron-right fs-5"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
