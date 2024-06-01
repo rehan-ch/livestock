@@ -3,7 +3,11 @@
     <%= link_to service_path(service.id) do %>
       <!-- img -->
       <div class="img-zoom">
-        <%= image_tag url_for(service.cover_image), alt: service.title, class: "icon-shape  img-fluid w-100 icon-md" if service.cover_image.attached? %>
+        <% if service.cover_image.attached? %>
+          <%= image_tag url_for(service.cover_image), alt: service.title, class: "icon-shape img-fluid w-100 fixed-dimension-img" %>
+        <% else %>
+          <div class="fixed-dimension-img placeholder"></div>
+        <% end %>
       </div>
     <% end %>
   </div>
@@ -18,11 +22,12 @@
     <div class="d-flex justify-content-between text-muted mt-4">
       <span><small><%= service.created_at.strftime('%d %B %Y') %></small></span>
       <span>
-                      <small>
-                         Read time:
-                         <span class="text-dark fw-bold">12min</span>
-                      </small>
-                   </span>
+        <small>
+          Read time:
+          <span class="text-dark fw-bold">12min</span>
+        </small>
+     </span>
     </div>
   </div>
 </div>
+

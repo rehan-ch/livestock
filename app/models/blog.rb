@@ -4,7 +4,7 @@ class Blog < ApplicationRecord
   has_one_attached :banner_image
 
   # validations
-  validates :title, :short_description, :meta_title, :meta_description, :body, :meta_keywords, presence: true
+  validates :title, :short_description, :body, presence: true
 
   # callbacks
   before_save :set_published_at
