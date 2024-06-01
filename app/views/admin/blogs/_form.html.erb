@@ -25,7 +25,7 @@
 
               <div class="mb-3 col-lg-6">
                 <%= form.label :status %>
-                <%= form.select(:status, Blog.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
+                <%= form.select :status, Blog.statuses.keys.map {|status| [status.titleize,status]}, {}, { class: "form-control" } %>
               </div>
 
               <div class="mb-3 col-lg-6">
