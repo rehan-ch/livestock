@@ -6,7 +6,7 @@
         <% @blogs.each do |blog| %>
           <div class="col">
             <div class="card border-0 card-hover">
-              <a href="#" class="img-zoom">
+              <a href="<%= blog_path(blog.slug) %>" class="img-zoom">
                 <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "img-fluid rounded w-100 fixed-dimension-img" %>
               </a>
               <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
