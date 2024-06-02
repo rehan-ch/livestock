@@ -1,0 +1,87 @@
+<style>
+  .chat-sidebar {
+    height: 60vh;
+    overflow-y: auto;
+  }
+  .chat-messages {
+    height: calc(60vh - 60px);
+    overflow-y: auto;
+  }
+  .chat-input {
+    height: 60px;
+  }
+  .message {
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: flex;
+  }
+  .message.sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+  }
+  .message.received {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    align-self: flex-start;
+  }
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+</style>
+<div class="container-fluid mb-5">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-4 chat-sidebar bg-light p-3">
+      <h5>Chats</h5>
+      <ul class="list-group list-group-flush">
+        <% @chats.each do |chat| %>
+          <li class="list-group-item">
+            <div class="d-flex align-items-center">
+              <%= image_tag chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
+              <%= link_to "Chat with #{chat.other_user(current_user).name}", chat_path(chat), class: 'text-decoration-none' %>
+            </div>
+            <% if chat.messages.any? %>
+              <div class="text-muted"><%= chat.messages.last.user.name %>:</div>
+              <div><%= chat.messages.last.content %></div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="col-md-8 d-flex flex-column">
+      <!-- Chat Header -->
+      <div class="chat-header bg-light p-2">
+        <% if @chat %>
+          <div class="d-flex align-items-center">
+            <%= image_tag @chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
+            <h5>Chat with <%= @chat.other_user(current_user).name %></h5>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Chat Messages -->
+      <div class="chat-messages flex-grow-1 d-flex flex-column p-3">
+        <% @messages&.each do |message| %>
+          <div class="message <%= message.user == current_user ? 'sent' : 'received' %>">
+            <%= image_tag message.user.avatar_url, class: 'user-avatar' %>
+            <%= message.content %>
+          </div>
+        <% end %>
+      </div>
+      
+      <!-- Chat Input -->
+      <div class="chat-input bg-light p-3">
+        <%= form_with(model: [ @chat, Message.new ], url: chat_messages_path(@chat), local: true, class: 'd-flex') do |f| %>
+          <%= f.text_field :content, class: 'form-control me-2', placeholder: 'Type a message...' %>
+          <%= f.submit 'Send', class: 'btn btn-primary' %>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+</div>

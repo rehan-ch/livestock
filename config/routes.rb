@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
   end
 
+  resources :chat do
+    resources :messages
+  end
+
   namespace :admin do
     get '/', to: 'dashboard#index'
     resources :categories

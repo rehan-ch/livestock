@@ -1,8 +1,16 @@
-class ChatsController < ApplicationController
+class ChatController < ApplicationController
     before_action :authenticate_user!
 
-    def def index
-      @chats = current_user.all_chats
+    def index
+      @chats = current_user.chats.includes(:messages)
+      @chat = @chats.first
+      @messages = @chat&.messages&.order(:created_at)
+
+    end
+
+    def show
+      @chat = Chat.find(params[:id])
+      @messages = @chat.messages.order(:created_at)
     end
 
     def create

@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def categories
-    @categories ||= Category.all.page(page).per(per)
+    @categories ||= Category.all
   end
 
   def page

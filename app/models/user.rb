@@ -29,4 +29,17 @@ class User < ApplicationRecord
       where(conditions.to_h).first
     end
   end
+
+  def chats
+    Chat.where("buyer_id = ? OR seller_id = ?", id, id)
+  end
+
+  def avatar_url
+    if avatar.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(avatar, only_path: true)
+    else
+      # Default avatar URL
+      ActionController::Base.helpers.asset_url('default_avatar.png')
+    end
+  end
 end
