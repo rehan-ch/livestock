@@ -44,8 +44,8 @@
             <!-- list -->
             <ul class="nav flex-column">
 
-              <% first_categories_row.each_with_index do |count, category| %>
-              <li class="nav-item mb-2"><a href="#!" class="nav-link">Vegetables & Fruits</a></li>
+              <% first_categories_row.each do |category| %>
+              <li class="nav-item mb-2"><a href="#!" class="nav-link"><%= category.name %></a></li>
 
               <% end %>
             </ul>
@@ -53,8 +53,8 @@
           <div class="col-6">
             <!-- list -->
             <ul class="nav flex-column">
-              <% second_categories_row.each_with_index do |count, category| %>
-              <li class="nav-item mb-2"><a href="#!" class="nav-link">Dairy, bread & eggs</a></li>
+              <% second_categories_row.each do |category| %>
+              <li class="nav-item mb-2"><a href="#!" class="nav-link"><%= category.name %></a></li>
               <% end %>
             </ul>
           </div>
@@ -76,8 +76,7 @@
                 <% end %>
               </li>
 
-              <li class="nav-item mb-2"><a href="#!" class="nav-link">Help Center</a></li>
-              <li class="nav-item mb-2"><a href="#!" class="nav-link">Our Value</a></li>
+              <li class="nav-item mb-2"><a href="<%= contacts_path %>" class="nav-link">Contact Us</a></li>
             </ul>
           </div>
           <div class="col-6 col-sm-6 col-md-3">
@@ -128,8 +127,8 @@
                                document.getElementById("copyright").appendChild(document.createTextNode(new Date().getFullYear()));
                            </script>
                         </span>
-                        FreshCart eCommerce HTML Template. All rights reserved. Powered by
-                        <a href="https://codescandy.com/">Codescandy</a>
+                        LiveStock. All rights reserved. Powered by
+                        <a href="WebExpert">WebExpert</a>
                         .
                      </span>
         </div>

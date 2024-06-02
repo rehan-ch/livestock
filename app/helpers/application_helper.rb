@@ -19,4 +19,12 @@ module ApplicationHelper
   def categories
     @categories ||= Category.all.page(page).per(per)
   end
+
+  def page
+    params[:page].present? ? params[:page] : 1
+  end
+
+  def per(per_page = 10)
+    params[:per].present? ? params[:per] : per_page
+  end
 end
