@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :messages
     end
   end
+  resources :chats
   resources :categories, only: [:index, :show]
   resources :services, only: %i[index show]
   resources :blogs, only: %i[index show]

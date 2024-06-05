@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_product
+  before_action :set_product, only: %i[create]
 
   def index
     @chats = current_user.chats.includes(:messages)
