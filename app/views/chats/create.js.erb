@@ -1,0 +1,3 @@
+$('#chatModal .modal-body #chat-messages').html('<%= j render @messages %>');
+$('#message-form').attr('data-chat-id', '<%= @chat.id %>');
+$('#chatModal').modal('show');

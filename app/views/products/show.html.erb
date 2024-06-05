@@ -108,10 +108,13 @@
                   <i class="feather-icon icon-shopping-bag me-2"></i>
                   Add to cart
                 </button>
-                <button type="button" class="btn btn-secondary mt-3">
+                <!-- Chat Button -->
+                <button type="button" class="btn btn-secondary mt-3" id="chat-button" data-product-id="<%= @product.id %>" data-toggle="modal" data-target="#chatModal">
                   <i class="feather-icon icon-shopping-bag me-2"></i>
-                    Chat
+                  Chat
                 </button>
+
+                <%= render 'chats/chat_modal', chat: @chat, messages: @messages %>
               </div>
               <%
 =begin%>
