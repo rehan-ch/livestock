@@ -7,4 +7,9 @@ class User < ApplicationRecord
   has_many :paid_ads, dependent: :destroy
 
   has_one_attached :avatar
+
+  enum role: [
+    :general,
+    :admin
+  ], _default: :general
 end

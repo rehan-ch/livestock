@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
         params[:per].present? ? params[:per] : per_page
     end
 
+    def authenticate_admin!
+        redirect_to root_path, alert: "You are not authorized!!" unless current_user.admin?
+    end
+
     protected
 
         def configure_permitted_parameters
