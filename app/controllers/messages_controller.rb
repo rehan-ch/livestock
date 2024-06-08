@@ -4,8 +4,10 @@ class MessagesController < ApplicationController
     @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.build(message_params.merge(user: current_user))
     if @message.save
-      broadcast_append_to @chat
-      head :ok
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @chat }
+      end
     else
       render :new
     end

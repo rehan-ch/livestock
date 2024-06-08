@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "message_#{message.id}" do %>
-  <div class="message <%= message.user == current_user ? 'sent' : 'received' %>">
+  <div class="message">
     <%= image_tag message.user.avatar_url, class: 'user-avatar' %>
     <%= message.content %>
   </div>

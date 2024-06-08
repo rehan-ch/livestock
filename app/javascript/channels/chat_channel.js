@@ -1,14 +1,16 @@
 import consumer from "./consumer"
 
-document.addEventListener('turbo:load', () => {
-  const chatElement = document.getElementById('messages')
-  if (chatElement) {
-    const chatId = chatElement.dataset.chatId
+$(document).on('turbo:load', function() {
+  const chatElement = $('#messages');
+  if (chatElement.length) {
+    const chatId = chatElement.data('chatId');
 
     consumer.subscriptions.create({ channel: "ChatChannel", chat_id: chatId }, {
       received(data) {
-        chatElement.insertAdjacentHTML('beforeend', data)
+        chatElement.append(data);
+        chatElement.scrollTop(chatElement[0].scrollHeight);
+        $('#new_message')[0].reset();
       }
-    })
+    });
   }
-})
+});

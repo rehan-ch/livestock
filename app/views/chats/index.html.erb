@@ -3,28 +3,30 @@
     <!-- Sidebar -->
     <div class="col-md-4 chat-sidebar bg-light p-3">
       <h5>Chats</h5>
-      <ul class="list-group list-group-flush">
-        <% if @chats.any? %>
-          <% @chats.each do |chat| %>
-            <li class="list-group-item">
-              <div class="d-flex align-items-center">
-                <%= image_tag chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
-                <%= link_to "#{chat.other_user(current_user).name}", chat_path(chat), class: 'text-decoration-none', data: { turbo_frame: "chat_frame" } %>
-              </div>
-              <% if chat.messages.any? %>
-                <div class="text-muted"><%= chat.last_message.user.name %>:</div>
-                <div><%= chat.last_message.content %></div>
-              <% end %>
-            </li>
+      <%= turbo_frame_tag "chats_list" do %>
+        <ul class="list-group list-group-flush">
+          <% if @chats.any? %>
+            <% @chats.each do |chat| %>
+              <li class="list-group-item">
+                <div class="d-flex align-items-center">
+                  <%= image_tag chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
+                  <%= link_to "#{chat.other_user(current_user).name}", chat_path(chat), class: 'text-decoration-none', data: { turbo_frame: "chat_frame" } %>
+                </div>
+                <% if chat.messages.any? %>
+                  <div class="text-muted"><%= chat.last_message.user.name %>:</div>
+                  <div><%= chat.last_message.content %></div>
+                <% end %>
+              </li>
+            <% end %>
+          <% else %>
+            <li class="list-group-item">No chats available.</li>
           <% end %>
-        <% else %>
-          <li class="list-group-item">No chats available.</li>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
 
     <!-- Chat Window -->
-    <div class="col-md-8 d-flex flex-column">
+    <div class="col-md-8 d-flex flex-column chat-display">
       <%= turbo_frame_tag "chat_frame" do %>
         <% if @chat %>
           <!-- Chat Header -->
@@ -37,6 +39,7 @@
 
           <!-- Chat Messages -->
           <div class="chat-messages flex-grow-1 d-flex flex-column p-3" id="messages" data-chat-id="<%= @chat.id %>">
+
             <%= turbo_stream_from @chat %>
             <% @messages.each do |message| %>
               <div class="message <%= message.user == current_user ? 'sent' : 'received' %>">
@@ -48,7 +51,7 @@
 
           <!-- Chat Input -->
           <div class="chat-input bg-light p-3">
-            <%= form_with(model: [ @chat, Message.new ], url: chat_messages_path(@chat), local: true, class: 'd-flex') do |f| %>
+            <%= form_with(model: [ @chat, Message.new ], url: chat_messages_path(@chat), local: true, class: 'd-flex', id:'new_message', id: 'new_message_form') do |f| %>
               <%= f.text_field :content, class: 'form-control me-2', placeholder: 'Type a message...' %>
               <%= f.submit 'Send', class: 'btn btn-primary' %>
             <% end %>

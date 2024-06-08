@@ -4,7 +4,10 @@ class Message < ApplicationRecord
 
   validates :content, presence: true
 
-  after_create_commit do
+  after_create_commit :broadcast_message
+  private
+
+  def broadcast_message
     broadcast_append_to chat, target: "messages_#{chat.id}", partial: "messages/message", locals: { message: self }
   end
 end
