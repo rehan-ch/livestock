@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products, dependent: :destroy
   has_many :paid_ads, dependent: :destroy
-  has_many :bought_chats, class_name: 'Chat', foreign_key: 'buyer_id', dependent: :destroy
-  has_many :sold_chats, class_name: 'Chat', foreign_key: 'seller_id', dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :buyer_chats, class_name: 'Chat', foreign_key: 'buyer_id', dependent: :destroy
+  has_many :seller_chats, class_name: 'Chat', foreign_key: 'seller_id', dependent: :destroy
 
   has_one_attached :avatar
 
@@ -14,6 +15,7 @@ class User < ApplicationRecord
     :general,
     :admin
   ], _default: :general
+  after_create_commit {broadcast_append_to "users"}
 
   attr_writer :login
 

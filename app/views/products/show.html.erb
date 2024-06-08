@@ -106,15 +106,12 @@
                 <!-- btn -->
                 <button type="button" class="btn btn-primary">
                   <i class="feather-icon icon-shopping-bag me-2"></i>
-                  Add to cart
+                  Purchase
                 </button>
                 <!-- Chat Button -->
-                <button type="button" class="btn btn-secondary mt-3" id="chat-button" data-product-id="<%= @product.id %>" data-toggle="modal" data-target="#chatModal">
-                  <i class="feather-icon icon-shopping-bag me-2"></i>
-                  Chat
-                </button>
-
-                <%= render 'chats/chat_modal', chat: @chat, messages: @messages %>
+                <%= link_to start_chat_product_path(@product), data: { turbo_method: "post" }, class: "btn btn-secondary mt-3" do %>
+                  <i class="feather-icon icon-shopping-bag me-2"></i> Chat
+                <% end %>
               </div>
               <%
 =begin%>

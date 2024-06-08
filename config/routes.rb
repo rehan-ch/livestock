@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :products, only: %i[index show], path: 'ads' do
-    resources :chats, only: %i[create]  do
-      resources :messages
+    member do
+      post :start_chat
     end
   end
-  resources :chats
+  resources :chats, only: %i[index create] do
+    resources :messages, only: %i[create]
+  end
   resources :categories, only: [:index, :show]
   resources :services, only: %i[index show]
   resources :blogs, only: %i[index show]

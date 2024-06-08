@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show ]
+  before_action :set_product, only: %i[ show start_chat]
 
   # GET /products or /products.json
   def index
@@ -17,6 +17,11 @@ class ProductsController < ApplicationController
   # GET /products/1 or /products/1.json
   def show
    @related_products = @product.category.products.page(page).per(5)
+  end
+
+  def start_chat
+    @chat = Chat.find_or_create_by(product: @product, buyer: current_user, seller: @product.user)
+    redirect_to chats_path(@chat)
   end
 
   private

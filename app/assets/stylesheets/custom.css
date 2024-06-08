@@ -69,6 +69,42 @@
 }
 /*contact-us block end*/
 
+/*chat block start*/
+.chat-sidebar {
+  height: 60vh;
+  overflow-y: auto;
+}
+.chat-messages {
+  height: calc(60vh - 60px);
+  overflow-y: auto;
+}
+.chat-input {
+  height: 60px;
+}
+.message {
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.message.sent {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+.message.received {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  align-self: flex-start;
+}
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/*chat block end*/
+
 .fixed-dimension-img {
   width: 100%;
   height: 250px;
