@@ -81,17 +81,11 @@
 .chat-input {
   height: 60px;
 }
-.message {
+.message-wrapper {
   padding: 10px;
   border-radius: 15px;
   margin-bottom: 10px;
   display: flex;
-}
-.message.sent {
-  background-color: #dcf8c6;
-  align-self: flex-end;
-}
-.message.received {
   background-color: #fff;
   border: 1px solid #ddd;
   align-self: flex-start;

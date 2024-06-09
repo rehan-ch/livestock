@@ -1,5 +1,5 @@
 <div class="chat-input bg-light p-3">
-  <%= form_with(model: [ @chat, Message.new ], url: chat_messages_path(@chat), local: true, class: 'd-flex', id:'new_message', id: 'new_message_form') do |f| %>
+  <%= form_with(model: [ @chat, Message.new ], url: chat_messages_path(@chat), local: true, class: 'd-flex', id:'new_message', data: { controller: "messages", action: "turbo:submit-end->messages#reset" }) do |f| %>
     <%= f.text_field :content, class: 'form-control me-2', placeholder: 'Type a message...' %>
     <%= f.submit 'Send', class: 'btn btn-primary' %>
   <% end %>

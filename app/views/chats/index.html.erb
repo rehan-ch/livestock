@@ -42,10 +42,7 @@
 
             <%= turbo_stream_from @chat %>
             <% @messages.each do |message| %>
-              <div class="message <%= message.user == current_user ? 'sent' : 'received' %>">
-                <%= image_tag message.user.avatar_url, class: 'user-avatar' %>
-                <%= message.content %>
-              </div>
+              <%= render message %>
             <% end %>
           </div>
 

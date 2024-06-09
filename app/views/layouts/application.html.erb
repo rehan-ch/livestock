@@ -41,6 +41,14 @@
   <%end%>
     <%= yield %>
   <%= render partial: 'layouts/footer' %>
+  <style>
+    <%= ".msg-#{current_user&.id}" %> {
+      background-color: #dcf8c6 !important;
+      align-self: flex-end !important;
+    }
+  </style>
+
+
   </body>
 
   <!-- Javascript-->
