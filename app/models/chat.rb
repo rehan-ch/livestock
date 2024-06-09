@@ -6,7 +6,7 @@ class Chat < ApplicationRecord
 	has_many :messages, dependent: :destroy
 
     validates :buyer_id, uniqueness: { scope: :product_id }
-	validates :buyer, uniqueness: { scope: [:seller] }
+	validates :buyer_id, uniqueness: { scope: [:seller_id, :product_id] }
 
 	after_create_commit { broadcast_append_to "chats" }
 

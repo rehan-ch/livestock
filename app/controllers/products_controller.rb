@@ -20,7 +20,10 @@ class ProductsController < ApplicationController
   end
 
   def start_chat
-    @chat = Chat.find_or_create_by(product: @product, buyer: current_user, seller: @product.user)
+    @chat = Chat.find_by(buyer: current_user, product: @product)
+    unless @chat
+      @chat = Chat.create!(buyer: current_user, seller: @product.user, product: @product)
+    end
     redirect_to chats_path(@chat)
   end
 

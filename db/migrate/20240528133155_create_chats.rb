@@ -6,5 +6,6 @@ class CreateChats < ActiveRecord::Migration[7.1]
       t.references :product, type: :uuid, null: false, foreign_key: true
       t.timestamps
     end
+    add_index :chats, [:buyer_id, :seller_id, :product_id], unique: true
   end
 end
