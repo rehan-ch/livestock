@@ -1,0 +1,50 @@
+<div class="container-fluid mb-5">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-4 chat-sidebar bg-light p-3">
+      <h5>Chats</h5>
+      <%= turbo_frame_tag "chats_list" do %>
+        <ul class="list-group list-group-flush" id='chats'>
+          <% if @chats.any? %>
+            <% @chats.each do |chat| %>
+              <%= render chat %>
+            <% end %>
+          <% else %>
+            <li class="list-group-item">No chats available.</li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="col-md-8 d-flex flex-column chat-display">
+      <%= turbo_frame_tag "chat_frame" do %>
+        <% if @chat %>
+          <!-- Chat Header -->
+          <div class="chat-header bg-light p-2">
+            <div class="d-flex align-items-center">
+              <%= image_tag @chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
+              <h5><%= @chat.other_user(current_user).name %> | Ad: <%= link_to "#{@chat.product.name}", product_path(@chat.product.id) %></h5>
+            </div>
+          </div>
+
+          <!-- Chat Messages -->
+          <div class="chat-messages flex-grow-1 d-flex flex-column p-3" id="messages" data-chat-id="<%= @chat.id %>">
+
+            <%= turbo_stream_from @chat %>
+            <% @messages.each do |message| %>
+              <%= render message %>
+            <% end %>
+          </div>
+
+          <!-- Chat Input -->
+          <%= render partial: 'messages/form' %>
+        <% else %>
+          <div class="chat-header bg-light p-2">
+            <h5>Select a chat to start messaging</h5>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

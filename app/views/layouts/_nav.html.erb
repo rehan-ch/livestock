@@ -104,6 +104,9 @@
             <li class="nav-item ">
               <a class="nav-link <%= active_class('abouts') %>" href="<%= abouts_path %>" role="button" aria-expanded="false">About Us</a>
             </li>
+            <li class="nav-item ">
+              <%= link_to "Chat", chats_path, class: "nav-link #{active_class('abouts')}", role: 'button', 'aria-expanded': 'false' %>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account Setting</a>
               <ul class="dropdown-menu">

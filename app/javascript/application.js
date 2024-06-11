@@ -9,5 +9,6 @@ import "controllers"
 import "bootstrap"
 import "@fortawesome/fontawesome-free"
 import "attachment_preview"
+// import "chat"
 
 // import "./theme.min"

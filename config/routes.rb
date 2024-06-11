@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   mount Ckeditor::Engine => '/ckeditor'
   resources :services
 
   devise_for :users
 
-  resources :products, only: [:index, :show], path: 'ads' do
-
-  end 
+  resources :products, only: %i[index show], path: 'ads' do
+    member do
+      post :start_chat
+    end
+  end
+  resources :chats, only: %i[index create show] do
+    resources :messages, only: %i[create]
+  end
   resources :categories, only: [:index, :show]
   resources :services, only: %i[index show]
   resources :blogs, only: %i[index show]

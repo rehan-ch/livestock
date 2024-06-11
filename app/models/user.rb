@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products, dependent: :destroy
   has_many :paid_ads, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :buyer_chats, class_name: 'Chat', foreign_key: 'buyer_id', dependent: :destroy
+  has_many :seller_chats, class_name: 'Chat', foreign_key: 'seller_id', dependent: :destroy
 
   has_one_attached :avatar
 
@@ -25,6 +28,19 @@ class User < ApplicationRecord
       where(conditions.to_h).where(["phone_no = :value OR email = :value", { value: login }]).first
     else
       where(conditions.to_h).first
+    end
+  end
+
+  def chats
+    Chat.where("buyer_id = ? OR seller_id = ?", id, id)
+  end
+
+  def avatar_url
+    if avatar.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(avatar, only_path: true)
+    else
+      # Default avatar URL
+      ActionController::Base.helpers.asset_url('default_avatar.png')
     end
   end
 end
