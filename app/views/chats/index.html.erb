@@ -3,7 +3,6 @@
     <!-- Sidebar -->
     <div class="col-md-4 chat-sidebar bg-light p-3">
       <h5>Chats</h5>
-      <%= turbo_frame_tag "chats_list" do %>
         <ul class="list-group list-group-flush" id='chats'>
           <% if @chats.any? %>
             <% @chats.each do |chat| %>
@@ -13,18 +12,16 @@
             <li class="list-group-item">No chats available.</li>
           <% end %>
         </ul>
-      <% end %>
     </div>
 
     <!-- Chat Window -->
     <div class="col-md-8 d-flex flex-column chat-display">
-      <%= turbo_frame_tag "chat_frame" do %>
         <% if @chat %>
           <!-- Chat Header -->
           <div class="chat-header bg-light p-2">
             <div class="d-flex align-items-center">
               <%= image_tag @chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
-              <h5><%= @chat.other_user(current_user).name %> | Ad: <%= link_to "#{@chat.product.name}", product_path(@chat.product.id) %></h5>
+              <h5><%= @chat.other_user(current_user).name %> | Ad: <%= link_to "#{@chat.product.name}", product_path(@chat.product_id) %></h5>
             </div>
           </div>
 
@@ -44,7 +41,6 @@
             <h5>Select a chat to start messaging</h5>
           </div>
         <% end %>
-      <% end %>
     </div>
   </div>
 </div>
