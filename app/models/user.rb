@@ -15,7 +15,6 @@ class User < ApplicationRecord
     :general,
     :admin
   ], _default: :general
-  after_create_commit {broadcast_append_to "users"}
 
   attr_writer :login
 

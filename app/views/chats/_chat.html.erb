@@ -1,28 +1,13 @@
-<%= turbo_frame_tag "chat_frame" do %>
-  <!-- Chat Header -->
-  <div class="chat-header bg-light p-2">
-    <div class="d-flex align-items-center">
-      <%= image_tag @chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
-      <h5>Chat with <%= @chat.other_user(current_user).name %> about <%= @chat.product.name %></h5>
-    </div>
+<li class="list-group-item">
+  <div class="d-flex align-items-center">
+    <%= image_tag chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
+    <%= link_to chat_path(chat), class: 'text-decoration-none', data: { turbo_frame: "chat_frame" } do %>
+      <%= "#{chat.other_user(current_user).name} | Ad: #{chat.product.name}" %>
+      <%= image_tag "dot.svg", style: "width: 5px;" if chat.id == @chat.id %>
+    <%end%>
   </div>
-
-  <!-- Chat Messages -->
-  <div class="chat-messages flex-grow-1 d-flex flex-column p-3" id="messages" data-chat-id="<%= @chat.id %>">
-    <%= turbo_stream_from @chat %>
-    <% @messages.each do |message| %>
-      <div class="message <%= message.user == current_user ? 'sent' : 'received' %>">
-        <%= image_tag message.user.avatar_url, class: 'user-avatar' %>
-        <%= message.content %>
-      </div>
-    <% end %>
-  </div>
-
-  <!-- Chat Input -->
-  <div class="chat-input bg-light p-3">
-    <%= form_with(model: [ @chat, Message.new ], url: chat_messages_path(@chat), local: true, class: 'd-flex') do |f| %>
-      <%= f.text_field :content, class: 'form-control me-2', placeholder: 'Type a message...' %>
-      <%= f.submit 'Send', class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-<% end %>
+  <% if chat.messages.any? %>
+    <div class="text-muted"><%= chat.last_message.user.name %>:</div>
+    <div><%= chat.last_message.content %></div>
+  <% end %>
+</li>

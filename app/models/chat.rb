@@ -8,8 +8,6 @@ class Chat < ApplicationRecord
     validates :buyer_id, uniqueness: { scope: :product_id }
 	validates :buyer_id, uniqueness: { scope: [:seller_id, :product_id] }
 
-	after_create_commit { broadcast_append_to "chats" }
-
 	# Ensure that buyer and seller are not the same
 	validate :buyer_and_seller_are_different
 

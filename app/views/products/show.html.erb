@@ -109,8 +109,10 @@
                   Purchase
                 </button>
                 <!-- Chat Button -->
-                <%= link_to start_chat_product_path(@product), data: { turbo_method: "post" }, class: "btn btn-secondary mt-3" do %>
-                  <i class="feather-icon icon-shopping-bag me-2"></i> Chat
+                <% unless @product.user_id == current_user&.id %>
+                  <%= link_to start_chat_product_path(@product), data: { turbo_method: "post" }, class: "btn btn-secondary mt-3" do %>
+                    <i class="feather-icon icon-shopping-bag me-2"></i> Chat
+                  <% end %>
                 <% end %>
               </div>
               <%
