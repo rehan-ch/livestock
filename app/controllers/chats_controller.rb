@@ -4,6 +4,9 @@ class ChatsController < ApplicationController
 
   def index
     @chats = current_user.buyer_chats.or(current_user.seller_chats)
+                          .left_joins(:messages)
+                          .group('chats.id')
+                          .order('MAX(messages.created_at) DESC')
     @chat = @chats.first
     @messages = @chat ? @chat.messages.order(created_at: :asc) : []
   end
@@ -15,6 +18,13 @@ class ChatsController < ApplicationController
     respond_to do |format|
       format.js { redirect_to @chat }
     end
+  end
+
+  def show
+    @chats = current_user.buyer_chats.or(current_user.seller_chats)
+    @chat = Chat.find(params[:id])
+    @messages = @chat ? @chat.messages.order(created_at: :asc) : []
+    render "index"
   end
 
   private

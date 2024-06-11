@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       post :start_chat
     end
   end
-  resources :chats, only: %i[index create] do
+  resources :chats, only: %i[index create show] do
     resources :messages, only: %i[create]
   end
   resources :categories, only: [:index, :show]
@@ -37,10 +37,6 @@ Rails.application.routes.draw do
       end
     end
     get '/', to: 'dashboard#index'
-  end
-
-  resources :chat do
-    resources :messages
   end
 
   namespace :admin do

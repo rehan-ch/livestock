@@ -10,7 +10,10 @@
               <li class="list-group-item">
                 <div class="d-flex align-items-center">
                   <%= image_tag chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
-                  <%= link_to "#{chat.other_user(current_user).name}", chat_path(chat), class: 'text-decoration-none', data: { turbo_frame: "chat_frame" } %>
+                  <%= link_to chat_path(chat), class: 'text-decoration-none', data: { turbo_frame: "chat_frame" } do %>
+                    <%= "#{chat.other_user(current_user).name}" %>
+                    <%= image_tag "dot.svg", style: "width: 5px;" if chat.id == @chat.id %>
+                  <%end%>
                 </div>
                 <% if chat.messages.any? %>
                   <div class="text-muted"><%= chat.last_message.user.name %>:</div>
@@ -33,7 +36,7 @@
           <div class="chat-header bg-light p-2">
             <div class="d-flex align-items-center">
               <%= image_tag @chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
-              <h5><%= @chat.other_user(current_user).name %> about <%= link_to "#{@chat.product.name}", products_path(@chat.product.id) %></h5>
+              <h5><%= @chat.other_user(current_user).name %> about <%= link_to "#{@chat.product.name}", product_path(@chat.product.id) %></h5>
             </div>
           </div>
 
