@@ -1,13 +1,13 @@
 <li class="list-group-item">
   <div class="d-flex align-items-center">
     <%= image_tag chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
-    <%= link_to chat_path(chat), class: 'text-decoration-none', data: { turbo_frame: "chat_frame" } do %>
+    <%= link_to chat_path(chat), class: 'text-decoration-none' do %>
       <%= "#{chat.other_user(current_user).name} | Ad: #{chat.product.name}" %>
       <%= image_tag "dot.svg", style: "width: 5px;" if chat.id == @chat.id %>
     <%end%>
   </div>
   <% if chat.messages.any? %>
-    <div class="text-muted"><%= chat.last_message.user.name %>:</div>
+    <div class="text-muted"><%= chat.last_message.user == current_user ? "you" : chat.last_message.user.name %>:</div>
     <div><%= chat.last_message.content %></div>
   <% end %>
 </li>
