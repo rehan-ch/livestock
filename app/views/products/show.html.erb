@@ -1,13 +1,3 @@
-<!--<p style="color: green"><%#= notice %></p>-->
-
-<%#= render @product %>
-
-<!--<div>-->
-  <%#= link_to "Back to products", products_path %>
-<!--</div>-->
-
-
-
 <main>
 
   <%= render "/products/shared/bread_crum" %>
@@ -109,11 +99,7 @@
                   Purchase
                 </button>
                 <!-- Chat Button -->
-                <% unless @product.user_id == current_user&.id %>
-                  <%= link_to start_chat_product_path(@product), data: { turbo_method: "post" }, class: "btn btn-secondary mt-3" do %>
-                    <i class="feather-icon icon-shopping-bag me-2"></i> Chat
-                  <% end %>
-                <% end %>
+                <%= render partial: 'chats/chat_button', locals: { product: @product } %>
               </div>
               <%
 =begin%>
