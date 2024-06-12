@@ -1,5 +1,6 @@
-class MessagesController < ApplicationController
+class Dashboard::MessagesController < Dashboard::BaseController
   before_action :authenticate_user!
+
   def create
     @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.build(message_params.merge(user: current_user))

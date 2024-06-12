@@ -1,4 +1,5 @@
-<div class="container-fluid mb-5">
+<div class="container">
+  <%= render partial: "/dashboard/shared/breadcrum" %>
   <div class="row">
     <!-- Sidebar -->
     <div class="col-md-4 chat-sidebar bg-light p-3">
@@ -35,7 +36,7 @@
           </div>
 
           <!-- Chat Input -->
-          <%= render partial: 'messages/form' %>
+          <%= render partial: 'dashboard/messages/form' %>
         <% else %>
           <div class="chat-header bg-light p-2">
             <h5>Select a chat to start messaging</h5>

@@ -1,7 +1,7 @@
 <li class="list-group-item">
   <div class="d-flex align-items-center">
     <%= image_tag chat.other_user(current_user).avatar_url, class: 'user-avatar' %>
-    <%= link_to chat_path(chat), class: 'text-decoration-none' do %>
+    <%= link_to dashboard_chat_path(chat), class: 'text-decoration-none' do %>
       <%= "#{chat.other_user(current_user).name} | Ad: #{chat.product.name}" %>
       <%= image_tag "dot.svg", style: "width: 5px;" if chat.id == @chat.id %>
     <%end%>

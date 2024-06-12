@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <% if product.user_id == current_user.id %>
-    <%= link_to chats_path, class: "btn btn-secondary mt-3" do %>
+    <%= link_to dashboard_chats_path, class: "btn btn-secondary mt-3" do %>
       <i class="feather-icon icon-shopping-bag me-2"></i> Chat
     <% end %>
   <% else %>

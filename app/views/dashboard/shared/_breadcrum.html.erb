@@ -21,7 +21,9 @@
       </div>
       <!-- button -->
       <div>
+        <% unless controller_name.classify.underscore == "chat" %>
         <a href="<%= send("new_dashboard_#{controller_name.classify.underscore}_path") %>" class="btn btn-primary">Add <%= controller_name.classify %></a>
+      <% end %>
       </div>
     </div>
   </div>

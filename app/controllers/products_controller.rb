@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
     unless @chat
       @chat = Chat.create!(buyer: current_user, seller: @product.user, product: @product)
     end
-    redirect_to chats_path(@chat)
+    redirect_to dashboard_chats_path(@chat)
   end
 
   private
