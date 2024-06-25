@@ -27,6 +27,15 @@
         </li>
 
         <li class="nav-item">
+          <%= link_to admin_chats_path, class: "nav-link #{active_tab('chats')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">Chats</span>
+            </div>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
           <%= link_to admin_services_path, class: "nav-link #{active_tab('services')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>

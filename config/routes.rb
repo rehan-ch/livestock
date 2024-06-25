@@ -45,5 +45,6 @@ Rails.application.routes.draw do
     resources :services
     resources :blogs
     resources :products, path: 'my_ads'
+    resources :chats
   end
 end
