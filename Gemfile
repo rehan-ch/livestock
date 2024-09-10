@@ -82,6 +82,7 @@ gem 'factory_bot_rails'
 gem 'faker'
 gem 'kaminari'
 gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'carrierwave'
 gem "mini_magick"
 gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
