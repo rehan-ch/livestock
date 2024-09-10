@@ -12,7 +12,7 @@ gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+gem 'puma', '~> 6.4'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -52,6 +52,11 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma', require: false
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
@@ -78,3 +83,8 @@ gem 'faker'
 gem 'kaminari'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem "mini_magick"
+gem 'ed25519', '>= 1.2', '< 2.0'
+gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
+gem 'sshkit', '~> 1.23'
+
+
