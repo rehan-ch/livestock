@@ -9,10 +9,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   host: localhost
+  username: livestock
+  password: livestock
 
 development:
   <<: *default
-  database: liv_stock_dev_1
+  database: livestock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
