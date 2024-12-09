@@ -10,11 +10,15 @@
     end
 end
 
+10.times do 
+categories_params = {name: Faker::Commerce.product_name, description: Faker::Lorem.paragraph(sentence_count: 2)}
+Category.create(categories_params)
+end
 
 100.times do
   params = {
     user_id: User.first&.id, 
-    category_id: Category.first&.id,
+    category_id: Category.all.pluck(:id).shuffle.first,
     product_type: nil,
     name: Faker::Commerce.product_name,
     short_description: Faker::Lorem.sentence(word_count: 5),

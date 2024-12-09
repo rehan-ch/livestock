@@ -42,6 +42,8 @@ class PaidAdsController < ApplicationController
     end
   end
 
+
+
   # DELETE /paid_ads/1 or /paid_ads/1.json
   def destroy
     @paid_ad.destroy!

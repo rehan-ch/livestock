@@ -7,4 +7,12 @@ class HomeController < ApplicationController
         @published_services = Service.published.page(page).per(per)
         @blogs = Blog.published.page.per(per(3))
     end
+
+    def policy
+
+    end
+
+    def terms
+
+    end
 end

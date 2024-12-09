@@ -30,12 +30,6 @@
                            </span>
             </div>
           </form>
-          <div class="mt-2">
-            <button type="button" class="btn btn-outline-gray-400 text-muted w-100" data-bs-toggle="modal" data-bs-target="#locationModal">
-              <i class="feather-icon icon-map-pin me-2"></i>
-              Pick Location
-            </button>
-          </div>
         </div>
 
         <div>
@@ -53,7 +47,7 @@
               <ul class="dropdown-menu dropdown-menu-lg">
               <% Category.parent_categories.each do |category| %>
                 <li class="dropdown-menu-list">
-                  <a href="javascript:void(0)" class="dropdown-item d-flex justify-content-between mb-1 py-1">
+                  <a href="<%= products_path(category_id: category.id) %>" class="dropdown-item d-flex justify-content-between mb-1 py-1">
                     <div>
                       <svg width="24" height="24" viewBox="0 0 56 56" fill="#3d4f58" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -105,7 +99,7 @@
               <a class="nav-link <%= active_class('abouts') %>" href="<%= abouts_path %>" role="button" aria-expanded="false">About Us</a>
             </li>
             <li class="nav-item ">
-              <%= link_to "Chat", chats_path, class: "nav-link #{active_class('abouts')}", role: 'button', 'aria-expanded': 'false' %>
+              <%= link_to "Chat", chats_path, class: "nav-link #{active_class('chat')}", role: 'button', 'aria-expanded': 'false' %>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account Setting</a>

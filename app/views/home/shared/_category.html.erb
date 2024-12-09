@@ -36,7 +36,7 @@
             <% @categories.each do |category| %>
               <div class="item">
                 <!-- item -->
-                <a href="#" class="text-decoration-none text-inherit">
+                <a href="<%= products_path(category_id: category.id) %>" class="text-decoration-none text-inherit">
                   <!-- card -->
                   <div class="card mb-3 card-lift">
                     <div class="card-body text-center py-6 text-center">
