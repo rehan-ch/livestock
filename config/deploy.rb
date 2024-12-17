@@ -54,7 +54,7 @@ namespace :deploy do
   desc 'Load environment variables'
   task :load_env do
     on roles(:app) do
-      execute "source #{shared_path}/.rbenv-vars"
+      execute "source /home/livestock/projects/livestock/.rbenv-vars"
     end
   end
 
