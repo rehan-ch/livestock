@@ -34,12 +34,26 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 
 # Puma restart task
 namespace :puma do
-  desc 'Restart Puma service using systemctl'
-  task :restart do
-    on roles(:app) do
-      execute "sudo systemctl restart puma.service"
+    desc 'Start Puma service'
+    task :start do
+      on roles(:app) do
+        execute "sudo systemctl start puma.service"
+      end
     end
-  end
+
+    desc 'Stop Puma service'
+    task :stop do
+      on roles(:app) do
+        execute "sudo systemctl stop puma.service"
+      end
+    end
+
+    desc 'Restart Puma service'
+    task :restart do
+      on roles(:app) do
+        execute "sudo systemctl restart puma.service"
+      end
+    end
 end
 
 namespace :deploy do
