@@ -27,6 +27,8 @@ set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
+set :puma_daemonize, false
+
 
 # Symlink the production key and environment
 append :linked_files, 'config/credentials/production.key'
