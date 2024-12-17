@@ -42,7 +42,7 @@ namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
   task :make_dirs do
     on roles(:app) do
-      execute "systemctl  restart puma.service"
+      execute "sudo systemctl  restart puma.service"
     end
   end
 
