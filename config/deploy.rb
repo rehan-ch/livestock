@@ -40,7 +40,8 @@ namespace :puma do
   task :start do
     on roles(:app) do
       within current_path do
-        execute :bundle, 'exec puma -C', "#{shared_path}/puma.rb"
+        # Restart Puma using systemctl
+        execute :sudo, 'systemctl restart puma.service'
       end
     end
   end
