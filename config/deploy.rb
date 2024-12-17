@@ -34,18 +34,18 @@ set :puma_init_active_record, true
 append :linked_files, 'config/credentials/production.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system'
 
-# Puma restart task
-# namespace :puma do
-#   desc 'Start Puma without daemonizing'
-#   task :start do
-#     on roles(:app) do
-#       within current_path do
-#         # Restart Puma using systemctl
-#         execute :sudo, 'systemctl restart puma.service'
-#       end
-#     end
-#   end
-# end
+Puma restart task
+namespace :puma do
+  desc 'Start Puma without daemonizing'
+  task :restart do
+    on roles(:app) do
+      within current_path do
+        # Restart Puma using systemctl
+        execute :sudo, 'systemctl restart puma.service'
+      end
+    end
+  end
+end
 
 namespace :deploy do
   desc 'Initial Deploy'
