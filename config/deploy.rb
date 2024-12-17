@@ -36,26 +36,14 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 
 # Puma restart task
 namespace :puma do
-    desc 'Start Puma service'
-    task :start do
-      on roles(:app) do
-        execute "sudo systemctl start puma.service"
+  desc 'Start Puma without daemonizing'
+  task :start do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, 'exec puma -C', "#{shared_path}/puma.rb"
       end
     end
-
-    desc 'Stop Puma service'
-    task :stop do
-      on roles(:app) do
-        execute "sudo systemctl stop puma.service"
-      end
-    end
-
-    desc 'Restart Puma service'
-    task :restart do
-      on roles(:app) do
-        execute "sudo systemctl restart puma.service"
-      end
-    end
+  end
 end
 
 namespace :deploy do
