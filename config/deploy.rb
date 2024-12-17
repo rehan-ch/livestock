@@ -34,7 +34,7 @@ set :puma_init_active_record, true
 append :linked_files, 'config/credentials/production.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system'
 
-Puma restart task
+# Puma restart task
 namespace :puma do
   desc 'Start Puma without daemonizing'
   task :restart do
