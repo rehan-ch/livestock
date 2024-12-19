@@ -13,6 +13,8 @@ services:
       - db  # Specify dependency on the database service
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/livestock  # Database connection parameters
+      RAILS_MASTER_KEY: 0134c566726d787debe09c888530e39b
+      DISABLE_HOST_AUTH: "true"
 
   # Service for the PostgreSQL database
   db:

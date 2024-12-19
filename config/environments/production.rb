@@ -49,7 +49,7 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
@@ -86,8 +86,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.hosts << /.*\.livestock\.pk/
-
+  config.hosts.clear
+  config.force_ssl = false
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
