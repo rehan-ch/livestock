@@ -2,40 +2,40 @@
 service: livestock
 
 # Name of the container image.
-image: livestock/livestock
+image: container_registry/livestock
 
 # Deploy to these servers.
-servers:
-  web:
-    - 103.173.63.62
-  # job:
-  #   hosts:
-  #     - 192.168.0.1
-  #   cmd: bin/jobs
+#servers:
+#  web:
+#    - 103.173.63.62
+#  # job:
+#  #   hosts:
+#  #     - 192.168.0.1
+#  #   cmd: bin/jobs
 
 # Enable SSL auto certification via Let's Encrypt (and allow for multiple apps on one server).
 # If using something like Cloudflare, it is recommended to set encryption mode 
 # in Cloudflare's SSL/TLS setting to "Full" to enable end-to-end encryption. 
-proxy:
-  ssl: true
-  host: livestock.pk
-  # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
-  # app_port: 3000
+#proxy:
+#  ssl: true
+#  host: livestock.pk
+#  # kamal-proxy connects to your container over port 80, use `app_port` to specify a different port.
+#  # app_port: 3000
 
 # Credentials for your image host.
-registry:
-  # Specify the registry server, if you're not using Docker Hub
-  # server: registry.digitalocean.com / ghcr.io / ...
-  username:
-     bookamove
+#registry:
+#  # Specify the registry server, if you're not using Docker Hub
+#  # server: registry.digitalocean.com / ghcr.io / ...
+#  username:
+#     bookamove
 
-  # Always use an access token rather than real password (pulled from .kamal/secrets).
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+#  # Always use an access token rather than real password (pulled from .kamal/secrets).
+#  password:
+#    - KAMAL_REGISTRY_PASSWORD
 
 # Configure builder setup.
-builder:
-  arch: amd64
+#builder:
+#  arch: amd64
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 #
@@ -65,7 +65,7 @@ ssh:
 # hitting 404 on in-flight requests. Combines all files from new and old
 # version inside the asset_path.
 #
-# asset_path: /app/public/assets
+asset_path: /app/public/assets
 
 # Configure rolling deploys by setting a wait time between batches of restarts.
 #
@@ -75,24 +75,115 @@ ssh:
 
 # Use accessory services (secrets come from .kamal/secrets).
 
-accessories:
-  db:
-    image: mysql:8.0
-    host: 103.173.63.62
-    port: 3306
-    env:
-      clear:
-        MYSQL_ROOT_HOST: 'localhost'
-      secret:
-        - MYSQL_ROOT_PASSWORD
-    files:
-      - config/mysql/production.cnf:/etc/mysql/my.cnf
-      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-    directories:
-      - data:/var/lib/mysql
+#accessories:
+#  db:
+#    image: mysql:8.0
+#    host: 103.173.63.62
+#    port: 3306
+#    env:
+#      clear:
+#        MYSQL_ROOT_HOST: 'localhost'
+#      secret:
+#        - MYSQL_ROOT_PASSWORD
+#    files:
+#      - config/mysql/production.cnf:/etc/mysql/my.cnf
+#      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+#    directories:
+#      - data:/var/lib/mysql
 #   redis:
 #     image: redis:7.0
 #     host: 192.168.0.2
 #     port: 6379
 #     directories:
 #       - data:/data
+
+
+
+servers:
+  web:
+    hosts:
+      - 103.173.63.62
+    labels:
+      traefik.http.routers.domain.rule: Host(`livestock.pk')
+      traefik.http.routers.domain.entrypoints: websecure
+      traefik.http.routers.domain.tls.certresolver: letsencrypt
+    options:
+      "add-host": host.docker.internal:host-gateway
+    cmd: "./bin/rails server"
+  job:
+    hosts:
+      - 103.173.63.62
+    options:
+      "add-host": host.docker.internal:host-gateway
+    cmd: "bundle exec sidekiq -C config/sidekiq.yml -v"
+
+# Credentials for your image host.
+registry:
+  # Specify the registry server, if you're not using Docker Hub
+#  server: registry.digitalocean.com
+  username:
+    - MRSK_REGISTRY_PASSWORD
+
+  # Always use an access token rather than real password when possible.
+  password:
+    - MRSK_REGISTRY_PASSWORD
+
+# Inject ENV variables into containers (secrets come from .env).
+env:
+  clear:
+    REDIS_URL: "redis://host.docker.internal:36379/0"
+  secret:
+    - RAILS_MASTER_KEY
+    - DATABASE_PASSWORD
+    - SMTP_USER
+    - SMTP_PASSWORD
+    - DO_BUCKET_KEY
+    - DO_BUCKET_SECRET
+    - DO_BUCKET
+    - SIDEKIQ_USERNAME
+    - SIDEKIQ_PASSWORD
+# Configure builder setup.
+builder:
+  args:
+   RUBY_VERSION: 3.2.0
+  remote:
+     arch: amd64
+#     host: ssh://app@192.168.0.1
+#builder:
+#  multiarch: false
+# Use accessory services (secrets come from .env).
+accessories:
+  redis:
+    image: redis:latest
+    roles:
+      - web
+    port: "36379:6379"
+    volumes:
+      - /var/lib/redis:/data
+# Configure custom arguments for Traefik
+traefik:
+  # host_port: 8080
+  options:
+    publish:
+      - "443:443"
+    volume:
+      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
+  args:
+    entryPoints.web.address: ":80"
+    entryPoints.websecure.address: ":443"
+    entryPoints.web.http.redirections.entryPoint.to: websecure
+    entryPoints.web.http.redirections.entryPoint.scheme: https
+    entryPoints.web.http.redirections.entrypoint.permanent: true
+    entrypoints.websecure.http.tls: true
+    entrypoints.websecure.http.tls.domains[0].main: "livestock.pk"
+    certificatesResolvers.letsencrypt.acme.email: "livestock.pk"
+    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
+    certificatesResolvers.letsencrypt.acme.httpchallenge: true
+    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+#   args:
+#     accesslog: true
+#     accesslog.format: json
+# Configure a custom healthcheck (default is /up on port 3000)
+# healthcheck:
+#   path: /healthz
+  #   port: 4000
