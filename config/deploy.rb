@@ -1,10 +1,12 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.19.1"
 
-set :rbenv_ruby, '3.2.3'
+set :rbenv_ruby, '3.2.0'
+set :user, 'livestock'
+
 set :application, "livestock"
 set :repo_url, "git@github.com:rehan-ch/livestock.git"
-set :deploy_to, "~project/#{fetch :application}"
+set :deploy_to, "/home/#{fetch(:user)}/project/#{fetch(:application)}"
 # Issue with propshaft as asset pipwlinw
 # See: https://github.com/capistrano/rails/issues/257
 # Workaround
