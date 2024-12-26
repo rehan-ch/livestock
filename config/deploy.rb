@@ -11,7 +11,7 @@ set :deploy_to, "/home/#{fetch(:user)}/project/#{fetch(:application)}"
 # See: https://github.com/capistrano/rails/issues/257
 # Workaround
 set :assets_manifests, -> {
-  [release_path.join("public", fetch(:assets_prefix), '.manifest.json')]
+  [release_path.join("public", fetch(:assets_prefix))]
 }
 
 # Default branch is :master
