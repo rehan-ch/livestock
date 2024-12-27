@@ -10,9 +10,9 @@ set :deploy_to, "/home/#{fetch(:user)}/project/#{fetch(:application)}"
 # Issue with propshaft as asset pipwlinw
 # See: https://github.com/capistrano/rails/issues/257
 # Workaround
-set :assets_manifests, -> {
-  [release_path.join("public", fetch(:assets_prefix))]
-}
+# set :assets_manifests, -> {
+#   [release_path.join("public", fetch(:assets_prefix))]
+# }
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
