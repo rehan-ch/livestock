@@ -7,7 +7,7 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-set :production
+set :development
 set :branch, 'main' # Replace 'main' with the branch you want to deploy
 server '103.173.63.62', user: 'livestock', roles: %w{app db web}
 
