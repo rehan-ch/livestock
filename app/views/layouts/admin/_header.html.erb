@@ -109,25 +109,25 @@
           </li>
           <li class="dropdown ms-4">
             <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="/assets/theme/avatar/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle" />
+              <% if current_user.avatar.attached? %>
+                <%= image_tag url_for(current_user.avatar), class: "avatar avatar-md rounded-circle" %>
+              <% else %>
+                <img src="<%= asset_path('theme/avatar/avatar-1.jpg') %>" alt="" class="avatar avatar-md rounded-circle" />
+              <% end %>
             </a>
 
             <div class="dropdown-menu dropdown-menu-end p-0">
               <div class="lh-1 px-5 py-4 border-bottom">
-                <h5 class="mb-1 h6">Livestock Admin</h5>
-                <small>admindemo@email.com</small>
+                <h5 class="mb-1 h6"><%= current_user.name %></h5>
+                <small><%=  current_user.email %></small>
               </div>
 
               <ul class="list-unstyled px-2 py-3">
                 <li>
-                  <a class="dropdown-item" href="#!">Home</a>
+                  <a class="dropdown-item" href="<%= root_path %>">Home</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#!">Profile</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item" href="#!">Settings</a>
+                  <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
                 </li>
               </ul>
               <div class="border-top px-5 py-3">
