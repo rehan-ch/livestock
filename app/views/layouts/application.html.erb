@@ -15,6 +15,9 @@
     <meta content="Codescandy" name="author" />
     <title>Live Stock</title>
 
+    <link href="<%= asset_path('custom.css') %>" rel="stylesheet" />
+    <link href="<%= asset_path('theme.min.css') %>" rel="stylesheet" />
+    <link href="<%= asset_path('public/nav_bar.css') %>" rel="stylesheet" />
     <link href="<%= asset_path('tiny-slider/dist/tiny-slider.css') %>" rel="stylesheet" />
     <link href="<%= asset_path('slick-carousel/slick/slick.css') %>" rel="stylesheet" />
     <link href="<%= asset_path('slick-carousel/slick/slick-theme.css') %>" rel="stylesheet" />
@@ -61,7 +64,7 @@
   <script src="<%= asset_path('simplebar/dist/simplebar.min.js') %>"></script>
 
   <!-- Theme JS -->
-<!--  <script src="<%#= asset_path('theme.min.js') %>"></script>-->
+  <script src="<%= asset_path('theme.min.js') %>"></script>
 
   <script src="<%= asset_path('vendors/jquery.min.js') %>"></script>
   <script src="<%= asset_path('slick-carousel/slick/slick.min.js') %>"></script>
