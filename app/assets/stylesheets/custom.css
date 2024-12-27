@@ -128,3 +128,7 @@ p {
 span{
     font-weight: 400;
 }
+
+.active-menu {
+    color: #0aad0a;
+}
