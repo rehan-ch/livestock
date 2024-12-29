@@ -65,7 +65,12 @@
             <% if current_user %>
               <div class='d-flex'>
                 <%= link_to "Create Ad", new_dashboard_product_path, class: 'btn btn-primary d-none me-2 d-xl-block' %>
+                <% if current_user.admin? %>
+                  <%= link_to "Admin Dashboard", admin_path, class: 'btn btn-primary d-none me-2 d-xl-block' %>
+                <% end %>
+                
                 <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-light d-none d-xl-block' %>
+
               </div>
             <% else %>
             <div class='d-flex'>

@@ -130,7 +130,9 @@
                 </li>
               </ul>
               <div class="border-top px-5 py-3">
-                <a href="#">Log Out</a>
+                <div class="border-top px-5 py-3">
+                  <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: 'btn btn-primary d-none d-xl-block' %>
+                </div>
               </div>
             </div>
           </li>
