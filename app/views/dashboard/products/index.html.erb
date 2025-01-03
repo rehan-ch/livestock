@@ -10,7 +10,7 @@
             <!-- form -->
             <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0">
               <form class="d-flex" role="search">
-                <input class="form-control" type="search" placeholder="Search Products" aria-label="Search" />
+                <input class="form-control" type="search" placeholder="Search Products" aria-label="Search"/>
               </form>
             </div>
             <!-- select option -->
@@ -33,11 +33,10 @@
               <tr>
                 <th>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkAll" />
+                    <input class="form-check-input" type="checkbox" value="" id="checkAll"/>
                     <label class="form-check-label" for="checkAll"></label>
                   </div>
                 </th>
-                <th>Image</th>
                 <th>Ad Name</th>
                 <th>Category</th>
                 <th>Status</th>
@@ -48,59 +47,38 @@
                 <th>Verified</th>
                 <th>Quantity</th>
                 <th>Created at</th>
-                <th></th>
+                <th>Image</th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
               <% @products.each do |product| %>
-              <tr>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="productOne" />
-                    <label class="form-check-label" for="productOne"></label>
-                  </div>
-                </td>
-                <td>
-                  <a href="#!">
-                    <%= image_tag url_for(product.images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
-                  </a>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="productOne"/>
+                      <label class="form-check-label" for="productOne"></label>
+                    </div>
+                  </td>
+                  <td><a href="#" class="text-reset"><%= product.name %></a></td>
+                  <td><%= product.category.name %></td>
 
-                </td>
-                <td><a href="#" class="text-reset"><%= product.name %></a></td>
-                <td><%= product.category.name %></td>
-
-                <td>
-                  <span class="badge bg-light-primary text-dark-primary"><%= product.status %></span>
-                </td>
-                <td><%= product.price %></td>
-                <td><%= product.height %></td>
-                <td><%= product.weight %></td>
-                <td><%= product.breed %></td>
-                <td><%= product.verified %></td>
-                <td><%= product.quantity %></td>
-                <td><%= product.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-                <td>
-                  <div class="dropdown">
-                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
-                      <i class="feather-icon icon-more-vertical fs-5"></i>
+                  <td>
+                    <span class="badge bg-light-primary text-dark-primary"><%= product.status %></span>
+                  </td>
+                  <td><%= product.price %></td>
+                  <td><%= product.height %></td>
+                  <td><%= product.weight %></td>
+                  <td><%= product.breed %></td>
+                  <td><%= product.verified %></td>
+                  <td><%= product.quantity %></td>
+                  <td><%= product.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+                  <td>
+                    <a href="#!">
+                      <%= image_tag url_for(product.images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="bi bi-trash me-3"></i>
-                          Delete
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="bi bi-pencil-square me-3"></i>
-                          Edit
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                </tr>
               <% end %>
               </tbody>
             </table>

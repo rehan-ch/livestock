@@ -2,8 +2,9 @@
   <div class="col-md-12">
     <!-- page header -->
     <div class="d-md-flex justify-content-between align-items-center">
+      <% class_name = controller_name.classify.downcase == "product" ? "Ads" : controller_name.classify  %>
       <div>
-        <h2 class="text-capitalize active-menu"><%= controller_name.classify %></h2>
+        <h2 class="text-capitalize active-menu"><%= class_name %></h2>
         <!-- breacrumb -->
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
@@ -11,10 +12,10 @@
               <a href="<%= dashboard_path %>" class="text-inherit">Dashboard</a></li>
             <% unless action_name == "index" %>
               <li class="breadcrumb-item">
-                <a href="<%= dashboard_products_path %>" class="text-inherit"><%= controller_name.classify %></a></li>
-              <li class="breadcrumb-item active" aria-current="page"><%= "#{action_name.classify} #{controller_name.classify}" %></li>
+                <a href="<%= dynamic_breadcrum_path %>" class="text-inherit"><%= class_name %></a></li>
+              <li class="breadcrumb-item active" aria-current="page"><%= "#{action_name.classify} #{class_name}" %></li>
             <% else %>
-              <li class="breadcrumb-item active" aria-current="page"><%= "#{controller_name.classify}" %></li>
+              <li class="breadcrumb-item active" aria-current="page"><%= "#{class_name}" %></li>
             <% end %>
           </ol>
         </nav>
@@ -22,8 +23,9 @@
       <!-- button -->
       <div>
         <% if action_name == "index" %>
-          <a href="<%= send("new_dashboard_#{controller_name.classify.underscore}_path") %>" class="btn btn-primary">Add <%= controller_name.classify %></a>
-        <% end %>       </div>
+          <a href="<%= send("new_dashboard_#{controller_name.classify.downcase}_path") %>" class="btn btn-primary">Add <%= class_name %></a>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

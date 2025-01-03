@@ -5,7 +5,7 @@
       <div class="col-lg-10 col-12">
         <div class="card mb-10 card-lg">
           <div class="card-body p-6">
-            <h4 class="mb-4 h5">Product Details</h4>
+            <h4 class="mb-4 h5">Ad Details</h4>
             <%= form_with(model: [:dashboard, product]) do |form| %>
               <% if product.errors.any? %>
                 <div style="color: red">
@@ -47,15 +47,6 @@
                   <%= form.label :sex, class: "form-label" %>
                   <%= form.select :sex, Product.sexes.keys.map { |sex| [sex.humanize, sex] }, { include_blank: "Select Sex" }, class: "form-select" %>
                 </div>
-
-                <%
-=begin%>
- <div class="mb-3 col-lg-6">
-                  <%= form.label :status, class: "form-label" %>
-                  <%= form.select :status, Product.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: "Select Status" }, class: "form-select" %>
-                </div> 
-<%
-=end%>
                 <div class="mb-3 col-lg-6">
                   <%= form.label :age_in_years, class: "form-label" %>
                   <%= form.number_field :age_in_years, class: "form-control" %>
@@ -119,10 +110,7 @@
                   <%= form.label :primary_image, class: "form-label" %>
                   <%= form.file_field :primary_image, class: "form-control image-preview-input", data: { preview_target: '#dash_prime_image_preview' } %>
                 </div>
-<!--                <div class="mb-3 col-lg-6">-->
-                  <%#= form.label :self_stock, class: "form-label" %>
-                  <%#= form.check_box :self_stock, class: "form-check-input" %>
-<!--                </div>-->
+
               </div>
 
               <div class="mb-3 col-lg-12 mt-5">
@@ -134,11 +122,8 @@
                     <%= form.label :images, class: "form-label" %>
                     <%= form.file_field :images, multiple: true, class: "form-control image-preview-input", data: { preview_target: '#dash_product_images_preview' } %>
                   </div>
-                <!-- input -->
-<!--                <div id="my-dropzone" class="dropzone mt-4 border-dashed rounded-2 min-h-100">-->
-                  <%#= form.file_field :images, multiple: true %>
                 </div>
-<!--              </div>-->
+
 
               <div class="mb-3">
                 <%= form.submit class: "btn btn-primary" %>
