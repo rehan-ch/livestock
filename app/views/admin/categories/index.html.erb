@@ -64,11 +64,9 @@
                     <%= link_to edit_admin_category_path(category),class: "btn btn-primary" do %>
                       Edit
                     <% end %>
-
                     <%= link_to admin_category_path(category), class: "btn btn-primary" do %>
                       Show
                     <% end %>
-
                     <%= form_with url: admin_category_path(category), method: :delete, data: { confirm: "Are you sure?" } do %>
                       <%= submit_tag "Delete", class: "btn btn-danger" %>
                     <% end %>

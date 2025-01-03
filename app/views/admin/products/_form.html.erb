@@ -1,11 +1,11 @@
 <div class="container">
-  <%= render partial: "/dashboard/shared/breadcrum" %>
+  <%= render partial: "/admin/shared/breadcrum" %>
 
   <div class="row">
     <div class="col-lg-12 col-12">
       <div class="card mb-10 card-lg">
         <div class="card-body p-6">
-          <h4 class="mb-4 h5">Product Details</h4>
+          <h4 class="mb-4 h5">Ad Details</h4>
           <%= form_with(model: [:admin, product]) do |form| %>
             <% if product.errors.any? %>
               <div style="color: red">
@@ -135,7 +135,7 @@
             </div>
 
             <div class="mb-3">
-              <%= form.submit class: "btn btn-primary" %>
+              <%= form.submit "Ad Save", class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>

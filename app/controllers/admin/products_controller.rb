@@ -18,7 +18,7 @@ module Admin
       @product = current_user.products.new(product_params)
 
       if @product.save
-        redirect_to dashboard_products_path, notice: "Product was successfully created."
+        redirect_to admin_products_path, notice: "Product was successfully created."
       else
         render :new, status: :unprocessable_entity
       end

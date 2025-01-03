@@ -11,7 +11,7 @@ class Product < ApplicationRecord
   delegate :name, to: :category, prefix: true
   delegate :name, to: :user, prefix: true
 
-  scope :filter_by_status, ->(status) { where(status: status) if status.present? }
+  scope :filter_by_status, ->(status) { where(status: status) if status.present? && status.downcase !="all"}
 
   scope :filter_by_query, ->(query) { where('LOWER(name) LIKE ?', "%#{query.downcase}%") if query.present? }
 

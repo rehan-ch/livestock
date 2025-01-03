@@ -11,7 +11,7 @@
             <!-- form -->
             <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0">
               <form class="d-flex" role="search">
-                <input class="form-control" type="search" placeholder="Search Products" aria-label="Search" />
+                <input class="form-control" type="search" placeholder="Search Ads" aria-label="Search" />
               </form>
             </div>
             <!-- select option -->
@@ -38,13 +38,13 @@
                     <label class="form-check-label" for="checkAll"></label>
                   </div>
                 </th>
-                <th>Image</th>
                 <th>Proudct Name</th>
                 <th>Category</th>
                 <th>Status</th>
                 <th>Price</th>
                 <th>Create at</th>
-                <th></th>
+                <th>Image</th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
@@ -56,12 +56,6 @@
                     <label class="form-check-label" for="productOne"></label>
                   </div>
                 </td>
-                <td>
-                  <a href="#!">
-                    <%= image_tag url_for(product.images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
-                  </a>
-
-                </td>
                 <td><a href="#" class="text-reset"><%= product.name %></a></td>
                 <td><%= product.category.name %></td>
 
@@ -71,29 +65,20 @@
                 <td><%= product.price %></td>
                 <td><%= product.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                 <td>
-                  <%= link_to edit_admin_product_path(product) do %>
-                    <i class="bi bi-pencil-square me-3"></i>
-                    Edit
-                  <% end %>
-                  <div class="dropdown">
-                    <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
-                      <i class="feather-icon icon-more-vertical fs-5"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="bi bi-trash me-3"></i>
-                          Delete
-                        </a>
-                      </li>
-                      <li>
-                        <%= link_to edit_admin_product_path(product), class: "dropdown-item" do %>
-                          <i class="bi bi-pencil-square me-3"></i>
-                          Edit
-                        <% end %>
-                      </li>
-                    </ul>
-                  </div>
+                  <a href="#!">
+                    <%= image_tag url_for(product.images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
+                  </a>
+                </td>
+                  <td>
+                    <%= link_to edit_admin_product_path(product),class: "btn btn-primary" do %>
+                      Edit
+                    <% end %>
+                    <%= link_to admin_product_path(product), class: "btn btn-primary" do %>
+                      Show
+                    <% end %>
+                    <%= form_with url: admin_product_path(product), method: :delete, data: { confirm: "Are you sure?" } do %>
+                      <%= submit_tag "Delete", class: "btn btn-danger" %>
+                    <% end %>
                 </td>
               </tr>
               <% end %>
