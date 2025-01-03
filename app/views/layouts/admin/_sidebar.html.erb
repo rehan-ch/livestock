@@ -16,48 +16,11 @@
             </div>
           <% end %>
         </li>
-
-        <li class="nav-item">
-          <%= link_to admin_categories_path, class: "nav-link #{active_tab('categories')}" do %>
-            <div class="d-flex align-items-center">
-              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
-              <span class="nav-link-text">Categories</span>
-            </div>
-          <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to admin_services_path, class: "nav-link #{active_tab('services')}" do %>
-            <div class="d-flex align-items-center">
-              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
-              <span class="nav-link-text">Services</span>
-            </div>
-          <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to admin_blogs_path, class: "nav-link #{active_tab('blogs')}" do %>
-            <div class="d-flex align-items-center">
-              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
-              <span class="nav-link-text">Blogs</span>
-            </div>
-          <% end %>
-        </li>
-
-<!--        <li class="nav-item">-->
-          <%#= link_to dashboard_paid_ads_path, class: "nav-link #{active_tab('paid_ads')}" do %>
-<!--            <div class="d-flex align-items-center">-->
-<!--              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>-->
-<!--              <span class="nav-link-text">Paid Ads</span>-->
-<!--            </div>-->
-          <%# end %>
-<!--        </li>-->
-
         <li class="nav-item">
           <a class="nav-link <%= "collapse" if active_tab('products').present? %> " href="#" data-bs-toggle="collapse" data-bs-target="#navCategoriesOrders" aria-expanded="false" aria-controls="navCategoriesOrders">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-bag"></i></span>
-              <span class="nav-link-text">All Ads</span>
+              <span class="nav-link-text">Ads</span>
             </div>
           </a>
           <div id="navCategoriesOrders" class="collapse  <%= " show" if active_tab('products').present? %>" data-bs-parent="#sideNavbar">
@@ -92,27 +55,32 @@
             </ul>
           </div>
         </li>
+        <li class="nav-item">
+          <%= link_to admin_categories_path, class: "nav-link #{active_tab('categories')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">Categories</span>
+            </div>
+          <% end %>
+        </li>
 
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link disabled" href="#!">-->
-<!--            <div class="d-flex align-items-center">-->
-<!--              <span class="nav-link-icon"><i class="bi bi-gear"></i></span>-->
-<!--              <span class="nav-link-text">Store Settings</span>-->
-<!--            </div>-->
-<!--          </a>-->
-<!--        </li>-->
+        <li class="nav-item">
+          <%= link_to admin_services_path, class: "nav-link #{active_tab('services')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">Services</span>
+            </div>
+          <% end %>
+        </li>
 
-
-
-
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link disabled" href="#!">-->
-<!--            <div class="d-flex align-items-center">-->
-<!--              <span class="nav-link-icon"><i class="bi bi-gear"></i></span>-->
-<!--              <span class="nav-link-text">Store Settings</span>-->
-<!--            </div>-->
-<!--          </a>-->
-<!--        </li>-->
+        <li class="nav-item">
+          <%= link_to admin_blogs_path, class: "nav-link #{active_tab('blogs')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">Blogs</span>
+            </div>
+          <% end %>
+        </li>
 
       </ul>
     </div>
