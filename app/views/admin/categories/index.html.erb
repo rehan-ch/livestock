@@ -10,9 +10,9 @@
           <div class="row justify-content-between">
             <!-- form -->
             <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0">
-              <form class="d-flex" role="search">
-                <input class="form-control" type="search" placeholder="Search categories" aria-label="Search" />
-              </form>
+<!--              <form class="d-flex" role="search">-->
+<!--                <input class="form-control" type="search" placeholder="Search categories" aria-label="Search" />-->
+<!--              </form>-->
             </div>
             <!-- select option -->
             <div class="col-lg-2 col-md-4 col-12">
@@ -41,7 +41,8 @@
                 <th>Category Name</th>
                 <th>Description</th>
                 <th>Create at</th>
-                <th></th>
+                <th>Images</th>
+                <th>Action</th>
               </tr>
               </thead>
               <tbody>
@@ -53,36 +54,24 @@
                       <label class="form-check-label" for="categoryOne"></label>
                     </div>
                   </td>
+                  <td><a href="#" class="text-reset"><%= category.name %></a></td>
+                  <td><%= truncate(category.description, length: 15) %></td>
+                  <td><%= category.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                   <td>
                     <%= image_tag url_for(category.image), alt: category.name, class: "icon-shape icon-md" if category.image.attached? %>
                   </td>
-                  <td><a href="#" class="text-reset"><%= category.name %></a></td>
-                  <td><%= category.description %></td>
-                  <td><%= category.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                   <td>
-                    <%= link_to edit_admin_category_path(category) do %>
-                      <i class="bi bi-pencil-square me-3"></i>
+                    <%= link_to edit_admin_category_path(category),class: "btn btn-primary" do %>
                       Edit
                     <% end %>
-                    <div class="dropdown">
-                      <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
-                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            <i class="bi bi-trash me-3"></i>
-                            Delete
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            <i class="bi bi-pencil-square me-3"></i>
-                            Edit
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+
+                    <%= link_to admin_category_path(category), class: "btn btn-primary" do %>
+                      Show
+                    <% end %>
+
+                    <%= form_with url: admin_category_path(category), method: :delete, data: { confirm: "Are you sure?" } do %>
+                      <%= submit_tag "Delete", class: "btn btn-danger" %>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>

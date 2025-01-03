@@ -10,6 +10,9 @@
     end
 end
 
+MainCategory.create(name: "Livestock")
+MainCategory.create(name: "Purpose-Based")
+
 10.times do 
 categories_params = {name: Faker::Commerce.product_name, description: Faker::Lorem.paragraph(sentence_count: 2)}
 Category.create(categories_params)

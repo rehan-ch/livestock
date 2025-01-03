@@ -52,7 +52,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category.destroy!
 
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: "category was successfully destroyed." }
+      format.html { redirect_to admin_categories_path, notice: "category was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +65,6 @@ class Admin::CategoriesController < Admin::BaseController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :description, :image)
+      params.require(:category).permit(:name, :description, :image, :parent_id, :main_category_id)
     end
 end

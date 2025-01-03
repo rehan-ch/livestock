@@ -3,7 +3,7 @@
     <!-- page header -->
     <div class="d-md-flex justify-content-between align-items-center">
       <div>
-        <h2><%= controller_name.classify %></h2>
+        <h2 class="text-capitalize active-menu"><%= controller_name.classify %></h2>
         <!-- breacrumb -->
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
@@ -21,8 +21,9 @@
       </div>
       <!-- button -->
       <div>
-        <a href="<%= send("new_dashboard_#{controller_name.classify.underscore}_path") %>" class="btn btn-primary">Add <%= controller_name.classify %></a>
-      </div>
+        <% if action_name == "index" %>
+          <a href="<%= send("new_dashboard_#{controller_name.classify.underscore}_path") %>" class="btn btn-primary">Add <%= controller_name.classify %></a>
+        <% end %>       </div>
     </div>
   </div>
 </div>
