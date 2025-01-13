@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center w-100 d-lg-none">
-          <a class="navbar-brand mb-0" href="../index.html">
+          <a class="navbar-brand mb-0" href="<%=  root_path %>">
             <img src="<%= asset_path("logo-large.png")  %>" alt="Livestock" />
           </a>
 
@@ -64,18 +64,18 @@
           <div class="list-inline-item">
             <% if current_user %>
               <div class='d-flex'>
-                <%= link_to "Create Ad", new_dashboard_product_path, class: 'btn btn-primary d-none me-2 d-xl-block' %>
+                <%= link_to "Create Ad", new_dashboard_product_path, class: 'btn btn-primary  me-2 d-xl-block' %>
                 <% if current_user.admin? %>
-                  <%= link_to "Admin Dashboard", admin_path, class: 'btn btn-primary d-none me-2 d-xl-block' %>
+                  <%= link_to "Admin Dashboard", admin_path, class: 'btn btn-primary  me-2 d-xl-block' %>
                 <% end %>
                 
-                <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-light d-none d-xl-block' %>
+                <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-light  d-xl-block' %>
 
               </div>
             <% else %>
             <div class='d-flex'>
-              <%= link_to "Sign In", new_user_session_path ,class: 'btn btn-primary d-none d-xl-block me-2' %>
-              <%= link_to "Sign Up", new_user_registration_path ,class: 'btn btn-dark d-none d-xl-block' %>
+              <%= link_to "Sign In", new_user_session_path ,class: 'btn btn-primary d-xl-block me-2' %>
+              <%= link_to "Sign Up", new_user_registration_path ,class: 'btn btn-dark  d-xl-block' %>
             </div>
             <% end %>
           </div>
