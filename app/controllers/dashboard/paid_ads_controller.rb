@@ -3,7 +3,7 @@ class Dashboard::PaidAdsController < Dashboard::BaseController
 
   # GET /paid_ads
   def index
-    @paid_ads = current_user.paid_ads
+    @paid_ads = current_user.paid_ads.page(page).per(per)
   end
 
   # GET /paid_ads/1 or /paid_ads/1.json
