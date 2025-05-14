@@ -7,9 +7,8 @@ one:
   name: MyString
   short_description: MyString
   long_description: MyText
-  age_in_years: 1
-  age_in_months: 1
   sex: 1
+  age: 1.5
   breed: MyString
   height: 1.5
   veigth: 1.5
@@ -31,9 +30,8 @@ two:
   name: MyString
   short_description: MyString
   long_description: MyText
-  age_in_years: 1
-  age_in_months: 1
   sex: 1
+  age: 2.5
   breed: MyString
   height: 1.5
   veigth: 1.5

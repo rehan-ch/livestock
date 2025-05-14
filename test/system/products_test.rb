@@ -15,8 +15,7 @@ class ProductsTest < ApplicationSystemTestCase
     click_on "New product"
 
     fill_in "Address", with: @product.address
-    fill_in "Age in months", with: @product.age_in_months
-    fill_in "Age in years", with: @product.age_in_years
+    fill_in "Age", with: @product.age
     fill_in "Breed", with: @product.breed
     check "Castrated" if @product.castrated
     fill_in "Category", with: @product.category_id
@@ -47,8 +46,7 @@ class ProductsTest < ApplicationSystemTestCase
     click_on "Edit this product", match: :first
 
     fill_in "Address", with: @product.address
-    fill_in "Age in months", with: @product.age_in_months
-    fill_in "Age in years", with: @product.age_in_years
+    fill_in "Age", with: @product.age
     fill_in "Breed", with: @product.breed
     check "Castrated" if @product.castrated
     fill_in "Category", with: @product.category_id
