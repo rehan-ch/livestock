@@ -23,7 +23,7 @@
                   <%= form.select :category_id, Category.all.map { |category| [category.name.humanize, category.id] }, { include_blank: "Select Category" }, class: "form-select" %>
                 </div>
                 <div class="mb-3 col-lg-6">
-                  <%= form.label :name, class: "form-label" %>
+                  <%= form.label "Ad Name", class: "form-label" %>
                   <%= form.text_field :name, class: "form-control" %>
                 </div>
                 <div class="mb-3 col-lg-6">
@@ -34,30 +34,21 @@
                   <%= form.label :quantity_unit, class: "form-label" %>
                   <%= form.select :quantity_unit, Product.quantity_units.keys.map { |unit| [unit.humanize, unit] }, { include_blank: "Select Quantity Unit" }, class: "form-select" %>
                 </div>
-                <div class="mb-12 col-lg-12">
-                  <%= form.label :short_description, class: "form-label" %>
-                  <%= form.text_field :short_description, class: "form-control" %>
-                </div>
-                <div class="mb-12 col-lg-12">
-                  <%= form.label :long_description, class: "form-label" %>
-                  <%= form.text_area :long_description, class: "form-control" %>
-                </div>
 
                 <div class="mb-3 col-lg-6">
                   <%= form.label :sex, class: "form-label" %>
                   <%= form.select :sex, Product.sexes.keys.map { |sex| [sex.humanize, sex] }, { include_blank: "Select Sex" }, class: "form-select" %>
                 </div>
                 <div class="mb-3 col-lg-6">
-                  <%= form.label :age_in_years, class: "form-label" %>
-                  <%= form.number_field :age_in_years, class: "form-control" %>
-                </div>
-                <div class="mb-3 col-lg-6">
-                  <%= form.label :age_in_months, class: "form-label" %>
-                  <%= form.number_field :age_in_months, class: "form-control" %>
+                  <%= form.label :age, class: "form-label" %>
+                  <%= form.number_field :age, class: "form-control", step: "0.1" %>
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label :price, class: "form-label" %>
-                  <%= form.number_field :price, class: "form-control" %>
+                  <div class="input-group">
+                    <%= form.number_field :price, class: "form-control" %>
+                    <span class="input-group-text">PKR</span>
+                  </div>
                 </div>
 
                 <div class="mb-3 col-lg-6">
@@ -66,11 +57,17 @@
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label :height, class: "form-label" %>
-                  <%= form.text_field :height, class: "form-control" %>
+                   <div class="input-group">
+                    <%= form.text_field :height, class: "form-control" %>
+                    <span class="input-group-text">cm</span>
+                  </div>
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label :weight, class: "form-label" %>
-                  <%= form.text_field :weight, class: "form-control" %>
+                  <div class="input-group">
+                    <%= form.text_field :weight, class: "form-control" %>
+                    <span class="input-group-text">kg</span>
+                  </div>
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label :teeth, class: "form-label" %>
@@ -85,7 +82,7 @@
                   <h4 class="mb-3 h5">Location</h4>
                 </div>
                 <div data-controller='geolocation'>
-                  <button data-action="geolocation#search">Get Current Location</button>
+                  <button data-action="geolocation#search", class="btn btn-primary mb-2">Get Current Location</button>
                   <div class="mb-3 col-lg-6">
                     <%= form.label :city, class: "form-label" %>
                     <%= form.text_field :city, class: "form-control", "data-geolocation-target": "city" %>
@@ -107,7 +104,7 @@
                 </div>
                 <div id="dash_prime_image_preview" class="image-preview-container"></div>
                 <div class="mb-3 col-lg-12">
-                  <%= form.label :primary_image, class: "form-label" %>
+                  <%= form.label :primary_image, class: "form-label", required: true %>
                   <%= form.file_field :primary_image, class: "form-control image-preview-input", data: { preview_target: '#dash_prime_image_preview' } %>
                 </div>
 
@@ -123,7 +120,16 @@
                     <%= form.file_field :images, multiple: true, class: "form-control image-preview-input", data: { preview_target: '#dash_product_images_preview' } %>
                   </div>
                 </div>
+              
+              <div class="mb-12 col-lg-12">
+                <%= form.label :short_description, class: "form-label" %>
+                <%= form.text_field :short_description, class: "form-control" %>
+              </div>
 
+              <div class="mb-12 col-lg-12">
+                <%= form.label :long_description, class: "form-label" %>
+                <%= form.text_area :long_description, class: "form-control" %>
+              </div>
 
               <div class="mb-3">
                 <%= form.submit class: "btn btn-primary" %>

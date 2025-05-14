@@ -52,13 +52,9 @@
                 <%= form.label :status, class: "form-label" %>
                 <%= form.select :status, Product.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: "Select Status" }, class: "form-select" %>
               </div>
-              <div class="mb-3 col-lg-6">
-                <%= form.label :age_in_years, class: "form-label" %>
-                <%= form.number_field :age_in_years, class: "form-control" %>
-              </div>
-              <div class="mb-3 col-lg-6">
-                <%= form.label :age_in_months, class: "form-label" %>
-                <%= form.number_field :age_in_months, class: "form-control" %>
+              <div class="mb-3">
+                <%= form.label :age, class: "form-label" %>
+                <%= form.number_field :age, class: "form-control", step: "0.01" %>
               </div>
               <div class="mb-3 col-lg-6">
                 <%= form.label :price, class: "form-label" %>

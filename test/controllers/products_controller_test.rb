@@ -17,7 +17,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create product" do
     assert_difference("Product.count") do
-      post products_url, params: { product: { ad_id: @product.ad_id, address: @product.address, age_in_months: @product.age_in_months, age_in_years: @product.age_in_years, breed: @product.breed, castrated: @product.castrated, category_id: @product.category_id, city: @product.city, country: @product.country, height: @product.height, long_description: @product.long_description, name: @product.name, price: @product.price, quantity: @product.quantity, self_stock: @product.self_stock, sex: @product.sex, short_description: @product.short_description, state: @product.state, status: @product.status, teeth: @product.teeth, user_id: @product.user_id, verified: @product.verified, veigth: @product.veigth } }
+      post products_url, params: { product: { ad_id: @product.ad_id, address: @product.address, age: @product.age, breed: @product.breed, castrated: @product.castrated, category_id: @product.category_id, city: @product.city, country: @product.country, height: @product.height, long_description: @product.long_description, name: @product.name, price: @product.price, quantity: @product.quantity, self_stock: @product.self_stock, sex: @product.sex, short_description: @product.short_description, state: @product.state, status: @product.status, teeth: @product.teeth, user_id: @product.user_id, verified: @product.verified, weight: @product.weight } }
     end
 
     assert_redirected_to product_url(Product.last)
@@ -34,7 +34,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: { ad_id: @product.ad_id, address: @product.address, age_in_months: @product.age_in_months, age_in_years: @product.age_in_years, breed: @product.breed, castrated: @product.castrated, category_id: @product.category_id, city: @product.city, country: @product.country, height: @product.height, long_description: @product.long_description, name: @product.name, price: @product.price, quantity: @product.quantity, self_stock: @product.self_stock, sex: @product.sex, short_description: @product.short_description, state: @product.state, status: @product.status, teeth: @product.teeth, user_id: @product.user_id, verified: @product.verified, veigth: @product.veigth } }
+    patch product_url(@product), params: { product: { ad_id: @product.ad_id, address: @product.address, age: @product.age, breed: @product.breed, castrated: @product.castrated, category_id: @product.category_id, city: @product.city, country: @product.country, height: @product.height, long_description: @product.long_description, name: @product.name, price: @product.price, quantity: @product.quantity, self_stock: @product.self_stock, sex: @product.sex, short_description: @product.short_description, state: @product.state, status: @product.status, teeth: @product.teeth, user_id: @product.user_id, verified: @product.verified, weight: @product.weight } }
     assert_redirected_to product_url(@product)
   end
 
