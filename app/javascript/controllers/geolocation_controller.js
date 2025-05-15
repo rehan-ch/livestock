@@ -1,7 +1,6 @@
 // app/javascript/controllers/geolocation_controller.js
 import { Controller } from "@hotwired/stimulus"
 const options = {
-  enableHighAccuracy: true,
   maximumAge: 0
 };
 
