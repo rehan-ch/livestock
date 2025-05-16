@@ -7,6 +7,7 @@ set :user, 'livestock'
 set :application, "livestock"
 set :repo_url, "git@github.com:rehan-ch/livestock.git"
 set :deploy_to, "/home/#{fetch(:user)}/project/#{fetch(:application)}"
+append :linked_dirs, 'storage'
 # Issue with propshaft as asset pipwlinw
 # See: https://github.com/capistrano/rails/issues/257
 # Workaround
