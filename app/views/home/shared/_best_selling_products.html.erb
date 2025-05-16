@@ -45,11 +45,13 @@
                 <!--                 <a href="#!"><img src="/assets/theme/products/product-img-18.jpg" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>-->
 
                 <%= link_to product_path(product) do %>
-                  <% if product.images.attached? %>
-                    <%= image_tag url_for(product.images.first), alt: product.short_description, class: "mb-3 img-fluid" %>
-                  <% else %>
-                    <%= image_tag 'theme/png/no-image.png', alt: product.short_description, class: "mb-3 img-fluid" %>
-                  <% end %>
+                  <div class="product-img-container">
+                    <% if product.images.attached? %>
+                      <%= image_tag url_for(product.images.first), alt: product.short_description %>
+                    <% else %>
+                      <%= image_tag 'theme/png/no-image.png', alt: product.short_description %>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
               <!-- title -->
