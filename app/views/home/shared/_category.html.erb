@@ -38,7 +38,7 @@
                 <!-- item -->
                 <a href="<%= products_path(category_id: category.id) %>" class="text-decoration-none text-inherit">
                   <!-- card -->
-                  <div class="card mb-3 card-lift">
+                  <div class="card mb-3 card-lift category-card">
                     <div class="card-body text-center py-6 text-center">
                       <div class="my-5 category-image">
                         <%= image_tag category.image.attached? ? url_for(category.image) : 'theme/png/no-image.png', alt: category.name, class: 'w-100 h-100' %>
