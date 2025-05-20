@@ -10,4 +10,13 @@ class Category < ApplicationRecord
 
   scope :parent_categories, -> { where(parent_id: nil)}
 
+  def thumbnail
+    return nil unless image.attached?
+    image.variant(resize_to_limit: [150, 150]).processed
+  end
+
+  def medium
+    return nil unless image.attached?
+    image.variant(resize_to_limit: [300, 300]).processed
+  end
 end

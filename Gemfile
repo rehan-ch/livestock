@@ -43,7 +43,7 @@ gem "bootsnap", require: false
 gem 'bootstrap-sass', '~> 3.4'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem 'pry', '~> 0.14.2'
@@ -88,5 +88,4 @@ gem "mini_magick"
 gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'sshkit', '~> 1.23'
-
-
+gem 'mini_magick'

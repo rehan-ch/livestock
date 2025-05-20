@@ -200,10 +200,16 @@ span{
 }
 
 .card.category-card .category-image {
-    flex: 1;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  max-height: 70%;
 }
 
-.card.category-card div:last-child {
-    margin-top: auto;
-    padding: 10px 0;
+.card.category-card .category-image img {
+  max-width: 100%;
+  max-height: 70%;
+  object-fit: contain;
 }

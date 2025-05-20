@@ -39,12 +39,11 @@
                 <a href="<%= products_path(category_id: category.id) %>" class="text-decoration-none text-inherit">
                   <!-- card -->
                   <div class="card mb-3 card-lift category-card">
-                    <div class="card-body text-center py-6 text-center">
-                      <div class="my-5 category-image">
-                        <%= image_tag category.image.attached? ? url_for(category.image) : 'theme/png/no-image.png', alt: category.name, class: 'w-100 h-100' %>
+                    <div class="card-body text-center d-flex flex-column">
+                      <div class="category-image">
+                        <%= image_tag category.image.attached? ? url_for(category.thumbnail) : 'theme/png/no-image.png', alt: category.name %>
                       </div>
-                      <!-- text -->
-                      <div><%= category.name %></div>
+                      <div class="category-name"><%= category.name %></div>
                     </div>
                   </div>
                 </a>
