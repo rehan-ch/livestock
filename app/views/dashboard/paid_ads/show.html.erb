@@ -1,8 +1,8 @@
 <%= render @paid_ad %>
 
 <div>
-  <%= link_to "Edit this product", edit_dashboard_paid_ad_path(@paid_ad) %> |
-  <%= link_to "Back to products", dashboard_paid_ads_path %>
+  <%= link_to "Edit this ad", edit_dashboard_paid_ad_path(@paid_ad) %> |
+  <%= link_to "Back to ads", dashboard_paid_ads_path %>
 
-  <%= button_to "Destroy this product", dashboard_paid_ad_path(@paid_ad), method: :delete %>
+  <%= button_to "Destroy this ad", dashboard_paid_ad_path(@paid_ad), method: :delete %>
 </div>

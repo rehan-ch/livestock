@@ -14,6 +14,17 @@ class Product < ApplicationRecord
   delegate :name, to: :user, prefix: true
 
   validates :primary_image, presence: true
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :sex, presence: true
+  validates :quantity, presence: true
+  validates :height, presence: true
+  validates :weight, presence: true
+  validates :short_description, presence: true
+  validates :city, presence: true
+  validates :breed, presence: true
+  validates :quantity_unit, presence: true
+  validates :images, presence: true
 
   scope :filter_by_status, ->(status) { where(status: status) if status.present? && status.downcase !="all"}
 

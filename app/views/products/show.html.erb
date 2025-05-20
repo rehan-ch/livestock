@@ -9,8 +9,8 @@
           <div class="product" id="product">
             <% @product.watermarked_images.each do |image| %>
               <div>
-                <div class="zoom" onmousemove="zoom(event)" style="background-image: url(<%= image_url(image) %>)">
-                  <%= image_tag url_for(image) %>
+                <div class="zoom" onmousemove="zoom(event)" style="background-image: url(<%= rails_storage_proxy_url(image) %>)">
+                  <%= image_tag image, class: "img-fluid" %>
                 </div>
               </div>
             <% end %>
@@ -233,7 +233,7 @@
                 role="tab"
                 aria-controls="product-tab-pane"
                 aria-selected="true">
-                Product Details
+                Ad Details
               </button>
             </li>
             <!-- nav item -->
@@ -334,7 +334,7 @@
 
             <div class="product-tools">
               <div class="thumbnails row g-3" id="productThumbnails">
-                <% @product.images.each do |image| %>
+                <% @product.watermarked_images.each do |image| %>
                   <div class="col-3">
                     <div class="thumbnails-img product-thumbnails">
                       img
