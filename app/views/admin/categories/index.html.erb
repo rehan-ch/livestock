@@ -58,7 +58,7 @@
                   <td><%= truncate(category.description, length: 15) %></td>
                   <td><%= category.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                   <td>
-                    <%= image_tag url_for(category.image), alt: category.name, class: "icon-shape icon-md" if category.image.attached? %>
+                    <%= image_tag url_for(category.watermarked_image), alt: category.name, class: "icon-shape icon-md" if category.image.attached? %>
                   </td>
                   <td>
                     <%= link_to edit_admin_category_path(category),class: "btn btn-primary" do %>

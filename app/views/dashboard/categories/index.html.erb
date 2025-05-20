@@ -45,7 +45,7 @@
                     </div>
                   </td>
                   <td>
-                    <%= image_tag url_for(category.image), alt: category.name, class: "icon-shape icon-md" if category.image.attached? %>
+                    <%= image_tag url_for(category.watermarked_image), alt: category.name, class: "icon-shape icon-md" if category.image.attached? %>
                   </td>
                   <td><a href="#" class="text-reset"><%= category.name %></a></td>
 
