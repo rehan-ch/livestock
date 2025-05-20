@@ -1,3 +1,5 @@
+require "image_processing/mini_magick"
+
 class Product < ApplicationRecord
   belongs_to :user
   belongs_to :category
@@ -56,4 +58,9 @@ class Product < ApplicationRecord
     liter: 3,
     milliliter: 4
   }
+  def watermarked_images
+    images.map do |img|
+      img.variant(resize_to_fit: [800, 800], gravity: "center", pointsize: "100", fill: "#0aad0a70",weight: "100", draw: "rotate -30 text 0,0 'Livestock.pk'").processed
+    end
+  end
 end

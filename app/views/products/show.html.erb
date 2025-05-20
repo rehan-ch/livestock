@@ -7,25 +7,24 @@
       <div class="row">
         <div class="col-md-6">
           <div class="product" id="product">
-          <% @product.images.each do |image| %>
+            <% @product.watermarked_images.each do |image| %>
               <div>
                 <div class="zoom" onmousemove="zoom(event)" style="background-image: url(<%= image_url(image) %>)">
                   <%= image_tag url_for(image) %>
                 </div>
               </div>
-          <% end %>
+            <% end %>
           </div>
 
           <div class="product-tools">
             <div class="thumbnails row g-3" id="productThumbnails">
-            <% @product.images.each do |image| %>
-              <div class="col-3">
-                <div class="thumbnails-img product-thumbnails">
-                   img
-                  <%= image_tag url_for(image) %>
+              <% @product.watermarked_images.each do |image| %>
+                <div class="col-3">
+                  <div class="thumbnails-img product-thumbnails">
+                    <%= image_tag image, class: "img-thumbnail" %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -324,7 +323,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="product" id="product">
-              <% @product.images.each do |image| %>
+              <% @product.watermarked_images.each do |image| %>
                 <div>
                   <div class="zoom" onmousemove="zoom(event)" style="background-image: url(<%= image_url(image) %>)">
                     <%= image_tag url_for(image) %>

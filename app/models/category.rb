@@ -12,11 +12,16 @@ class Category < ApplicationRecord
 
   def thumbnail
     return nil unless image.attached?
-    image.variant(resize_to_limit: [150, 150]).processed
+    image.variant(resize_to_limit: [150, 150], gravity: "center", pointsize: "25", fill: "#0aad0a70", weight: "100", draw: "rotate -30 text 0,0 'Livestock.pk'").processed
   end
 
   def medium
     return nil unless image.attached?
-    image.variant(resize_to_limit: [300, 300]).processed
+    image.variant(resize_to_limit: [300, 300], gravity: "center", pointsize: "50", fill: "#0aad0a70", weight: "100", draw: "rotate -30 text 0,0 'Livestock.pk'").processed
+  end
+
+  def watermarked_image
+    return nil unless image.attached?
+    image.variant(resize_to_fit: [800, 800], gravity: "center", pointsize: "100", fill: "#0aad0a70", weight: "100", draw: "rotate -30 text 0,0 'Livestock.pk'").processed
   end
 end
