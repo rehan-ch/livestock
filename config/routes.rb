@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :products, path: 'my_ads' do
       collection do
         post :get_address
+        get :filtered_categories
       end
     end
     get '/', to: 'dashboard#index'
@@ -43,9 +44,17 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', to: 'dashboard#index'
-    resources :categories
+    resources :categories do
+      collection do
+        get :filtered_parents
+      end
+    end
     resources :services
     resources :blogs
-    resources :products, path: 'my_ads'
+    resources :products, path: 'my_ads' do
+      collection do
+        get :filtered_categories
+      end
+    end
   end
 end

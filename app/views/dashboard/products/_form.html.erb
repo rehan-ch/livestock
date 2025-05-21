@@ -17,10 +17,15 @@
                   </ul>
                 </div>
               <% end %>
-              <div class="row">
+              <div class="row" data-controller="category-form">
+                <div class="mb-3 col-lg-6">
+                  <%= form.label :main_category_id, "Main Category", class: "form-label" %>
+                  <%= form.select :main_category_id, MainCategory.pluck(:name, :id), { include_blank: "Select Main Category", selected: product.category&.main_category_id }, { class: "form-select", data: { category_form_target: "mainCategory" } } %>
+                </div>
+
                 <div class="mb-3 col-lg-6">
                   <%= form.label :category_id, class: "form-label" %>
-                  <%= form.select :category_id, Category.all.map { |category| [category.name.humanize, category.id] }, { include_blank: "Select Category" }, class: "form-select" %>
+                  <%= form.select :category_id, product.category&.main_category ? Category.where(main_category_id: product.category.main_category_id).pluck(:name, :id) : [], { include_blank: "Select Category" }, { class: "form-select", data: { category_form_target: "parentCategory" } } %>
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label "Ad Name", class: "form-label" %>
@@ -74,8 +79,10 @@
                   <%= form.number_field :teeth, class: "form-control" %>
                 </div>
                 <div class="mb-3 col-lg-6">
-                  <%= form.label :castrated, class: "form-label" %>
-                  <%= form.check_box :castrated, class: "form-check-input" %>
+                  <div class="form-check mt-4">
+                    <%= form.check_box :castrated, class: "form-check-input" %>
+                    <%= form.label :castrated, class: "form-check-label" %>
+                  </div>
                 </div>
 
                 <div class="mb-3">
