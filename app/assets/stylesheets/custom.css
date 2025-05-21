@@ -213,3 +213,13 @@ span{
   max-height: 70%;
   object-fit: contain;
 }
+
+.parent-active {
+    background-color: #4fbb4f !important;
+    color: white !important;
+}
+
+.parent-active .nav-link-icon,
+.parent-active .nav-link-text {
+    color: white !important;
+}
