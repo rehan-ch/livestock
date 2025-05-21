@@ -9,7 +9,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item">
-              <a href="<%= admin_path %>" class="text-inherit">Dashboard</a></li>
+              <a href="<%= admin_path %>" data-turbo="false" class="text-inherit">Dashboard</a></li>
             <% unless action_name == "index" %>
               <li class="breadcrumb-item">
                 <a href="<%= dynamic_breadcrum_path %>" class="text-inherit"><%= class_name %></a></li>

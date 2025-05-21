@@ -10,9 +10,9 @@
       <div class=" offcanvas-header mt-2">
         <% if current_user %>
           <div class="d-flex">
-            <%= link_to "Create Ad", new_dashboard_product_path, class: 'btn btn-primary me-2 btn-sm d-flex align-items-center justify-content-center' %>
+            <%= link_to "Create Ad", new_dashboard_product_path, data: { turbo: "false" }, class: 'btn btn-primary me-2 btn-sm d-flex align-items-center justify-content-center' %>
             <% if true || current_user.admin? %>
-              <%= link_to "Admin Dashboard", admin_path, class: 'btn btn-primary me-2 btn-sm d-flex align-items-center justify-content-center' %>
+              <%= link_to "Admin Dashboard", admin_path, data: { turbo: "false" }, class: 'btn btn-primary me-2 btn-sm d-flex align-items-center justify-content-center' %>
             <% end %>
             <%= link_to "Sign Out", destroy_user_session_path, class: 'btn btn-light d-xl-block d-flex align-items-center justify-content-center', data: { turbo_method: :delete } %>
           </div>
@@ -123,7 +123,7 @@
                 <%= link_to "Chat", chats_path, class: "nav-link #{active_class('chat')}", role: 'button', 'aria-expanded': 'false' %>
               </li>
               <li class="nav-item">
-                <a class="nav-link <%= active_class('dashboard') %>" href ="<%= dashboard_path %>">Dashboard</a>
+                <a class="nav-link <%= active_class('dashboard') %>" data-turbo="false" href ="<%= dashboard_path %>">Dashboard</a>
               </li>
 
             <% end %>
