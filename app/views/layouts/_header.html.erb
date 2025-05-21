@@ -64,7 +64,7 @@
           <div class="list-inline-item">
             <% if current_user %>
               <div class='d-flex'>
-                <%= link_to "Create Ad", new_dashboard_product_path, class: 'btn btn-primary  me-2 d-xl-block' %>
+                <%= link_to "Create Ad", new_dashboard_product_path, data: { turbo: false }, class: 'btn btn-primary  me-2 d-xl-block' %>
                 <% if current_user.admin? %>
                   <%= link_to "Admin Dashboard", admin_path, data: { turbo: false }, class: 'btn btn-primary me-2 d-xl-block' %>
                 <% end %>
