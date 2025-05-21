@@ -17,14 +17,14 @@
                 </ul>
               </div>
             <% end %>
-            <div class="row" data-controller="category-form">
+            <div class="row" data-controller="category-form dairy-fields">
               <div class="mb-3 col-lg-6">
                 <%= form.label :main_category_id, "Main Category", class: "form-label" %>
                 <%= form.select :main_category_id, MainCategory.pluck(:name, :id), { include_blank: "Select Main Category", selected: product.category&.main_category_id }, { class: "form-select", data: { category_form_target: "mainCategory" } } %>
               </div>
               <div class="mb-3 col-lg-6">
                 <%= form.label :category_id, class: "form-label" %>
-                <%= form.select :category_id, product.category&.main_category ? Category.where(main_category_id: product.category.main_category_id).pluck(:name, :id) : [], { include_blank: "Select Category" }, { class: "form-select", data: { category_form_target: "parentCategory" } } %>
+                <%= form.select :category_id, product.category&.main_category ? Category.where(main_category_id: product.category.main_category_id).pluck(:name, :id) : [], { include_blank: "Select Category" }, { class: "form-select", data: { category_form_target: "parentCategory", dairy_fields_target: "categorySelector" } } %>
               </div>
               <div class="mb-3 col-lg-6">
                 <%= form.label "Ad Name", class: "form-label" %>
@@ -86,6 +86,18 @@
                 <div class="form-check mt-4">
                   <%= form.check_box :castrated, class: "form-check-input" %>
                   <%= form.label :castrated, class: "form-check-label" %>
+                </div>
+              </div>
+
+              <!-- Dairy animal fields - hidden by default -->
+              <div id="dairy_fields row" data-dairy-fields-target="dairyFields" style="display: none;">
+                <div class="mb-3 col-lg-6">
+                  <%= form.label :pregnant, "Pregnant", class: "form-label" %>
+                  <%= form.select :pregnant, [["Yes", true], ["No", false]], { include_blank: "Select" }, { class: "form-select" } %>
+                </div>
+                <div class="mb-3 col-lg-6">
+                  <%= form.label :daily_milk_quantity, "Daily Milk Quantity (liters)", class: "form-label" %>
+                  <%= form.number_field :daily_milk_quantity, step: 0.1, class: "form-control" %>
                 </div>
               </div>
 
