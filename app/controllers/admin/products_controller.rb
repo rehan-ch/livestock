@@ -43,6 +43,11 @@ module Admin
       redirect_to dashboard_products_path, notice: "Product was successfully destroyed."
     end
 
+    def filtered_categories
+      @categories = Category.where(main_category_id: params[:main_category_id], parent_id: nil)
+      render json: @categories.map { |c| [c.name, c.id] }
+    end
+
     private
       def set_product
         @product = Product.find(params[:id])
