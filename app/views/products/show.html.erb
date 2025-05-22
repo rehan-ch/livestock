@@ -91,14 +91,9 @@
 =end%>
             <div class="mt-3 row justify-content-start g-2 align-items-center">
               <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid ">
-                <!-- button -->
                 <!-- btn -->
-                <button type="button" class="btn btn-primary">
-                  <i class="feather-icon icon-shopping-bag me-2"></i>
-                  Purchase
-                </button>
                 <!-- Chat Button -->
-                <%= render partial: 'chats/chat_button', locals: { product: @product } %>
+                <%= render partial: 'chats/chat_button', class: "btn btn-primary", locals: { product: @product } %>
               </div>
               <%
 =begin%>
@@ -118,64 +113,8 @@
               <table class="table table-borderless mb-0">
                 <tbody>
                 <tr>
-                  <td>Owner:</td>
-                  <td><%= @product.user_name %></td>
-                </tr>
-                <tr>
-                  <td>Availability:</td>
-                  <td>In Stock</td>
-                </tr>
-                <tr>
-                  <td>Age:</td>
-                  <td><%= @product.age %></td>
-                </tr>
-                <tr>
-                  <td>Sex:</td>
-                  <td><%= @product.sex %></td>
-                </tr>
-                <tr>
-                  <td>Breed:</td>
-                  <td><%= @product.breed %></td>
-                </tr>
-                <tr>
-                  <td>Height:</td>
-                  <td><%= @product.height %></td>
-                </tr>
-                <tr>
-                  <td>Weight:</td>
-                  <td><%#= @product.weight %></td>
-                </tr>
-                <tr>
-                  <td>Teeth:</td>
-                  <td><%= @product.teeth %></td>
-                </tr>
-                <tr>
-                  <td>Castrated:</td>
-                  <td><%= @product.castrated %></td>
-                </tr>
-                <tr>
-                  <td>Quantity:</td>
-                  <td><%= @product.quantity %></td>
-                </tr>
-                <tr>
                   <td>City:</td>
                   <td><%= @product.city %></td>
-                </tr>
-                <tr>
-                  <td>Country:</td>
-                  <td><%= @product.country %></td>
-                </tr>
-                <tr>
-                  <td>State:</td>
-                  <td><%= @product.state %></td>
-                </tr>
-                <tr>
-                  <td>Address:</td>
-                  <td><%= @product.address %></td>
-                </tr>
-                <tr>
-                  <td>Self Stock:</td>
-                  <td><%= @product.verified ? "Yes" : "No" %></td>
                 </tr>
                 <tr>
                   <td>Verified:</td>
@@ -187,7 +126,7 @@
             <div class="mt-8">
               <!-- dropdown -->
               <div class="dropdown">
-                <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Share</a>
+                <a class="btn btn-outline-secondary" href="#" role="button" aria-expanded="false" id="copyLinkBtn" onclick="copyCurrentUrl(event)">Copy Link</a>
 
                 <ul class="dropdown-menu">
                   <li>
@@ -241,44 +180,13 @@
               <!-- btn -->
               <button
                 class="nav-link"
-                id="details-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#details-tab-pane"
-                type="button"
-                role="tab"
-                aria-controls="details-tab-pane"
-                aria-selected="false">
-                Information
-              </button>
-            </li>
-            <!-- nav item -->
-            <li class="nav-item" role="presentation">
-              <!-- btn -->
-              <button
-                class="nav-link"
-                id="reviews-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#reviews-tab-pane"
-                type="button"
-                role="tab"
-                aria-controls="reviews-tab-pane"
-                aria-selected="false">
-                Reviews
-              </button>
-            </li>
-            <!-- nav item -->
-            <li class="nav-item" role="presentation">
-              <!-- btn -->
-              <button
-                class="nav-link"
                 id="sellerInfo-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#sellerInfo-tab-pane"
                 type="button"
                 role="tab"
                 aria-controls="sellerInfo-tab-pane"
-                aria-selected="false"
-                disabled>
+                aria-selected="false">
                 Seller Info
               </button>
             </li>
@@ -287,7 +195,7 @@
           <div class="tab-content" id="myTabContent">
             <!-- tab pane -->
             <div class="tab-pane fade show active" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
-              <%= render 'products/shared/product_details' %>
+              <%= render 'products/shared/information' %>
             </div>
             <!-- tab pane -->
             <div class="tab-pane fade" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
@@ -302,7 +210,7 @@
 <%
 =end%>
             <!-- tab pane -->
-            <div class="tab-pane fade" id="sellerInfo-tab-pane" role="tabpanel" aria-labelledby="sellerInfo-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" id="sellerInfo-tab-pane" role="tabpanel" aria-labelledby="sellerInfo-tab" tabindex="0"><%= render 'products/shared/product_details' %></div>
           </div>
         </div>
       </div>
@@ -350,3 +258,20 @@
     </div>
   </div>
 </div>
+
+<script>
+  function copyCurrentUrl(e) {
+    e.preventDefault();
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.getElementById('copyLinkBtn');
+      const originalText = btn.textContent;
+      btn.textContent = 'Link Copied!';
+      setTimeout(() => {
+        btn.textContent = originalText;
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  }
+</script>
