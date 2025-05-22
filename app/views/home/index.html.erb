@@ -56,26 +56,26 @@
               <h3 class="mb-0">Cities</h3>
               <p class="mb-0">Find the best products in your City with discount.</p>
             </div>
-            <div></div>
           </div>
         </div>
       </div>
-      <!-- row -->
+
+      <!-- Top Cities Row -->
       <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
-        <% products = Product.order("RANDOM()").limit(15) %>
-        <% columns = 5 %> <!-- Number of columns -->
-        <% products_per_column = (products.count.to_f / columns).ceil %>
-        <% if products.present? %>
-          <% products.each_slice(products_per_column).each_with_index do |product_group, column_index| %>
+        <% top_cities = Product.top_cities %>
+        <% if top_cities.present? %>
+          <% columns = 5 %>
+          <% cities_per_column = (top_cities.size.to_f / columns).ceil %>
+
+          <% top_cities.each_slice(cities_per_column).each_with_index do |city_group, column_index| %>
             <div class="col-md-<%= 12 / columns %>">
               <div>
-                <!-- list -->
                 <ul class="list-unstyled">
-                  <% product_group.each do |product| %>
+                  <% city_group.each do |city_data| %>
                     <li class="mb-2">
-                      <a href="<%= products_path(city: product.city) %>" class="text-reset">
+                      <a href="<%= products_path(city: city_data.city) %>" class="text-reset">
                         <i class="feather-icon icon-arrow-right me-1"></i>
-                        <%= product.city %>
+                        <%= city_data.city %>
                       </a>
                     </li>
                   <% end %>
@@ -84,7 +84,6 @@
             </div>
           <% end %>
         <% end %>
-
       </div>
     </div>
   </section>

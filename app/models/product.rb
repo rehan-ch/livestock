@@ -29,12 +29,12 @@ class Product < ApplicationRecord
   scope :filter_by_city, ->(city) { where('LOWER(city) LIKE ?', "%#{city.downcase}%") if city.present? }
 
   scope :top_cities, ->(limit = 15) {
-    where.not(city: nil)
-      .select('city, COUNT(*) AS product_count')
-      .group(:city)
+    where.not(city: [nil, ''])
+      .select('LOWER(city) AS city, COUNT(*) AS product_count')
+      .group('LOWER(city),created_at')
       .order('product_count DESC')
       .limit(limit)
-  }  
+  }
 
   scope :filter_by_price, ->(min, max) {
     if min.present? && max.present?
