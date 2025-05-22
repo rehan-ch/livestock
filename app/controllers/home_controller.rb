@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
     def index
-        @categories = Category.all
+        @categories = Category.where(parent: nil)
         # update with popular scope
         @popular_products = Product.approved.page(page).per(per)
         @recent_products = Product.page(page).per(per)
