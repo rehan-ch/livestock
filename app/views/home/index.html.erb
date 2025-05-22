@@ -73,9 +73,9 @@
                 <ul class="list-unstyled">
                   <% city_group.each do |city_data| %>
                     <li class="mb-2">
-                      <a href="<%= products_path(city: city_data.city) %>" class="text-reset">
+                      <a href="<%= products_path(city: city_data.first) %>" class="text-reset">
                         <i class="feather-icon icon-arrow-right me-1"></i>
-                        <%= city_data.city %>
+                        <%= city_data.first %>
                       </a>
                     </li>
                   <% end %>
