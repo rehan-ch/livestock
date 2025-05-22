@@ -5,17 +5,11 @@
   </div>
   <!-- content -->
   <div class="mb-5">
-    <h5 class="mb-1">Quantity</h5>
-    <p class="mb-0"><%= @product.quantity %></p>
-  </div>
-  <div class="mb-5">
-    <h5 class="mb-1">Seller</h5>
+    <h5 class="mb-1">Seller Name</h5>
     <p class="mb-0"><%= @product.user_name %></p>
   </div>
-  <div>
-    <h5 class="mb-1">Disclaimer</h5>
-    <p class="mb-0">
-      Image shown is a representation and may slightly vary from the actual product. Every effort is made to maintain accuracy of all information displayed.
-    </p>
+  <div class="mb-5">
+    <h5 class="mb-1">Verified</h5>
+    <p class="mb-0"><%= @product.verified ? "Yes" : "No" %></p>
   </div>
 </div>

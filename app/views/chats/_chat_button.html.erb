@@ -1,15 +1,15 @@
 <% if user_signed_in? %>
   <% if product.user_id == current_user.id %>
-    <%= link_to chats_path, class: "btn btn-secondary mt-3" do %>
+    <%= link_to chats_path, class: "btn btn-primary mt-3" do %>
       <i class="feather-icon icon-shopping-bag me-2"></i> Chat
     <% end %>
   <% else %>
-    <%= link_to start_chat_product_path(product), data: { turbo_method: "post" }, class: "btn btn-secondary mt-3" do %>
+    <%= link_to start_chat_product_path(product), data: { turbo_method: "post" }, class: "btn btn-primary mt-3" do %>
       <i class="feather-icon icon-shopping-bag me-2"></i> Chat
     <% end %>
   <% end %>
 <% else %>
-  <%= link_to user_session_path, data: { turbo_frame: 'auth_frame' }, class: 'btn btn btn-secondary mt-3' do %>
+  <%= link_to user_session_path, data: { turbo_frame: 'auth_frame' }, class: 'btn btn btn-primary mt-3' do %>
     <i class="feather-icon icon-shopping-bag me-2"></i> Chat
    <% end %>
 <% end %>
