@@ -57,11 +57,6 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  def filtered_parents
-    @parent_categories = Category.where(main_category_id: params[:main_category_id], parent_id: nil)
-    render json: @parent_categories.map { |c| [c.name, c.id] }
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category

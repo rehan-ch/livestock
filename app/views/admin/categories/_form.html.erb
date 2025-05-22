@@ -24,7 +24,7 @@
 
               <div class="mb-6 col-lg-12">
                 <%= form.label "Parent Category", class: "form-label" %>
-                <%= form.select(:parent_id, Category.where(parent_id: nil, main_category_id: category.main_category_id).pluck(:name, :id), { include_blank: true }, {class: "form-control", data: { category_form_target: "parentCategory" }}) %>
+                <%= form.select(:parent_id, Category.where(parent_id: nil).pluck(:name, :id), { include_blank: true }, {class: "form-control", data: { category_form_target: "parentCategory" }}) %>
               </div>
 
               <div class="mb-6 col-lg-12">

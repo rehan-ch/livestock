@@ -1,16 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["mainCategory", "parentCategory"]
+  static targets = ["parentCategory", "childCategory"]
 
   connect() {
-    this.mainCategoryTarget.addEventListener("change", this.updateParentCategories.bind(this))
+    this.parentCategoryTarget.addEventListener("change", this.updateChildCategories.bind(this))
   }
 
-  async updateParentCategories() {
-    const mainCategoryId = this.mainCategoryTarget.value
-    if (!mainCategoryId) {
-      this.clearParentCategories()
+  async updateChildCategories() {
+    const parentCategoryId = this.parentCategoryTarget.value
+    if (!parentCategoryId) {
+      this.clearChildCategories()
       return
     }
 
@@ -18,23 +18,23 @@ export default class extends Controller {
       // Determine if we're in admin or dashboard based on the current URL
       const isAdmin = window.location.pathname.includes('/admin/')
       const endpoint = isAdmin ? 
-        `/admin/categories/filtered_parents?main_category_id=${mainCategoryId}` :
-        `/dashboard/my_ads/filtered_categories?main_category_id=${mainCategoryId}`
+        `/admin/my_ads/filtered_categories?parent_category_id=${parentCategoryId}` :
+        `/dashboard/my_ads/filtered_categories?parent_category_id=${parentCategoryId}`
 
       const response = await fetch(endpoint)
       const categories = await response.json()
       
-      this.parentCategoryTarget.innerHTML = '<option value="">Select Category</option>'
+      this.childCategoryTarget.innerHTML = '<option value="">Select Sub Category</option>'
       categories.forEach(([name, id]) => {
         const option = new Option(name, id)
-        this.parentCategoryTarget.add(option)
+        this.childCategoryTarget.add(option)
       })
     } catch (error) {
       console.error("Error fetching categories:", error)
     }
   }
 
-  clearParentCategories() {
-    this.parentCategoryTarget.innerHTML = '<option value="">Select Category</option>'
+  clearChildCategories() {
+    this.childCategoryTarget.innerHTML = '<option value="">Select Sub Category</option>'
   }
 } 

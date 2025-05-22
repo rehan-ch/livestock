@@ -19,13 +19,13 @@
               <% end %>
               <div class="row" data-controller="category-form dairy-fields">
                 <div class="mb-3 col-lg-6">
-                  <%= form.label :main_category_id, "Main Category", class: "form-label" %>
-                  <%= form.select :main_category_id, MainCategory.pluck(:name, :id), { include_blank: "Select Main Category", selected: product.category&.main_category_id }, { class: "form-select", data: { category_form_target: "mainCategory" } } %>
+                  <%= form.label :parent_id, "Category", class: "form-label" %>
+                  <%= form.select :parent_id, Category.where(parent_id: nil).pluck(:name, :id), { include_blank: "Select Category", selected: product.category&.parent_category_id }, { class: "form-select", data: { category_form_target: "parentCategory" } } %>
                 </div>
 
                 <div class="mb-3 col-lg-6">
-                  <%= form.label :category_id, class: "form-label" %>
-                  <%= form.select :category_id, product.category&.main_category ? Category.where(main_category_id: product.category.main_category_id).pluck(:name, :id) : [], { include_blank: "Select Category" }, { class: "form-select", data: { category_form_target: "parentCategory", dairy_fields_target: "categorySelector" } } %>
+                  <%= form.label :category_id, "Sub Category", class: "form-label" %>
+                  <%= form.select :category_id, product.category&.parent ? Category.where(parent_id: product.category.parent_id).pluck(:name, :id) : [], { include_blank: "Select Sub Category" }, { class: "form-select", data: { category_form_target: "childCategory", dairy_fields_target: "categorySelector" } } %>
                 </div>
                 <div class="mb-3 col-lg-6">
                   <%= form.label "Ad Name", class: "form-label" %>
