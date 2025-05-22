@@ -44,11 +44,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', to: 'dashboard#index'
-    resources :categories do
-      collection do
-        get :filtered_parents
-      end
-    end
+    resources :categories
     resources :services
     resources :blogs
     resources :products, path: 'my_ads' do

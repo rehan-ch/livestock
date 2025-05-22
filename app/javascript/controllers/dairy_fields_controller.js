@@ -3,9 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["categorySelector", "dairyFields"]
   
-  // Hardcoded category IDs for dairy animals
-  // Replace these with your actual category IDs for dairy animals
-  dairyCategoryIds = ["c8e22d4b-b971-4035-a9a7-2df95b5ad6b9"] // Example IDs - update with your real dairy category IDs
+  // Dairy category names instead of IDs
+  dairyCategoryNames = ["Dairy", "Cow", "Buffalo", "Goat", "Sheep", "Camel"]
   
   connect() {
     // Initial check when the form loads
@@ -16,10 +15,16 @@ export default class extends Controller {
   }
   
   toggleDairyFields() {
-    const selectedCategoryId = this.categorySelectorTarget.value
+    const selectElement = this.categorySelectorTarget
     
-    // Show dairy fields if the selected category is a dairy animal
-    if (this.dairyCategoryIds.includes(selectedCategoryId)) {
+    // Get the selected option
+    const selectedOption = selectElement.options[selectElement.selectedIndex]
+    
+    // Get the text (name) of the selected option
+    const selectedCategoryName = selectedOption ? selectedOption.text : ""
+    
+    // Show dairy fields if the selected category is a dairy animal (check by name)
+    if (this.dairyCategoryNames.some(name => selectedCategoryName.includes(name))) {
       this.dairyFieldsTarget.style.display = "block"
     } else {
       this.dairyFieldsTarget.style.display = "none"

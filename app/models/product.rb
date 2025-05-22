@@ -17,14 +17,8 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :sex, presence: true
-  validates :quantity, presence: true
-  validates :height, presence: true
-  validates :weight, presence: true
   validates :short_description, presence: true
   validates :city, presence: true
-  validates :breed, presence: true
-  validates :quantity_unit, presence: true
-  validates :images, presence: true
 
   scope :filter_by_status, ->(status) { where(status: status) if status.present? && status.downcase !="all"}
 
@@ -33,6 +27,14 @@ class Product < ApplicationRecord
   scope :filter_by_category, ->(category_id) { where(category_id: category_id) if category_id.present? }
 
   scope :filter_by_city, ->(city) { where('LOWER(city) LIKE ?', "%#{city.downcase}%") if city.present? }
+
+  scope :top_cities, ->(limit = 15) {
+    where.not(city: nil)
+      .select('city, COUNT(*) AS product_count')
+      .group(:city)
+      .order('product_count DESC')
+      .limit(limit)
+  }  
 
   scope :filter_by_price, ->(min, max) {
     if min.present? && max.present?

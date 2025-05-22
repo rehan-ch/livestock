@@ -44,7 +44,7 @@ module Admin
     end
 
     def filtered_categories
-      @categories = Category.where(main_category_id: params[:main_category_id], parent_id: nil)
+      @categories = Category.find_by(id: params[:parent_category_id]).sub_categories
       render json: @categories.map { |c| [c.name, c.id] }
     end
 
