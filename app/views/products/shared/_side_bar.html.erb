@@ -20,19 +20,30 @@
             <h6 class="mb-3">Price</h6>
             <div data-controller="products">
               <div class="price-range-container">
-                <input type="range" 
-                       class="form-range" 
-                       min="0" 
-                       max="<%= Product.max_price %>" 
-                       step="10"
-                       value="<%= params[:end_price] || Product.max_price %>"
-                       data-products-target="priceRange"
-                       data-action="input->products#updatePrice">
-                <div class="d-flex justify-content-between mt-2">
-                  <span>Rs 0</span>
-                  <span class="price-value" data-products-target="priceDisplay">Rs <%= params[:end_price] || Product.max_price %></span>
+                <div class="multi-range">
+                  <input type="range" 
+                         class="form-range" 
+                         min="0" 
+                         max="<%= Product.max_price %>" 
+                         step="1"
+                         value="<%= params[:start_price].presence || 0 %>"
+                         data-products-target="minPriceRange"
+                         data-action="input->products#updatePrice">
+                  <input type="range" 
+                         class="form-range" 
+                         min="0" 
+                         max="<%= Product.max_price %>" 
+                         step="1"
+                         value="<%= params[:end_price].presence || Product.max_price %>"
+                         data-products-target="maxPriceRange"
+                         data-action="input->products#updatePrice">
                 </div>
-                <%= form.hidden_field :end_price, value: params[:end_price], data: { products_target: "priceInput" } %>
+                <div class="d-flex justify-content-between mt-2">
+                  <span class="price-value" data-products-target="minPriceDisplay">Rs <%= params[:start_price] || 0 %></span>
+                  <span class="price-value" data-products-target="maxPriceDisplay">Rs <%= params[:end_price] || Product.max_price %></span>
+                </div>
+                <%= form.hidden_field :start_price, value: params[:start_price], data: { products_target: "minPriceInput" } %>
+                <%= form.hidden_field :end_price, value: params[:end_price], data: { products_target: "maxPriceInput" } %>
               </div>
             </div>
           </div>

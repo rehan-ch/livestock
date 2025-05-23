@@ -223,3 +223,63 @@ span{
 .parent-active .nav-link-text {
     color: white !important;
 }
+
+/* Multi-range price slider styles */
+.multi-range {
+  position: relative;
+  height: 30px;
+}
+
+.multi-range input[type="range"] {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  background: none;
+  outline: none;
+}
+
+.multi-range input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.multi-range input[type="range"]::-moz-range-thumb {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.multi-range input[type="range"]:first-child {
+  z-index: 2;
+}
+
+.price-range-container {
+  padding: 15px 10px;
+}
+
+.price-value {
+  font-weight: 500;
+}
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #25D366;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 40px;
+  height: 40px;
+}

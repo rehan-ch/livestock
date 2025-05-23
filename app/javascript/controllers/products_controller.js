@@ -1,18 +1,49 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["checkAll", "priceRange", "priceDisplay", "priceInput"]
+  static targets = ["checkAll", "minPriceRange", "maxPriceRange", "minPriceDisplay", "maxPriceDisplay", "minPriceInput", "maxPriceInput"]
 
   connect() {
     if (this.hasCheckAllTarget) {
       this.checkAllTarget.addEventListener('change', this.handleSelectionChange.bind(this))
     }
+    if (this.hasMinPriceRangeTarget && this.hasMaxPriceRangeTarget) {
+      this.updateRangeConstraints()
+    }
   }
 
   updatePrice(event) {
-    const value = event.target.value
-    this.priceDisplayTarget.textContent = `Rs ${value}`
-    this.priceInputTarget.value = value
+    const isMin = event.target === this.minPriceRangeTarget
+    const value = parseInt(event.target.value)
+    if (isMin) {
+      const maxValue = parseInt(this.maxPriceRangeTarget.value)
+      if (value > maxValue) {
+        event.target.value = maxValue
+        return
+      }
+      this.minPriceDisplayTarget.textContent = `Rs ${value}`
+      this.minPriceInputTarget.value = value
+    } else {
+      const minValue = parseInt(this.minPriceRangeTarget.value)
+      if (value < minValue) {
+        event.target.value = minValue
+        return
+      }
+      this.maxPriceDisplayTarget.textContent = `Rs ${value}`
+      this.maxPriceInputTarget.value = value
+    }
+  }
+
+  updateRangeConstraints() {
+    const minValue = parseInt(this.minPriceRangeTarget.value)
+    const maxValue = parseInt(this.maxPriceRangeTarget.value)
+    
+    // Ensure min doesn't exceed max
+    if (minValue > maxValue) {
+      this.minPriceRangeTarget.value = maxValue
+      this.minPriceDisplayTarget.textContent = `Rs ${maxValue}`
+      this.minPriceInputTarget.value = maxValue
+    }
   }
 
   handleSelectionChange(event) {
