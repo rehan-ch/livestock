@@ -11,17 +11,12 @@
             <!-- form -->
             <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0">
               <form class="d-flex" role="search">
-                <input class="form-control" type="search" placeholder="Search Ads" aria-label="Search" />
+                <input class="form-control" type="search" name="search" placeholder="Search Ads" aria-label="Search" value="<%= params[:search] %>" />
               </form>
             </div>
             <!-- select option -->
             <div class="col-lg-2 col-md-4 col-12">
-              <select class="form-select">
-                <option selected>Status</option>
-                <option value="1">Active</option>
-                <option value="2">Deactive</option>
-                <option value="3">Draft</option>
-              </select>
+              <%= select_tag :status, options_for_select([['All Status', ''], ['Approved', 'approved'], ['Rejected', 'rejected'], ['Draft', 'draft']], params[:status]), class: 'form-select', data: { controller: 'status-filter' } %>
             </div>
           </div>
         </div>
@@ -38,7 +33,7 @@
                     <label class="form-check-label" for="checkAll"></label>
                   </div>
                 </th>
-                <th>Proudct Name</th>
+                <th>Product Name</th>
                 <th>Category</th>
                 <th>Status</th>
                 <th>Price</th>
@@ -48,27 +43,26 @@
               </tr>
               </thead>
               <tbody>
-              <% @products.each do |product| %>
-              <tr>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="productOne" />
-                    <label class="form-check-label" for="productOne"></label>
-                  </div>
-                </td>
-                <td><a href="#" class="text-reset"><%= product.name %></a></td>
-                <td><%= product.category.name %></td>
-
-                <td>
-                  <span class="badge bg-light-primary text-dark-primary"><%= product.status %></span>
-                </td>
-                <td><%= product.price %></td>
-                <td><%= product.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-                <td>
-                  <a href="#!">
-                    <%= image_tag url_for(product.watermarked_images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
-                  </a>
-                </td>
+                <% @products.each do |product| %>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="productOne" />
+                      <label class="form-check-label" for="productOne"></label>
+                    </div>
+                  </td>
+                  <td><a href="#" class="text-reset"><%= product.name %></a></td>
+                  <td><%= product.category.name %></td>
+                  <td>
+                    <span class="badge bg-light-primary text-dark-primary"><%= product.status %></span>
+                  </td>
+                  <td><%= product.price %></td>
+                  <td><%= product.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+                  <td>
+                    <a href="#!">
+                      <%= image_tag url_for(product.watermarked_images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
+                    </a>
+                  </td>
                   <td>
                     <%= link_to edit_admin_product_path(product),class: "btn btn-primary" do %>
                       Edit
@@ -79,9 +73,9 @@
                     <%= form_with url: admin_product_path(product), method: :delete, data: { confirm: "Are you sure?" } do %>
                       <%= submit_tag "Delete", class: "btn btn-danger" %>
                     <% end %>
-                </td>
-              </tr>
-              <% end %>
+                  </td>
+                </tr>
+                <% end %>
               </tbody>
             </table>
           </div>

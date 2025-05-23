@@ -3,7 +3,11 @@ module Dashboard
     before_action :set_product, only: %i[ show edit update destroy ]
 
     def index
-      @products = current_user.products.filter_by_status(params[:type]).page(page).per(per)
+      if params[:search].present?
+        @products = current_user.products.filter_by_status(params[:type]).search_by_name(params[:search]).page(page).per(per)
+      else
+        @products = current_user.products.filter_by_status(params[:type]).page(page).per(per)
+      end
     end
 
     def show; end
