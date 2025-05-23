@@ -1,10 +1,18 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["checkAll"]
+  static targets = ["checkAll", "priceRange", "priceDisplay", "priceInput"]
 
   connect() {
-    this.checkAllTarget.addEventListener('change', this.handleSelectionChange.bind(this))
+    if (this.hasCheckAllTarget) {
+      this.checkAllTarget.addEventListener('change', this.handleSelectionChange.bind(this))
+    }
+  }
+
+  updatePrice(event) {
+    const value = event.target.value
+    this.priceDisplayTarget.textContent = `Rs ${value}`
+    this.priceInputTarget.value = value
   }
 
   handleSelectionChange(event) {

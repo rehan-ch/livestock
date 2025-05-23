@@ -18,9 +18,22 @@
           <div class="mb-3">
             <!-- price -->
             <h6 class="mb-3">Price</h6>
-            <div>
-              <%= form.number_field :start_price, value: params[:start_price], in: 0..2000000, placeholder: "Start Price", class: "form-control" %>
-              <%= form.number_field :end_price, value: params[:end_price], in: 1..2000000, placeholder: "End Price", class: "form-control" %>
+            <div data-controller="products">
+              <div class="price-range-container">
+                <input type="range" 
+                       class="form-range" 
+                       min="0" 
+                       max="<%= Product.max_price %>" 
+                       step="10"
+                       value="<%= params[:end_price] || Product.max_price %>"
+                       data-products-target="priceRange"
+                       data-action="input->products#updatePrice">
+                <div class="d-flex justify-content-between mt-2">
+                  <span>Rs 0</span>
+                  <span class="price-value" data-products-target="priceDisplay">Rs <%= params[:end_price] || Product.max_price %></span>
+                </div>
+                <%= form.hidden_field :end_price, value: params[:end_price], data: { products_target: "priceInput" } %>
+              </div>
             </div>
           </div>
           <div class="mb-3">
