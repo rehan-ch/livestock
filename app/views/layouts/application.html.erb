@@ -44,6 +44,9 @@
     <div class="alert w-100 my-2 overflow-hidden"><%= alert %></div>
   <%end%>
     <%= yield %>
+  <a href="https://wa.me/923324762817" class="whatsapp-float" target="_blank" rel="noopener">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Chat" />
+  </a>
   <%= render partial: 'layouts/footer' %>
   <style>
     <%= ".msg-#{current_user&.id}" %> {
