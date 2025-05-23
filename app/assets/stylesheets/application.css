@@ -2,3 +2,35 @@
 /*@import "./theme.min.css";*/
 /*@import "./custom.css";*/
 /*@import "public/nav_bar.css";*/
+
+/* Price Range Slider */
+.noUi-connect {
+  background: #0d6efd;
+}
+
+.noUi-handle {
+  border: 1px solid #0d6efd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.noUi-horizontal {
+  height: 8px;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  border-radius: 50%;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+  display: none;
+}
+
+.price-value {
+  font-size: 14px;
+  color: #6c757d;
+}

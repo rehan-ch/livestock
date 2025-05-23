@@ -81,4 +81,8 @@ class Product < ApplicationRecord
       img.variant(resize_to_fit: [800, 800], gravity: "center", pointsize: "100", fill: "#0aad0a30",weight: "500", draw: "rotate -30 text 0,0 'Livestock.pk'").processed
     end
   end
+
+  def self.max_price
+    maximum(:price) || 100000
+  end
 end
