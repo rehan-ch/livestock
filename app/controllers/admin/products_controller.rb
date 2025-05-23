@@ -3,7 +3,26 @@ module Admin
     before_action :set_product, only: %i[ show edit update destroy ]
 
     def index
-      @products = Product.filter_by_status(params[:type]).page(page).per(per)
+      @products = Product.all
+      
+      if params[:status].present?
+        @products = @products.where(status: params[:status])
+      end
+
+      if params[:search].present?
+        @products = @products.where("name ILIKE ?", "%#{params[:search]}%")
+      end
+      
+      @products = @products.page(params[:page])
+
+      respond_to do |format|
+        format.html
+        format.json do
+          render json: {
+            html: render_to_string(partial: 'product_rows', locals: { products: @products }, formats: [:html])
+          }
+        end
+      end
     end
 
     def show; end

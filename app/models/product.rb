@@ -28,6 +28,10 @@ class Product < ApplicationRecord
 
   scope :filter_by_city, ->(city) { where('LOWER(city) LIKE ?', "%#{city.downcase}%") if city.present? }
 
+  scope :search_by_name, ->(name) {
+      where('LOWER(name) LIKE ?', "%#{name.downcase}%") if name.present?
+    }
+
   scope :top_cities, ->(limit = 15) {
     unscope(:order)
       .where.not(city: [nil, '', 'undefined'])
