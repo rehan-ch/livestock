@@ -77,6 +77,18 @@ namespace :deploy do
       end
     end
   end
+
+  desc 'Setup log directory'
+  task :setup_logs do
+    on roles(:app) do
+      within shared_path do
+        execute :mkdir, '-p', 'log'
+        execute :chmod, '755', 'log'
+        execute :touch, 'log/production.log'
+        execute :chmod, '644', 'log/production.log'
+      end
+    end
+  end
 end
 
 namespace :deploy do
@@ -102,3 +114,6 @@ namespace :deploy do
     end
   end
 end
+
+# Skip asset manifest backup
+Rake::Task['deploy:assets:backup_manifest'].clear_actions

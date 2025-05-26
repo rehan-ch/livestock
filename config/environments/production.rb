@@ -52,18 +52,23 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
-  # Log to STDOUT by default
-  config.logger = ActiveSupport::Logger.new(STDOUT)
-    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
-    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+  # Configure logging
+  config.logger = ActiveSupport::Logger.new(
+    Rails.root.join('log', 'production.log'),
+    5, # Keep 5 log files
+    10.megabytes # Each log file can be up to 10MB
+  ).tap do |logger|
+    logger.formatter = ::Logger::Formatter.new
+    logger.level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
+  end
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [ :request_id, :remote_ip ]
 
   # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, set the level to "debug".
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+  # config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -80,7 +85,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'gmail.com', # your domain name
+    domain:               'gmail.com',
     user_name:            Rails.application.credentials.dig(:smtp_user_name) || ENV['SMTP_USER_NAME'],
     password:             Rails.application.credentials.dig(:smtp_password) || ENV['SMTP_PASSWORD'],
     authentication:       'plain',
