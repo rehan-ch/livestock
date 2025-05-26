@@ -45,28 +45,39 @@ gem 'bootstrap-sass', '~> 3.4'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+# Authentication and Authorization
+gem "devise", "~> 4.9"
+
+# Database
+gem 'pg', '~> 1.5', '>= 1.5.6'
+
+# Utilities
+gem 'geocoder'
+gem 'kaminari'
+gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'faker'
+
+# Development and Testing
 group :development, :test do
   gem 'pry', '~> 0.14.2'
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem 'factory_bot_rails'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  # Deployment
   gem 'capistrano', "~> 3.17", require: false
   gem 'capistrano-rails', "~> 1.6", ">= 1.6.2", require: false
   gem 'capistrano-passenger', "~> 0.2", ">= 0.2.1", require: false
   gem 'capistrano-rbenv', "~> 2.2", require: false
-  gem 'ed25519', '>= 1.2', '< 2.0', require: false
-  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0', require: false
-  gem "letter_opener"
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem 'ed25519', '>= 1.2', '< 2.0'
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
+  gem 'sshkit', '~> 1.23'
 end
 
 group :test do
@@ -74,19 +85,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-# gem "bootstrap", "~> 5.3"
-# gem "sassc-rails"
-gem "devise", "~> 4.9"
-gem 'pg', '~> 1.5', '>= 1.5.6'
-gem 'geocoder'
-gem 'factory_bot_rails'
-gem 'faker'
-gem 'kaminari'
-gem 'ckeditor', github: 'galetahub/ckeditor'
-gem 'carrierwave'
-gem "mini_magick"
-gem 'ed25519', '>= 1.2', '< 2.0'
-gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
-gem 'sshkit', '~> 1.23'
-gem 'mini_magick'

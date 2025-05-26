@@ -46,7 +46,7 @@ set :format_options, command_output: true, log_file: "log/capistrano.log", color
 set :ssh_options, {
   forward_agent: true,
   auth_methods: %w(publickey),
-  verify_host_key: :secure
+  verify_host_key: :always
 }
 
 # Deployment hooks
@@ -86,6 +86,16 @@ namespace :deploy do
             execute :mkdir, '-p', assets_backup_path
             execute :cp, Dir[shared_path.join('assets_manifest_backup/manifest*')].first, assets_backup_path
           end
+        end
+      end
+    end
+
+    desc 'Clean assets'
+    task :clean do
+      on roles(:web) do
+        within release_path do
+          execute :rm, '-rf', release_path.join('public', fetch(:assets_prefix))
+          execute :rm, '-rf', release_path.join('assets_manifest_backup')
         end
       end
     end
