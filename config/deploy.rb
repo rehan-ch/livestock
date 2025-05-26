@@ -23,15 +23,15 @@ set :assets_manifests, -> {
   [release_path.join("public", fetch(:assets_prefix))]
 }
 
-# Ensure assets are precompiled
-set :normalize_asset_timestamps, %w{public/images public/javascripts public/stylesheets}
-set :assets_backup_path, -> { release_path.join('assets_manifest_backup') }
-
-# Asset compilation settings
+# Skip asset precompilation
+set :assets_precompile, false
 set :assets_compile, true
 set :assets_compile_path, -> { release_path.join('public', fetch(:assets_prefix)) }
 set :assets_compile_roles, [:web, :app]
-set :assets_compile_manifest, -> { release_path.join('public', fetch(:assets_prefix), 'manifest.json') }
+
+# Ensure assets are precompiled
+set :normalize_asset_timestamps, %w{public/images public/javascripts public/stylesheets}
+set :assets_backup_path, -> { release_path.join('assets_manifest_backup') }
 
 # Passenger configuration
 set :passenger_restart_with_touch, true
@@ -57,7 +57,6 @@ set :ssh_options, {
 
 # Deployment hooks
 before 'deploy:starting', 'deploy:check'
-before 'deploy:assets:precompile', 'deploy:assets:backup_manifest'
 after 'deploy:publishing', 'deploy:restart'
 after 'deploy:restart', 'deploy:cleanup'
 
@@ -84,13 +83,12 @@ end
 
 namespace :deploy do
   namespace :assets do
-    desc 'Backup assets manifest'
-    task :backup_manifest do
+    desc 'Compile assets directly'
+    task :compile do
       on roles(:web) do
         within release_path do
-          execute :mkdir, '-p', assets_backup_path
-          if test("[ -f #{shared_path}/public/assets/.sprockets-manifest-* ]")
-            execute :cp, "#{shared_path}/public/assets/.sprockets-manifest-*", assets_backup_path
+          with rails_env: fetch(:rails_env) do
+            execute :bundle, 'exec', 'rake', 'assets:compile'
           end
         end
       end
@@ -101,18 +99,6 @@ namespace :deploy do
       on roles(:web) do
         within release_path do
           execute :rm, '-rf', release_path.join('public', fetch(:assets_prefix))
-          execute :rm, '-rf', release_path.join('assets_manifest_backup')
-        end
-      end
-    end
-
-    desc 'Precompile assets'
-    task :precompile do
-      on roles(:web) do
-        within release_path do
-          with rails_env: fetch(:rails_env) do
-            execute :bundle, 'exec', 'rake', 'assets:precompile'
-          end
         end
       end
     end
