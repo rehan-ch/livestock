@@ -50,7 +50,6 @@ set :keep_releases, 5
 
 # Add deployment hooks
 before 'deploy:starting', 'deploy:check'
-before 'deploy:assets:precompile', 'deploy:assets:backup_manifest'
 after 'deploy:publishing', 'deploy:restart'
 after 'deploy:restart', 'deploy:cleanup'
 
@@ -77,14 +76,22 @@ end
 
 namespace :deploy do
   namespace :assets do
-    desc 'Backup assets manifest'
-    task :backup_manifest do
+    desc 'Precompile assets'
+    task :precompile do
       on roles(:web) do
         within release_path do
-          if test("[ -f #{shared_path}/assets_manifest_backup/manifest* ]")
-            execute :mkdir, '-p', assets_backup_path
-            execute :cp, Dir[shared_path.join('assets_manifest_backup/manifest*')].first, assets_backup_path
+          with rails_env: fetch(:rails_env) do
+            execute :bundle, 'exec', 'rake', 'assets:precompile'
           end
+        end
+      end
+    end
+
+    desc 'Clean assets'
+    task :clean do
+      on roles(:web) do
+        within release_path do
+          execute :rm, '-rf', release_path.join('public', fetch(:assets_prefix))
         end
       end
     end

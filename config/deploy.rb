@@ -23,15 +23,13 @@ set :assets_manifests, -> {
   [release_path.join("public", fetch(:assets_prefix))]
 }
 
-# Skip asset precompilation
-set :assets_precompile, false
+# Ensure assets are precompiled
+set :normalize_asset_timestamps, %w{public/images public/javascripts public/stylesheets}
+
+# Asset compilation settings
 set :assets_compile, true
 set :assets_compile_path, -> { release_path.join('public', fetch(:assets_prefix)) }
 set :assets_compile_roles, [:web, :app]
-
-# Ensure assets are precompiled
-set :normalize_asset_timestamps, %w{public/images public/javascripts public/stylesheets}
-set :assets_backup_path, -> { release_path.join('assets_manifest_backup') }
 
 # Passenger configuration
 set :passenger_restart_with_touch, true
@@ -83,12 +81,12 @@ end
 
 namespace :deploy do
   namespace :assets do
-    desc 'Compile assets directly'
-    task :compile do
+    desc 'Precompile assets'
+    task :precompile do
       on roles(:web) do
         within release_path do
           with rails_env: fetch(:rails_env) do
-            execute :bundle, 'exec', 'rake', 'assets:compile'
+            execute :bundle, 'exec', 'rake', 'assets:precompile'
           end
         end
       end
