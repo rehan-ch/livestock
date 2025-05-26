@@ -23,7 +23,8 @@ set :file_permissions_paths, [
   'tmp/sockets',
   'public/system',
   'public/uploads',
-  'storage'
+  'storage',
+  'public/assets'
 ]
 
 # SSH Options for production
@@ -34,7 +35,9 @@ set :ssh_options, {
   verify_host_key: :secure
 }
 
-# Ensure proper asset compilation
+# Asset compilation settings for production
+set :assets_compile, true
+set :assets_compile_path, -> { release_path.join('public', fetch(:assets_prefix)) }
 set :assets_manifests, -> {
   [release_path.join("public", fetch(:assets_prefix))]
 }
@@ -47,6 +50,7 @@ set :keep_releases, 5
 
 # Add deployment hooks
 before 'deploy:starting', 'deploy:check'
+before 'deploy:assets:precompile', 'deploy:assets:backup_manifest'
 after 'deploy:publishing', 'deploy:restart'
 after 'deploy:restart', 'deploy:cleanup'
 
@@ -66,6 +70,22 @@ namespace :deploy do
         info "✓ #{host} - #{deploy_to} exists"
       else
         error "✗ #{host} - #{deploy_to} does not exist"
+      end
+    end
+  end
+end
+
+namespace :deploy do
+  namespace :assets do
+    desc 'Backup assets manifest'
+    task :backup_manifest do
+      on roles(:web) do
+        within release_path do
+          if test("[ -f #{shared_path}/assets_manifest_backup/manifest* ]")
+            execute :mkdir, '-p', assets_backup_path
+            execute :cp, Dir[shared_path.join('assets_manifest_backup/manifest*')].first, assets_backup_path
+          end
+        end
       end
     end
   end
