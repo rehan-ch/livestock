@@ -27,6 +27,12 @@ set :assets_manifests, -> {
 set :normalize_asset_timestamps, %w{public/images public/javascripts public/stylesheets}
 set :assets_backup_path, -> { release_path.join('assets_manifest_backup') }
 
+# Asset compilation settings
+set :assets_compile, true
+set :assets_compile_path, -> { release_path.join('public', fetch(:assets_prefix)) }
+set :assets_compile_roles, [:web, :app]
+set :assets_compile_manifest, -> { release_path.join('public', fetch(:assets_prefix), 'manifest.json') }
+
 # Passenger configuration
 set :passenger_restart_with_touch, true
 
@@ -82,9 +88,9 @@ namespace :deploy do
     task :backup_manifest do
       on roles(:web) do
         within release_path do
-          if test("[ -f #{shared_path}/assets_manifest_backup/manifest* ]")
-            execute :mkdir, '-p', assets_backup_path
-            execute :cp, Dir[shared_path.join('assets_manifest_backup/manifest*')].first, assets_backup_path
+          execute :mkdir, '-p', assets_backup_path
+          if test("[ -f #{shared_path}/public/assets/.sprockets-manifest-* ]")
+            execute :cp, "#{shared_path}/public/assets/.sprockets-manifest-*", assets_backup_path
           end
         end
       end
@@ -96,6 +102,17 @@ namespace :deploy do
         within release_path do
           execute :rm, '-rf', release_path.join('public', fetch(:assets_prefix))
           execute :rm, '-rf', release_path.join('assets_manifest_backup')
+        end
+      end
+    end
+
+    desc 'Precompile assets'
+    task :precompile do
+      on roles(:web) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute :bundle, 'exec', 'rake', 'assets:precompile'
+          end
         end
       end
     end
