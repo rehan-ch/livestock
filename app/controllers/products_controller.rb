@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
                        .filter_by_city(params[:city])
                        .page(params[:page])
                        .per(20)
-    @categories = Category.all
+    @categories = Category.parent_categories
   end
 
   # GET /products/1 or /products/1.json
