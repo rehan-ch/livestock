@@ -11,6 +11,66 @@ set :production
 set :branch, 'main' # Replace 'main' with the branch you want to deploy
 server '103.173.63.62', user: 'livestock', roles: %w{app db web}
 
+# Production-specific settings
+set :rails_env, 'production'
+set :deploy_to, "/home/#{fetch(:user)}/project/#{fetch(:application)}"
+
+# Ensure proper permissions
+set :file_permissions_paths, [
+  'log',
+  'tmp/pids',
+  'tmp/cache',
+  'tmp/sockets',
+  'public/system',
+  'public/uploads',
+  'storage'
+]
+
+# SSH Options for production
+set :ssh_options, {
+  keys: %w(/home/livestock/.ssh/id_rsa),
+  forward_agent: true,
+  auth_methods: %w(publickey),
+  verify_host_key: :secure
+}
+
+# Ensure proper asset compilation
+set :assets_manifests, -> {
+  [release_path.join("public", fetch(:assets_prefix))]
+}
+
+# Passenger configuration
+set :passenger_restart_with_touch, true
+
+# Keep fewer releases to save disk space
+set :keep_releases, 5
+
+# Add deployment hooks
+before 'deploy:starting', 'deploy:check'
+after 'deploy:publishing', 'deploy:restart'
+after 'deploy:restart', 'deploy:cleanup'
+
+# Custom tasks for production
+namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  desc 'Check if we can access the server'
+  task :check do
+    on roles(:all) do |host|
+      if test("[ -d #{deploy_to} ]")
+        info "✓ #{host} - #{deploy_to} exists"
+      else
+        error "✗ #{host} - #{deploy_to} does not exist"
+      end
+    end
+  end
+end
+
 # role-based syntax
 # ==================
 
