@@ -61,6 +61,7 @@ group :development do
   gem 'capistrano-rbenv', "~> 2.2", require: false
   gem 'ed25519', '>= 1.2', '< 2.0', require: false
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0', require: false
+  gem "letter_opener"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
