@@ -58,6 +58,8 @@ gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'faker'
+gem "letter_opener"
+gem "letter_opener_web"
 
 # Development and Testing
 group :development, :test do
