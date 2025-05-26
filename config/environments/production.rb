@@ -97,6 +97,12 @@ Rails.application.configure do
   # Enable email delivery errors
   config.action_mailer.raise_delivery_errors = true
 
+  # Set default from address for all emails
+  config.action_mailer.default_options = {
+    from: 'Livestock <support@livestock.pk>',
+    reply_to: 'support@livestock.pk'
+  }
+
   # Set default URL options for Action Mailer
   config.action_mailer.default_url_options = { 
     host: 'livestock.pk',
