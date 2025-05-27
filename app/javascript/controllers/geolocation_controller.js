@@ -8,11 +8,12 @@ const options = {
 // Connects to data-controller="geolocation"
 export default class extends Controller {
   static values = { url: String }
-  static targets = ["city", "country", "state", "address"]
+  static targets = ["city", "country", "state", "address", "button", "buttonText"]
 
   search(event) {
     event.preventDefault();
-    navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error, options);
+    this.setLoading(true);
+    navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error.bind(this), options);
   }
   
   success(pos) {
@@ -37,9 +38,21 @@ export default class extends Controller {
         this.countryTarget.value = data.country
         this.addressTarget.value = data.address
         this.stateTarget.value = data.state
+        this.setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching address:", error);
+        this.setLoading(false);
       });
-    }
-    error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
   }
+
+  error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+    this.setLoading(false);
+  }
+
+  setLoading(isLoading) {
+    this.buttonTarget.disabled = isLoading;
+    this.buttonTextTarget.textContent = isLoading ? "Getting Location..." : "Get Current Location";
+  }
+}
