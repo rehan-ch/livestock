@@ -101,7 +101,9 @@
                   <h4 class="mb-3 h5">Location</h4>
                 </div>
                 <div data-controller='geolocation'>
-                  <button data-action="geolocation#search", class="btn btn-primary mb-2">Get Current Location</button>
+                  <button data-action="geolocation#search" data-geolocation-target="button" class="btn btn-primary mb-2">
+                    <span data-geolocation-target="buttonText">Get Current Location</span>
+                  </button>
                   <div class="mb-3 col-lg-6">
                     <%= form.label :city, class: "form-label" %>
                     <%= form.text_field :city, class: "form-control", "data-geolocation-target": "city" %>
