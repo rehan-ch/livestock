@@ -20,7 +20,6 @@ class ProductsController < ApplicationController
   end
 
   def start_chat
-    default_protect_from_forgery with: :exception
     @chat = Chat.find_by(buyer: current_user, product: @product)
     unless @chat
       @chat = Chat.create!(buyer: current_user, seller: @product.user, product: @product)
