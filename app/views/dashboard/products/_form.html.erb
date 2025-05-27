@@ -20,7 +20,7 @@
               <div class="row" data-controller="category-form dairy-fields">
                 <div class="mb-3 col-lg-6">
                   <%= form.label :parent_id, "Category", class: "form-label" %>
-                  <%= form.select :parent_id, Category.where(parent_id: nil).pluck(:name, :id), { include_blank: "Select Category", selected: product.category&.parent_category_id }, { class: "form-select", data: { category_form_target: "parentCategory" } } %>
+                  <%= form.select :parent_id, Category.where(parent_id: nil).pluck(:name, :id), { include_blank: "Select Category", selected: product.category&.parent_id }, { class: "form-select", data: { category_form_target: "parentCategory" } } %>
                 </div>
 
                 <div class="mb-3 col-lg-6">
