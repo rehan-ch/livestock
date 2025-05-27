@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+      .header {
+        background-color: #ffc107;
+        color: #333;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+      }
+      .content {
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0d6efd;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .footer {
+        margin-top: 20px;
+        text-align: center;
+        color: #666;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Your Ad Has Been Rejected</h1>
+      </div>
+      
+      <div class="content">
+        <p>Dear <%= @user.email %>,</p>
+        
+        <p>We regret to inform you that your ad "<strong><%= @product.name %></strong>" has been rejected by our admin team.</p>
+        
+        <h3>Ad Details:</h3>
+        <ul>
+          <li><strong>Title:</strong> <%= @product.name %></li>
+          <li><strong>Category:</strong> <%= @product.category.name rescue "N/A" %></li>
+          <li><strong>Price:</strong> Rs <%= number_with_delimiter(@product.price) %></li>
+        </ul>
+        
+        <p>Common reasons for rejection include:</p>
+        <ul>
+          <li>Incomplete or inaccurate information</li>
+          <li>Poor quality or missing images</li>
+          <li>Violation of our terms of service</li>
+          <li>Inappropriate content</li>
+        </ul>
+      </div>
+      
+      <div class="footer">
+        <p>This is an automated message, please do not reply directly to this email.</p>
+        <p>© <%= Time.current.year %> Livestock. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html> 

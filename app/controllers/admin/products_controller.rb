@@ -1,6 +1,6 @@
 module Admin
   class ProductsController < Admin::BaseController
-    before_action :set_product, only: %i[ show edit update destroy ]
+    before_action :set_product, only: %i[ show edit update destroy approve reject ]
 
     def index
       @products = Product.all
@@ -60,6 +60,26 @@ module Admin
     def destroy
       @product.destroy!
       redirect_to dashboard_products_path, notice: "Product was successfully destroyed."
+    end
+
+    def approve
+      if @product.update(status: 'approved', verified: true)
+        # Send approval notification email
+        ProductMailer.approval_notification(@product).deliver_later
+        redirect_to admin_product_path(@product), notice: "Product was successfully approved and notification email has been sent."
+      else
+        redirect_to admin_product_path(@product), alert: "Failed to approve product."
+      end
+    end
+
+    def reject
+      if @product.update(status: 'rejected')
+        # Send rejection notification email
+        ProductMailer.rejection_notification(@product).deliver_later
+        redirect_to admin_product_path(@product), notice: "Product was successfully rejected and notification email has been sent."
+      else
+        redirect_to admin_product_path(@product), alert: "Failed to reject product."
+      end
     end
 
     def filtered_categories
