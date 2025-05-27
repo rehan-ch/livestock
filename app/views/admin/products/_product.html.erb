@@ -1,107 +1,124 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>User:</strong>
-    <%= product.user_id %>
-  </p>
+<div id="<%= dom_id product %>" class="card-body">
+  <div class="row g-4">
+    <div class="col-12">
+      <div class="d-flex align-items-center">
+        <div class="flex-shrink-0">
+          <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+            <i class="bi bi-person text-muted"></i>
+          </div>
+        </div>
+        <div class="ms-3">
+          <h6 class="mb-1">
+            <%= product.user.email rescue "User ID: #{product.user_id}" %>
+          </h6>
+          <small class="text-muted">
+            Added <%= time_ago_in_words(product.created_at) %> ago
+          </small>
+        </div>
+      </div>
+    </div>
 
-  <p>
-    <strong>Category:</strong>
-    <%= product.category_id %>
-  </p>
+    <div class="col-md-6">
+      <h6 class="fw-bold mb-3">Basic Information</h6>
+      <dl class="row mb-0">
+        <dt class="col-sm-4">Category</dt>
+        <dd class="col-sm-8"><%= product.category.name rescue "ID: #{product.category_id}" %></dd>
 
-  <p>
-    <strong>Status:</strong>
-    <%= product.status %>
-  </p>
+        <dt class="col-sm-4">Status</dt>
+        <dd class="col-sm-8">
+          <span class="badge p-2 <%= product.approved? ? 'bg-success' : 'bg-warning' %>">
+            <%= product.status.titleize %>
+          </span>
+        </dd>
+      </dl>
+    </div>
 
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
+    <div class="col-12">
+      <h6 class="fw-bold mb-3">Description</h6>
+      <div class="mb-4">
+        <p class="fw-bold mb-2">Short Description:</p>
+        <p class="text-muted"><%= product.short_description %></p>
+      </div>
+      <div>
+        <p class="fw-bold mb-2">Long Description:</p>
+        <p class="text-muted"><%= product.long_description %></p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Short description:</strong>
-    <%= product.short_description %>
-  </p>
+    <div class="col-12">
+      <h6 class="fw-bold mb-3">Animal Details</h6>
+      <div class="row">
+        <div class="col-md-6">
+          <dl class="row mb-0">
+            <dt class="col-sm-4">Age</dt>
+            <dd class="col-sm-8"><%= product.age %></dd>
 
-  <p>
-    <strong>Long description:</strong>
-    <%= product.long_description %>
-  </p>
+            <dt class="col-sm-4">Sex</dt>
+            <dd class="col-sm-8"><%= product.sex %></dd>
 
-  <p>
-    <strong>Age:</strong>
-    <%= product.age %>
-  </p>
+            <dt class="col-sm-4">Breed</dt>
+            <dd class="col-sm-8"><%= product.breed %></dd>
 
-  <p>
-    <strong>Sex:</strong>
-    <%= product.sex %>
-  </p>
+            <dt class="col-sm-4">Height</dt>
+            <dd class="col-sm-8"><%= product.height %></dd>
+          </dl>
+        </div>
+        <div class="col-md-6">
+          <dl class="row mb-0">
+            <dt class="col-sm-4">Weight</dt>
+            <dd class="col-sm-8"><%= product.weight %></dd>
 
-  <p>
-    <strong>Breed:</strong>
-    <%= product.breed %>
-  </p>
+            <dt class="col-sm-4">Teeth</dt>
+            <dd class="col-sm-8"><%= product.teeth %></dd>
 
-  <p>
-    <strong>Height:</strong>
-    <%= product.height %>
-  </p>
+            <dt class="col-sm-4">Castrated</dt>
+            <dd class="col-sm-8">
+              <span class="<%= product.castrated ? 'text-success' : 'text-danger' %>">
+                <%= product.castrated ? 'Yes' : 'No' %>
+              </span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
 
-  <p>
-    <strong>Weight:</strong>
-    <%= product.weight %>
-  </p>
+    <div class="col-md-6">
+      <h6 class="fw-bold mb-3">Price & Inventory</h6>
+      <div class="d-flex align-items-baseline">
+        <h3 class="text-primary mb-0">Rs <%= number_with_delimiter(product.price) %></h3>
+        <p class="ms-3 mb-0">
+          <span class="fw-bold">Quantity available:</span>
+          <span class="<%= product.quantity.to_i > 0 ? 'text-success' : 'text-danger' %>">
+            <%= product.quantity.to_i %>
+          </span>
+        </p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Teeth:</strong>
-    <%= product.teeth %>
-  </p>
+    <div class="col-md-6">
+      <h6 class="fw-bold mb-3">Location</h6>
+      <div class="d-flex">
+        <i class="bi bi-geo-alt text-muted me-2"></i>
+        <div>
+          <p class="mb-1"><%= product.address %></p>
+          <p class="mb-1"><%= product.city %>, <%= product.state %></p>
+          <p class="mb-0"><%= product.country %></p>
+        </div>
+      </div>
+    </div>
 
-  <p>
-    <strong>Castrated:</strong>
-    <%= product.castrated %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
-
-  <p>
-    <strong>Quantity:</strong>
-    <%= product.quantity %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= product.city %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= product.country %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= product.state %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= product.address %>
-  </p>
-
-  <p>
-    <strong>Self stock:</strong>
-    <%= product.self_stock %>
-  </p>
-
-  <p>
-    <strong>Verified:</strong>
-    <%= product.verified %>
-  </p>
-
+    <div class="col-12">
+      <h6 class="fw-bold mb-3">Status & Verification</h6>
+      <div class="d-flex gap-4">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-check-circle<%= product.self_stock ? '-fill text-success' : ' text-muted' %> me-2"></i>
+          <span>Self Stock</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="bi bi-patch-check<%= product.verified ? '-fill text-success' : ' text-muted' %> me-2"></i>
+          <span>Verified</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

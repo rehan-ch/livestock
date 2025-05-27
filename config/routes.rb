@@ -48,6 +48,10 @@ Rails.application.routes.draw do
     resources :services
     resources :blogs
     resources :products, path: 'my_ads' do
+      member do
+        patch :approve
+        patch :reject
+      end
       collection do
         get :filtered_categories
       end

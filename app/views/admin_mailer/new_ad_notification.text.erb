@@ -1,0 +1,10 @@
+New Ad Created
+
+A new ad has been created by <%= @user.name %> (<%= @user.email %>).
+
+Ad Details:
+Name: <%= @ad.name %>
+Category: <%= @ad.category&.name %>
+Created At: <%= @ad.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+
+View the ad at: <%= admin_product_url(@ad) %> 

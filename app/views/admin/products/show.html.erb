@@ -1,8 +1,51 @@
-<%= render @product %>
+<div class="container py-4">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="h3 mb-0">
+          <%= @product.name %>
+        </h2>
+        <p class="text-muted small mb-0">
+          Product ID: #<%= @product.id %>
+        </p>
+      </div>
+      <div class="btn-group">
+        <%= link_to edit_admin_product_path(@product), class: "btn btn-outline-primary" do %>
+          <i class="bi bi-pencil-square me-2"></i>
+          Edit Product
+        <% end %>
+        <%= link_to admin_products_path, class: "btn btn-outline-secondary" do %>
+          <i class="bi bi-arrow-left me-2"></i>
+          Back to Products
+        <% end %>
+      </div>
+    </div>
 
-<div>
-  <%= link_to "Edit this product", edit_users_product_path(@product) if @product.user == current_user %> |
-  <%= link_to "Back to products", admin_products_path %>
+    <%= render @product %>
 
-  <%= button_to "Destroy this product", users_product_path, method: :delete if @product.user == current_user %>
+    <div class="card-footer">
+      <div class="row align-items-center">
+        <div class="col">
+          <% if @product.status == 'pending' %>
+            <div class="btn-group">
+              <%= button_to approve_admin_product_path(@product), method: :patch, class: "btn btn-success", data: { confirm: "Are you sure you want to approved this Ad?" } do %>
+                <i class="bi bi-check-circle me-2"></i>
+                Approve
+              <% end %>
+              <%= button_to reject_admin_product_path(@product), method: :patch, class: "btn btn-warning ms-2", data: { confirm: "Are you sure you want to reject this product?" } do %>
+                <i class="bi bi-x-circle me-2"></i>
+                Reject
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col text-end">
+          <%= button_to admin_product_path(@product), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this ad?" } do %>
+            <i class="bi bi-trash me-2"></i>
+            Delete Product
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

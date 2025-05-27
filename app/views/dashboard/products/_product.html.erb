@@ -1,107 +1,88 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>User:</strong>
-    <%= product.user_id %>
-  </p>
+<div id="<%= dom_id product %>" class="border-t border-gray-200">
+  <dl>
+    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Name</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= product.name %></dd>
+    </div>
 
-  <p>
-    <strong>Category:</strong>
-    <%= product.category_id %>
-  </p>
+    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Category</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= product.category_id %></dd>
+    </div>
 
-  <p>
-    <strong>Status:</strong>
-    <%= product.status %>
-  </p>
+    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Status</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= product.status == 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+          <%= product.status %>
+        </span>
+      </dd>
+    </div>
 
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
+    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Short Description</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= product.short_description %></dd>
+    </div>
 
-  <p>
-    <strong>Short description:</strong>
-    <%= product.short_description %>
-  </p>
+    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Long Description</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= product.long_description %></dd>
+    </div>
 
-  <p>
-    <strong>Long description:</strong>
-    <%= product.long_description %>
-  </p>
+    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Animal Details</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p><span class="font-medium">Age:</span> <%= product.age %></p>
+            <p><span class="font-medium">Sex:</span> <%= product.sex %></p>
+            <p><span class="font-medium">Breed:</span> <%= product.breed %></p>
+            <p><span class="font-medium">Height:</span> <%= product.height %></p>
+          </div>
+          <div>
+            <p><span class="font-medium">Weight:</span> <%= product.veigth %></p>
+            <p><span class="font-medium">Teeth:</span> <%= product.teeth %></p>
+            <p><span class="font-medium">Castrated:</span> <%= product.castrated ? 'Yes' : 'No' %></p>
+          </div>
+        </div>
+      </dd>
+    </div>
 
-  <p>
-    <strong>Age:</strong>
-    <%= product.age %>
-  </p>
+    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Price & Quantity</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+        <p class="text-2xl font-bold text-indigo-600">$<%= number_with_delimiter(product.price) %></p>
+        <p class="mt-1">Quantity available: <%= product.quantity %></p>
+      </dd>
+    </div>
 
-  <p>
-    <strong>Sex:</strong>
-    <%= product.sex %>
-  </p>
+    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Location</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+        <p><%= product.address %></p>
+        <p><%= product.city %>, <%= product.state %></p>
+        <p><%= product.country %></p>
+      </dd>
+    </div>
 
-  <p>
-    <strong>Breed:</strong>
-    <%= product.breed %>
-  </p>
-
-  <p>
-    <strong>Height:</strong>
-    <%= product.height %>
-  </p>
-
-  <p>
-    <strong>veigth:</strong>
-    <%= product.veigth %>
-  </p>
-
-  <p>
-    <strong>Teeth:</strong>
-    <%= product.teeth %>
-  </p>
-
-  <p>
-    <strong>Castrated:</strong>
-    <%= product.castrated %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
-
-  <p>
-    <strong>Quantity:</strong>
-    <%= product.quantity %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= product.city %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= product.country %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= product.state %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= product.address %>
-  </p>
-
-  <p>
-    <strong>Self stock:</strong>
-    <%= product.self_stock %>
-  </p>
-
-  <p>
-    <strong>Verified:</strong>
-    <%= product.verified %>
-  </p>
-
+    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Additional Information</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+        <div class="flex space-x-6">
+          <div class="flex items-center">
+            <svg class="h-5 w-5 <%= product.self_stock ? 'text-green-500' : 'text-gray-400' %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="ml-2">Self Stock</span>
+          </div>
+          <div class="flex items-center">
+            <svg class="h-5 w-5 <%= product.verified ? 'text-green-500' : 'text-gray-400' %>" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="ml-2">Verified</span>
+          </div>
+        </div>
+      </dd>
+    </div>
+  </dl>
 </div>
