@@ -4,16 +4,16 @@
     <div class="table-responsive-xxl pb-6 pb-lg-0">
       <div class="row g-4 flex-nowrap">
         <% @blogs.each do |blog| %>
-          <div class="col-auto">
-            <div class="card border-0 blog-card">
-              <div class="img-zoom">
-                <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "blog-card-image" if blog.cover_image.present? %>
-              </div>
-              <div class="position-absolute bottom-0 py-3 px-4 blog-card-overlay">
-                <%= link_to blog_path(blog.slug), class: "text-white d-flex align-items-center btn-transition" do %>
-                  <span class="blog-card-title"><%= blog.title %></span>
-                  <i class="feather-icon icon-chevron-right ms-2 fs-5"></i>
-                <% end %>
+          <div class="col">
+            <div class="card border-0 card-hover">
+              <a href="<%= blog_path(blog.slug) %>" class="img-zoom">
+                <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "rounded w-100 fixed-dimension-img" if blog.cover_image.present? %>
+              </a>
+              <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
+                <a href="#" class="text-white d-flex align-items-center btn-transition">
+                  <%= blog.title %>
+                  <i class="feather-icon icon-chevron-right fs-5"></i>
+                </a>
               </div>
             </div>
           </div>
