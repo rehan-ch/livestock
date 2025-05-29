@@ -57,5 +57,6 @@ Rails.application.routes.draw do
       end
     end
     resources :users
+    resources :chats, only: [:index, :show]
   end
 end

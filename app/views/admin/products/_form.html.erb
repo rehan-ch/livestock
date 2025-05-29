@@ -41,8 +41,8 @@
               </div>
 
               <div class="mb-3 col-lg-6">
-                <%= form.label :sex, class: "form-label" %>
-                <%= form.select :sex, Product.sexes.keys.map { |sex| [sex.humanize, sex] }, { include_blank: "Select Sex" }, class: "form-select" %>
+                <%= form.label :sex, "Gender", class: "form-label" %>
+                <%= form.select :sex, Product.sexes.keys.map { |sex| [sex.humanize, sex] }, { include_blank: "Select Gender" }, class: "form-select" %>
               </div>
 
               <div class="mb-3 col-lg-6">

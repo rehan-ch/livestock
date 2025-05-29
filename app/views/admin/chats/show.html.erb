@@ -1,0 +1,56 @@
+<div class="container mt-4 mb-4">
+  <div class="mb-4">
+    <%= link_to admin_chats_path, class: 'btn btn-link ps-0' do %>
+      <i class="bi bi-arrow-left"></i> Back to Chats
+    <% end %>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="border-bottom pb-3 mb-4">
+        <h1 class="h3 chat-section-title">Conversation Details</h1>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="chat-detail">
+              <label>Seller</label>
+              <div class="fw-medium"><%= @chat.seller.name %></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="chat-detail">
+              <label>Buyer</label>
+              <div class="fw-medium"><%= @chat.buyer.name %></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="chat-detail">
+              <label>Product</label>
+              <div class="fw-medium"><%= @chat.product.name %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-messages">
+        <h2 class="h4 chat-section-title">Message History</h2>
+        <div class="messages-container">
+          <% @messages.each do |message| %>
+            <div class="message <%= message.user == @chat.seller ? 'message-seller' : 'message-buyer' %>">
+              <div class="message-content">
+                <div class="message-header">
+                  <span class="user-name"><%= message.user.name %></span>
+                  <span class="timestamp">
+                    <%= message.created_at.strftime("%b %d, %Y %H:%M") %>
+                  </span>
+                </div>
+                <div class="message-text">
+                  <%= message.content %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
