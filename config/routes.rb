@@ -56,5 +56,6 @@ Rails.application.routes.draw do
         get :filtered_categories
       end
     end
+    resources :users
   end
 end
