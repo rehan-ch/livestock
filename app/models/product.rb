@@ -58,7 +58,7 @@ class Product < ApplicationRecord
     :pending,
     :rejected,
     :approved
-  ], _default: :draft
+  ], _default: :pending
   #Ex:- :default =>''
   enum sex: [
     :male,
