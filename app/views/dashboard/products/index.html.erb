@@ -55,7 +55,7 @@
                       <%= image_tag url_for(product.watermarked_images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
                     </a>
                   </td>
-                  <td class="d-flex gap-2">
+                  <td class="d-flex gap-2 justify-content-end">
                     <% if product.draft? || product.pending? %>
                       <%= link_to edit_dashboard_product_path(product),class: "btn btn-primary" do %>
                         Edit
