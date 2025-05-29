@@ -22,31 +22,18 @@
             <table class="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
               <thead class="bg-light">
               <tr>
-                <th>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkAll" />
-                    <label class="form-check-label" for="checkAll"></label>
-                  </div>
-                </th>
                 <th>id</th>
                 <th>User</th>
                 <th>Quantity</th>
                 <th>Ad Type</th>
                 <th>Payment Method</th>
                 <th>Status</th>
-                <th>Create at</th>
-                <th></th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
               <% @paid_ads.each do |ad| %>
                 <tr>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="productOne" />
-                      <label class="form-check-label" for="productOne"></label>
-                    </div>
-                  </td>
                   <td>
                     <%= link_to ad.id, dashboard_paid_ad_path(ad) %>
                   </td>
@@ -57,26 +44,14 @@
                   <td>
                     <span class="badge bg-light-primary text-dark-primary"><%= ad.status %></span>
                   </td>
-                  <td><%= ad.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                   <td>
-                    <div class="dropdown">
-                      <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
-                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            <i class="bi bi-trash me-3"></i>
-                            Delete
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            <i class="bi bi-pencil-square me-3"></i>
-                            Edit
-                          </a>
-                        </li>
-                      </ul>
+                    <div class="d-flex gap-2">
+                      <%= link_to '#', class: 'btn btn-sm btn-light', title: 'Delete' do %>
+                        Destroy
+                      <% end %>
+                      <%= link_to '#', class: 'btn btn-sm btn-light', title: 'Edit' do %>
+                        Edit
+                      <% end %>
                     </div>
                   </td>
                 </tr>
