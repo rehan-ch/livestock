@@ -26,29 +26,17 @@
                 <table class="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
                   <thead class="bg-light">
                     <tr>
-                      <th>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="checkAll" />
-                          <label class="form-check-label" for="checkAll"></label>
-                        </div>
-                      </th>
                       <th>Cover Image</th>
                       <th>Banner Image</th>
                       <th>Title</th>
                       <th>Status</th>
                       <th>Published At</th>
-                      <th></th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <% @blogs.each do |blog| %>
                       <tr>
-                        <td>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="blogOne" />
-                            <label class="form-check-label" for="blogOne"></label>
-                          </div>
-                        </td>
                         <td>
                           <%= image_tag url_for(blog.cover_image), alt: blog.title, class: "icon-shape icon-md" if blog.cover_image.attached? %>
                         </td>
@@ -67,25 +55,6 @@
                             <i class="bi bi-pencil-square me-3"></i>
                             Show
                           <% end %>
-                          <div class="dropdown">
-                            <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
-                              <i class="feather-icon icon-more-vertical fs-5"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li>
-                                <a class="dropdown-item" href="#">
-                                  <i class="bi bi-trash me-3"></i>
-                                  Delete
-                                </a>
-                              </li>
-                              <li>
-                                <a class="dropdown-item" href="#">
-                                  <i class="bi bi-pencil-square me-3"></i>
-                                  Edit
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
                         </td>
                       </tr>
                     <% end %>

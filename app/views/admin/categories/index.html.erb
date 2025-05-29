@@ -14,15 +14,6 @@
 <!--                <input class="form-control" type="search" placeholder="Search categories" aria-label="Search" />-->
 <!--              </form>-->
             </div>
-            <!-- select option -->
-            <div class="col-lg-2 col-md-4 col-12">
-              <select class="form-select">
-                <option selected>Status</option>
-                <option value="1">Active</option>
-                <option value="2">Deactive</option>
-                <option value="3">Draft</option>
-              </select>
-            </div>
           </div>
         </div>
         <!-- card body -->
@@ -34,7 +25,6 @@
               <tr>
                 <th>Category Name</th>
                 <th>Description</th>
-                <th>Create at</th>
                 <th>Images</th>
                 <th>Action</th>
               </tr>
@@ -44,11 +34,10 @@
                 <tr>
                   <td><a href="#" class="text-reset"><%= category.name %></a></td>
                   <td><%= truncate(category.description, length: 15) %></td>
-                  <td><%= category.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                   <td>
                     <%= image_tag url_for(category.watermarked_image), alt: category.name, class: "icon-shape icon-md" if category.image.attached? %>
                   </td>
-                  <td>
+                  <td class="d-flex gap-2">
                     <%= link_to edit_admin_category_path(category),class: "btn btn-primary" do %>
                       Edit
                     <% end %>

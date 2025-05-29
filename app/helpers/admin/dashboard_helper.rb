@@ -8,6 +8,6 @@ module Admin::DashboardHelper
   end
 
   def dynamic_breadcrum_path
-    send("admin_#{controller_name}_path")
+    send("admin_#{controller_name}_path") rescue nil
   end
 end

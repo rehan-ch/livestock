@@ -22,34 +22,20 @@
             <table class="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
               <thead class="bg-light">
               <tr>
-                <th>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkAll" />
-                    <label class="form-check-label" for="checkAll"></label>
-                  </div>
-                </th>
                 <th>Cover Image</th>
                 <th>Title</th>
                 <th>Status</th>
-                <th>Create at</th>
-                <th></th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
               <% @services.each do |service| %>
                 <tr>
                   <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="serviceOne" />
-                      <label class="form-check-label" for="serviceOne"></label>
-                    </div>
-                  </td>
-                  <td>
                     <%= image_tag url_for(service.cover_image), alt: service.title, class: "icon-shape icon-md" if service.cover_image.attached? %>
                   </td>
                   <td><a href="#" class="text-reset"><%= service.title %></a></td>
                   <td><%= service.status %></td>
-                  <td><%= service.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
                   <td>
                     <%= link_to edit_admin_service_path(service) do %>
                       <i class="bi bi-pencil-square me-3"></i>
@@ -59,25 +45,6 @@
                       <i class="bi bi-pencil-square me-3"></i>
                       Show
                     <% end %>
-                    <div class="dropdown">
-                      <a href="#" class="text-reset" data-bs-toggle="dropdown" aria-expanded="true">
-                        <i class="feather-icon icon-more-vertical fs-5"></i>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            <i class="bi bi-trash me-3"></i>
-                            Delete
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">
-                            <i class="bi bi-pencil-square me-3"></i>
-                            Edit
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
                   </td>
                 </tr>
               <% end %>
