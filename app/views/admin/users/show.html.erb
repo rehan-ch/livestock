@@ -1,0 +1,46 @@
+<div class="container">
+  <%= render partial: "/admin/shared/breadcrum" %>
+  <div class="row">
+    <div class="col-xl-12 col-12 mb-5">
+      <div class="card h-100 card-lg">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h4 class="mb-0">User Details</h4>
+          <div>
+            <%= link_to edit_admin_user_path(@user), class: "btn btn-primary" do %>
+              Edit
+            <% end %>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-4">
+                <label class="form-label fw-bold">Email:</label>
+                <p class="mb-0"><%= @user.email %></p>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold">Name:</label>
+                <p class="mb-0"><%= @user.name %></p>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold">Phone Number:</label>
+                <p class="mb-0"><%= @user.phone_no %></p>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold">Role:</label>
+                <p class="mb-0"><%= @user.role.titleize %></p>
+              </div>
+
+              <div class="mt-4">
+                <%= link_to "Back", admin_users_path, class: "btn btn-secondary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
