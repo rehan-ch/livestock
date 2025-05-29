@@ -12,6 +12,11 @@
     end
 
     def update
+      if @user.update(user_params)
+        redirect_to admin_users_path, notice: 'User was successfully updated.'
+      else
+        redirect_to admin_users_path, alert: 'User was not updated.'
+      end
     end
 
     def destroy
