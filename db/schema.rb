@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_03_124342) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_30_055921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -125,8 +125,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_03_124342) do
     t.string "name"
     t.string "short_description"
     t.text "long_description"
-    t.integer "age_in_years"
-    t.integer "age_in_months"
     t.integer "quantity_unit"
     t.integer "sex"
     t.string "breed"
@@ -144,6 +142,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_03_124342) do
     t.boolean "verified"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "age", precision: 5, scale: 2
+    t.boolean "pregnant"
+    t.decimal "daily_milk_quantity"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
@@ -172,6 +173,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_03_124342) do
     t.string "tehsil"
     t.text "address"
     t.integer "role", default: 0
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
