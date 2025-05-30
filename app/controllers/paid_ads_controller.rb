@@ -1,5 +1,5 @@
 class PaidAdsController < ApplicationController
-  before_action :set_paid_ad, only: %i[ show edit update destroy ]
+  before_action :set_paid_ad, only: %i[ show edit update destroy approve reject ]
 
   # GET /paid_ads/1 or /paid_ads/1.json
   def show
@@ -42,7 +42,21 @@ class PaidAdsController < ApplicationController
     end
   end
 
+  def approve
+    if @paid_ad.update(status: :approved)
+      redirect_to @paid_ad, notice: "Advertisement was successfully approved."
+    else
+      redirect_to @paid_ad, alert: "Failed to approve advertisement."
+    end
+  end
 
+  def reject
+    if @paid_ad.update(status: :rejected)
+      redirect_to @paid_ad, notice: "Advertisement was successfully rejected."
+    else
+      redirect_to @paid_ad, alert: "Failed to reject advertisement."
+    end
+  end
 
   # DELETE /paid_ads/1 or /paid_ads/1.json
   def destroy

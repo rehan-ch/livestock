@@ -19,6 +19,9 @@ class Product < ApplicationRecord
   validates :sex, presence: true
   validates :short_description, presence: true
   validates :city, presence: true
+  validate :user_has_available_ads, on: :create
+
+  before_destroy :refund_ad_credit, if: :should_refund_ad?
 
   scope :filter_by_status, ->(status) { where(status: status) if status.present? && status.downcase !="all"}
 
@@ -77,7 +80,7 @@ class Product < ApplicationRecord
     milliliter: 4
   }
 
-  after_create :notify_admin
+  after_create :notify_admin, :update_user_number_of_ads
 
   def watermarked_images
     images.map do |img|
@@ -93,5 +96,24 @@ class Product < ApplicationRecord
 
   def notify_admin
     AdminMailer.new_ad_notification(self).deliver_later
+  end
+
+  def update_user_number_of_ads
+    user.update(number_of_ads: user.number_of_ads - 1) unless user.admin?
+  end
+
+  def user_has_available_ads
+    return if user&.admin?
+    return if user&.number_of_ads.to_i > 0
+
+    errors.add(:base, "You don't have any ads available. Please purchase more ads to continue posting.")
+  end
+
+  def should_refund_ad?
+    pending? && !user&.admin?
+  end
+
+  def refund_ad_credit
+    user.increment!(:number_of_ads)
   end
 end

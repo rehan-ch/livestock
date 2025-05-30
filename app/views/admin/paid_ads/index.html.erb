@@ -1,0 +1,81 @@
+<div class="container">
+  <%= render partial: "/admin/shared/breadcrum" %>
+  <!-- row -->
+  <div class="row">
+    <div class="col-xl-12 col-12 mb-5">
+      <!-- card -->
+      <div class="card h-100 card-lg">
+        <div class="px-6 py-6">
+          <div class="row justify-content-between">
+            <!-- form -->
+            <div class="col-lg-4 col-md-6 col-12 mb-2 mb-lg-0">
+              <form class="d-flex" role="search">
+                <input class="form-control" type="search" name="search" placeholder="Search by user or ID" aria-label="Search" value="<%= params[:search] %>" />
+              </form>
+            </div>
+            <!-- select option -->
+            <div class="col-lg-2 col-md-4 col-12">
+              <%= select_tag :status, options_for_select([['All Status', ''], ['Pending', 'pending'], ['Approved', 'approved'], ['Rejected', 'rejected']], params[:status]), class: 'form-select', data: { controller: 'status-filter' } %>
+            </div>
+          </div>
+        </div>
+        <!-- card body -->
+        <div class="card-body p-0">
+          <!-- table -->
+          <div class="table-responsive">
+            <table class="table table-centered table-hover text-nowrap table-borderless mb-0">
+              <thead class="bg-light">
+                <tr>
+                  <th>ID</th>
+                  <th>User</th>
+                  <th>Quantity</th>
+                  <th>Ad Type</th>
+                  <th>Payment Method</th>
+                  <th>Status</th>
+                  <th>Total Amount</th>
+                  <th>Proof Image</th>
+                  <th>Created At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @paid_ads.each do |ad| %>
+                  <tr>
+                    <td><%= link_to ad.id, admin_paid_ad_path(ad) %></td>
+                    <td><%= ad.user.name %></td>
+                    <td><%= ad.quantity %></td>
+                    <td><%= ad.ad_type.humanize %></td>
+                    <td><%= ad.payment_method.humanize %></td>
+                    <td>
+                      <% status_class = case ad.status
+                        when 'approved' then 'bg-success'
+                        when 'rejected' then 'bg-danger'
+                        else 'bg-warning'
+                        end %>
+                      <span class="badge <%= status_class %>"><%= ad.status.humanize %></span>
+                    </td>
+                    <td>Rs. <%= number_with_delimiter(ad.total_amount) %></td>
+                    <td>
+                      <%= image_tag ad.proof_image, width: "50px", height: "50px", class: "img-thumbnail" if ad.proof_image.attached? %>
+                    </td>
+                    <td><%= ad.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <%= link_to admin_paid_ad_path(ad), class: "btn btn-primary", title: "View" do %>
+                          Show
+                        <% end %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer">
+          <%= paginate @paid_ads %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
