@@ -58,6 +58,14 @@
           </div>
         </li>
         <li class="nav-item">
+          <%= link_to admin_paid_ads_path, class: "nav-link #{active_tab('paid_ads')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">Paid Ads Requests</span>
+            </div>
+          <% end %>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="<%= admin_categories_path %>">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
@@ -80,6 +88,22 @@
               <span class="nav-link-text">Blogs</span>
             </div>
           </a>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_users_path, class: "nav-link #{active_tab('users')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">users</span>
+            </div>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_chats_path, class: "nav-link #{active_tab('chats')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+              <span class="nav-link-text">chats</span>
+            </div>
+          <% end %>
         </li>
       </ul>
     </div>

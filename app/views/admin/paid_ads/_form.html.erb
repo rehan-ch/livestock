@@ -1,0 +1,45 @@
+<div class="card mb-10 card-lg">
+  <div class="card-body p-6">
+    <h4 class="mb-4 h5">Edit Paid Advertisement</h4>
+    
+    <%= form_with(model: [:admin, paid_ad]) do |form| %>
+      <% if paid_ad.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(paid_ad.errors.count, "error") %> prohibited this paid ad from being saved:</h2>
+          <ul>
+            <% paid_ad.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="mb-3 col-lg-6">
+          <%= form.label :quantity, class: "form-label" %>
+          <%= form.number_field :quantity, class: "form-control" %>
+        </div>
+
+        <div class="mb-3 col-lg-6">
+          <%= form.label :ad_type, class: "form-label" %>
+          <%= form.select :ad_type, PaidAd.ad_types.keys.map { |type| [type.humanize, type] }, { include_blank: "Select Ad Type" }, class: "form-select" %>
+        </div>
+
+        <div class="mb-3 col-lg-6">
+          <%= form.label :payment_method, class: "form-label" %>
+          <%= form.select :payment_method, PaidAd.payment_methods.keys.map { |method| [method.humanize, method] }, { include_blank: "Select Payment Method" }, class: "form-select" %>
+        </div>
+
+        <div class="mb-3 col-lg-6">
+          <%= form.label :status, class: "form-label" %>
+          <%= form.select :status, PaidAd.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: "Select Status" }, class: "form-select" %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <%= form.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", admin_paid_ad_path(paid_ad), class: "btn btn-light ms-2" %>
+      </div>
+    <% end %>
+  </div>
+</div> 

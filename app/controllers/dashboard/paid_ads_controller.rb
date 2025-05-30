@@ -43,7 +43,7 @@ class Dashboard::PaidAdsController < Dashboard::BaseController
     @paid_ad.destroy!
 
     respond_to do |format|
-      format.html { redirect_to paid_ads_url, notice: "Paid ad was successfully destroyed." }
+      format.html { redirect_to dashboard_paid_ads_url, notice: "Paid ad was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -56,6 +56,6 @@ class Dashboard::PaidAdsController < Dashboard::BaseController
 
     # Only allow a list of trusted parameters through.
     def paid_ad_params
-      params.require(:paid_ad).permit(:user_id, :quantity, :status, :ad_type, :payment_method)
+      params.require(:paid_ad).permit(:user_id, :quantity, :status, :ad_type, :payment_method, :proof_image)
     end
 end

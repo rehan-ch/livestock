@@ -1,0 +1,10 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Edit Paid Advertisement</h2>
+    <%= link_to admin_paid_ads_path, class: "btn btn-outline-secondary" do %>
+      <i class="bi bi-arrow-left me-2"></i>Back to Paid Ads
+    <% end %>
+  </div>
+
+  <%= render "form", paid_ad: @paid_ad %>
+</div> 

@@ -4,7 +4,7 @@
     <div class="d-md-flex justify-content-between align-items-center">
       <% class_name = controller_name.classify.downcase == "product" ? "Ads" : controller_name.classify  %>
       <div>
-        <h2 class="text-capitalize active-menu"><%= class_name %></h2>
+        <h2 class="text-capitalize active-menu"><%= if class_name == "PaidAd" then "Paid Ads Requests" else class_name end %></h2>
         <!-- breacrumb -->
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">

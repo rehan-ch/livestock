@@ -27,7 +27,9 @@
                 <th>Quantity</th>
                 <th>Ad Type</th>
                 <th>Payment Method</th>
+                <th>Total Amount</th>
                 <th>Status</th>
+                <th>Proof Image</th>
                 <th>Actions</th>
               </tr>
               </thead>
@@ -41,18 +43,24 @@
                   <td><%= ad.quantity %></td>
                   <td><%= ad.ad_type&.humanize %></td>
                   <td><%= ad.payment_method&.humanize %></td>
+                  <td>Rs. <%= number_with_delimiter(ad.total_amount) %></td>
                   <td>
                     <span class="badge bg-light-primary text-dark-primary"><%= ad.status %></span>
                   </td>
                   <td>
-                    <div class="d-flex gap-2">
-                      <%= link_to '#', class: 'btn btn-sm btn-light', title: 'Delete' do %>
-                        Destroy
-                      <% end %>
-                      <%= link_to '#', class: 'btn btn-sm btn-light', title: 'Edit' do %>
+                    <%= image_tag ad.proof_image, width: "150px", height: "150px", class: "img-fluid" if ad.proof_image.attached? %>
+                  </td>
+                  <td>
+                    <% if ad.status == 'pending' %>
+                      <div class="d-flex gap-2">
+                        <%= link_to edit_dashboard_paid_ad_path(ad), class: 'btn btn-primary', title: 'Edit' do %>
                         Edit
-                      <% end %>
-                    </div>
+                        <% end %>
+                        <%= link_to dashboard_paid_ad_path(ad), data: { turbo_confirm: "Are you sure you want to delete this advertisement?" }, data: { turbo_method: :delete }, class: 'btn btn-danger', title: 'Delete' do %>
+                          Destroy
+                        <% end %>
+                      </div>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>

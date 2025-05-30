@@ -56,7 +56,20 @@ Rails.application.routes.draw do
         get :filtered_categories
       end
     end
+    resources :paid_ads do
+      member do
+        patch :approve
+        patch :reject
+      end
+    end
     resources :users
     resources :chats, only: [:index, :show]
+  end
+
+  resources :paid_ads do
+    member do
+      patch :approve
+      patch :reject
+    end
   end
 end

@@ -75,6 +75,7 @@ module Admin
     def reject
       if @product.update(status: 'rejected')
         # Send rejection notification email
+        @product.user.increment!(:number_of_ads)
         ProductMailer.rejection_notification(@product).deliver_later
         redirect_to admin_product_path(@product), notice: "Product was successfully rejected and notification email has been sent."
       else
