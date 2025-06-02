@@ -56,7 +56,7 @@
                     <%= link_to admin_product_path(product), class: "btn btn-primary" do %>
                       Show
                     <% end %>
-                    <%= form_with url: admin_product_path(product), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <%= form_with url: admin_product_path(product), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
                       <%= submit_tag "Delete", class: "btn btn-danger" %>
                     <% end %>
                   </td>

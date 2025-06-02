@@ -45,7 +45,7 @@
                   <td><%= ad.payment_method&.humanize %></td>
                   <td>Rs. <%= number_with_delimiter(ad.total_amount) %></td>
                   <td>
-                    <span class="badge bg-light-primary text-dark-primary"><%= ad.status %></span>
+                    <span class="badge <%= ad.status == 'pending' ? 'bg-warning' : ad.status == 'approved' ? 'bg-success' : 'bg-danger' %> text-light-primary"><%= ad.status %></span>
                   </td>
                   <td>
                     <%= image_tag ad.proof_image, width: "150px", height: "150px", class: "img-fluid" if ad.proof_image.attached? %>

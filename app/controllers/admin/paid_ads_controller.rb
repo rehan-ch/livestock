@@ -34,7 +34,8 @@ class Admin::PaidAdsController < Admin::BaseController
   def approve
     if @paid_ad.update(status: :approved)
       @paid_ad.user.update(number_of_ads: @paid_ad.user.number_of_ads + @paid_ad.quantity)
-      redirect_to admin_paid_ad_path(@paid_ad), notice: "Advertisement was successfully approved."
+      PaidAdMailer.approval_notification(@paid_ad).deliver_later
+      redirect_to admin_paid_ad_path(@paid_ad), notice: "Advertisement was successfully approved and notification email has been sent."
     else
       redirect_to admin_paid_ad_path(@paid_ad), alert: "Failed to approve advertisement."
     end
@@ -42,7 +43,8 @@ class Admin::PaidAdsController < Admin::BaseController
 
   def reject
     if @paid_ad.update(status: :rejected)
-      redirect_to admin_paid_ad_path(@paid_ad), notice: "Advertisement was successfully rejected."
+      PaidAdMailer.rejection_notification(@paid_ad).deliver_later
+      redirect_to admin_paid_ad_path(@paid_ad), notice: "Advertisement was successfully rejected and notification email has been sent."
     else
       redirect_to admin_paid_ad_path(@paid_ad), alert: "Failed to reject advertisement."
     end
