@@ -4,7 +4,7 @@ module Admin::DashboardHelper
   end
 
   def active_tab_with_tabs(curr_tab, tabs)
-    "active"  if (controller.controller_name.downcase == curr_tab.downcase) && (params[:type]&.downcase == tabs.downcase)    
+    "active"  if (controller.controller_name.downcase == curr_tab.downcase) && (params[:status]&.downcase == tabs.downcase || params[:type]&.downcase == tabs.downcase)    
   end
 
   def dynamic_breadcrum_path

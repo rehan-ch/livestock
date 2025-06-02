@@ -7,6 +7,11 @@
       <div class="row">
         <div class="col-md-6">
           <div class="product" id="product">
+              <div>
+                <div class="zoom" onmousemove="zoom(event)" style="background-image: url(<%= rails_storage_proxy_url(@product.watermarked_primary_image) %>)">
+                  <%= image_tag @product.watermarked_primary_image, class: "img-fluid" %>
+                </div>
+              </div>
             <% @product.watermarked_images.each do |image| %>
               <div>
                 <div class="zoom" onmousemove="zoom(event)" style="background-image: url(<%= rails_storage_proxy_url(image) %>)">
@@ -18,6 +23,11 @@
 
           <div class="product-tools">
             <div class="thumbnails row g-3" id="productThumbnails">
+               <div class="col-3">
+                  <div class="thumbnails-img product-thumbnails">
+                    <%= image_tag @product.watermarked_primary_image, class: "img-thumbnail" %>
+                  </div>
+                </div>
               <% @product.watermarked_images.each do |image| %>
                 <div class="col-3">
                   <div class="thumbnails-img product-thumbnails">

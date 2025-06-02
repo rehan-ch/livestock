@@ -52,7 +52,7 @@
                   <td><%= product.quantity %></td>
                   <td>
                     <a href="#!">
-                      <%= image_tag url_for(product.watermarked_images.first), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
+                      <%= image_tag url_for(product.watermarked_primary_image), alt: product.short_description, class: 'icon-shape icon-md' if product.images.attached? %>
                     </a>
                   </td>
                   <td class="d-flex gap-2 justify-content-end">
