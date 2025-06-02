@@ -43,20 +43,27 @@
                   <%= form.select(:status, Blog.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
                 </div>
 
-                <div id="cover_image_preview" class="image-preview-container"></div>
-
-                <div class="mb-6 col-lg-12">
+                <div class="mb-3 col-lg-12">
+                  <h4 class="mb-3 h5">Cover Image</h4>
+                  <div id="cover_image_preview" class="image-preview-container">
+                    <% if blog.cover_image.attached? %>
+                      <%= image_tag blog.cover_image, class: "img-thumbnail", style: "max-width: 200px" %>
+                    <% end %>
+                  </div>
                   <%= form.label :cover_image, class: "form-label" %>
                   <%= form.file_field :cover_image, class: "form-control image-preview-input", data: { preview_target: '#cover_image_preview' } %>
                 </div>
 
-                <div id="banner_image_preview" class="image-preview-container"></div>
-
-                <div class="mb-6 col-lg-12">
+                <div class="mb-3 col-lg-12">
+                  <h4 class="mb-3 h5">Banner Image</h4>
+                  <div id="banner_image_preview" class="image-preview-container">
+                    <% if blog.banner_image.attached? %>
+                      <%= image_tag blog.banner_image, class: "img-thumbnail", style: "max-width: 200px" %>
+                    <% end %>
+                  </div>
                   <%= form.label :banner_image, class: "form-label" %>
                   <%= form.file_field :banner_image, class: "form-control image-preview-input", data: { preview_target: '#banner_image_preview' } %>
                 </div>
-
 
               <div class="mb-6 col-lg-12">
                 <%= form.label :short_description, class: "form-label" %>

@@ -27,12 +27,13 @@
                   <%= form.label :description, class: "form-label" %>
                   <%= form.text_area :description, class: "form-control" %>
                 </div>
-                <div class="mb-6 col-lg-12">
-                  <%= form.label :image, class: "form-label" %>
-                  <%= form.file_field :image, class: "form-control" %>
-                </div>
-                <div id="dash_category_image_preview" class="image-preview-container"></div>
-                <div class="mb-6 col-lg-12">
+                <div class="mb-3 col-lg-12">
+                  <h4 class="mb-3 h5">Category Image</h4>
+                  <div id="dash_category_image_preview" class="image-preview-container">
+                    <% if category.image.attached? %>
+                      <%= image_tag category.image, class: "img-thumbnail", style: "max-width: 200px" %>
+                    <% end %>
+                  </div>
                   <%= form.label :image, class: "form-label" %>
                   <%= form.file_field :image, class: "form-control image-preview-input", data: { preview_target: '#dash_category_image_preview' } %>
                 </div>
