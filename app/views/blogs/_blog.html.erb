@@ -24,7 +24,7 @@
       <span>
         <small>
           Read time:
-          <span class="text-dark fw-bold">12min</span>
+          <span class="text-dark fw-bold"><%= (blog.body&.split(" ")&.length / 200).round(2) %> min</span>
         </small>
      </span>
     </div>
