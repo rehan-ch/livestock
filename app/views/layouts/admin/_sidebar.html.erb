@@ -26,29 +26,29 @@
           <div id="navCategoriesOrders" class="collapse  <%= " show" if active_tab('products').present? %>" data-bs-parent="#sideNavbar">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <%= link_to admin_products_path(type: 'all'), class: "nav-link  #{active_tab_with_tabs('products', 'all')}" do %>
+                <%= link_to admin_products_path, class: "nav-link  #{active_tab_with_tabs('products', 'all')}" do %>
                   <span class="nav-link-text">All Ads</span>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to admin_products_path(type: 'draft'), class: "nav-link #{active_tab_with_tabs("products", 'draft')}" do %>
+                <%= link_to admin_products_path(status: 'draft'), class: "nav-link #{active_tab_with_tabs("products", 'draft')}" do %>
                   <span class="nav-link-text">Draft</span>
                 <% end %>
               </li>
               <!-- Nav item -->
               <li class="nav-item">
-                <%= link_to admin_products_path(type: 'pending'), class: "nav-link #{active_tab_with_tabs("products", 'pending')}" do %>
+                <%= link_to admin_products_path(status: 'pending'), class: "nav-link #{active_tab_with_tabs("products", 'pending')}" do %>
                   <span class="nav-link-text">Pending</span>
                 <% end %>
               </li>
 
               <li class="nav-item">
-                <%= link_to admin_products_path(type: 'approved'), class: "nav-link #{active_tab_with_tabs("products", 'approved')}" do %>
+                <%= link_to admin_products_path(status: 'approved'), class: "nav-link #{active_tab_with_tabs("products", 'approved')}" do %>
                   <span class="nav-link-text">Approved</span>
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to admin_products_path(type: 'rejected'), class: "nav-link #{active_tab_with_tabs("products", 'rejected')}" do %>
+                <%= link_to admin_products_path(status: 'rejected'), class: "nav-link #{active_tab_with_tabs("products", 'rejected')}" do %>
                   <span class="nav-link-text">Rejected</span>
                 <% end %>
               </li>
