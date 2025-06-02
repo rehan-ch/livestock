@@ -46,8 +46,8 @@
 
                 <%= link_to product_path(product) do %>
                   <div class="product-img-container">
-                    <% if product.images.attached? %>
-                      <%= image_tag url_for(product.watermarked_images.first), alt: product.short_description %>
+                    <% if product.primary_image.attached? %>
+                      <%= image_tag url_for(product.watermarked_primary_image), alt: product.short_description %>
                     <% else %>
                       <%= image_tag 'theme/png/no-image.png', alt: product.short_description %>
                     <% end %>
