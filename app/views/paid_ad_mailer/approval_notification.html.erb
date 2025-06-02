@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+      .header {
+        background-color: #28a745;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+      }
+      .content {
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+      .footer {
+        margin-top: 20px;
+        text-align: center;
+        color: #666;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Your Paid Ad Request Has Been Approved! 🎉</h1>
+      </div>
+      
+      <div class="content">
+        <p>Dear <%= @user.name %>,</p>
+        
+        <p>Great news! Your paid ad request has been approved by our admin team.</p>
+        
+        <h3>Ad Details:</h3>
+        <ul>
+          <li><strong>Quantity:</strong> <%= @paid_ad.quantity %></li>
+          <li><strong>Ad Type:</strong> <%= @paid_ad.ad_type.humanize %></li>
+          <li><strong>Total Amount:</strong> Rs. <%= number_with_delimiter(@paid_ad.total_amount) %></li>
+          <li><strong>Payment Method:</strong> <%= @paid_ad.payment_method.humanize %></li>
+        </ul>
+        
+        <p>Your ad credits have been added to your account. You can now use them to post new advertisements on our platform.</p>
+        
+        <%= link_to "View Your Paid Ads", dashboard_paid_ads_url, class: "button" %>
+      </div>
+      
+      <div class="footer">
+        <p>This is an automated message, please do not reply directly to this email.</p>
+        <p>© <%= Time.current.year %> Livestock. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html> 

@@ -3,7 +3,6 @@
 <div>
   <%= link_to "Edit this ad", edit_dashboard_paid_ad_path(@paid_ad) %> |
   <%= link_to "Back to ads", dashboard_paid_ads_path %>
-  <%= link_to "show proof image", @paid_ad.proof_image, target: "_blank" if @paid_ad.proof_image.attached? %>
 
   <%= button_to "Destroy this ad", dashboard_paid_ad_path(@paid_ad), method: :delete %>
 </div>

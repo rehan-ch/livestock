@@ -59,7 +59,7 @@ module Admin
 
     def destroy
       @product.destroy!
-      redirect_to dashboard_products_path, notice: "Product was successfully destroyed."
+      redirect_to admin_products_path, notice: "Product was successfully destroyed."
     end
 
     def approve
