@@ -134,7 +134,11 @@
 
             <div class="mb-3 col-lg-12 mt-5">
               <h4 class="mb-3 h5">Primary Image</h4>
-              <div id="admin_prime_image_preview" class="image-preview-container"></div>
+              <div id="admin_prime_image_preview" class="image-preview-container">
+                <% if product.primary_image.attached? %>
+                  <%= image_tag product.primary_image, class: "img-thumbnail", style: "max-width: 200px" %>
+                <% end %>
+              </div>
               <div class="mb-3 col-lg-12">
                 <%= form.label :primary_image, class: "form-label", required: true %>
                 <%= form.file_field :primary_image, class: "form-control image-preview-input", data: { preview_target: '#admin_prime_image_preview' } %>
@@ -142,28 +146,29 @@
             </div>
 
             <div class="mb-3 col-lg-12 mt-5">
-              <!-- heading -->
               <h4 class="mb-3 h5">Product Images</h4>
+              <div id="product_images_preview" class="image-preview-container">
+                <% if product.images.attached? %>
+                  <% product.images.each do |image| %>
+                    <%= image_tag image, class: "img-thumbnail me-2 mb-2", style: "max-width: 200px" %>
+                  <% end %>
+                <% end %>
+              </div>
 
-              <!-- input -->
-<!--                <div id="my-dropzone" class="dropzone mt-4 border-dashed rounded-2 min-h-100">-->
+              <div class="mb-6 col-lg-12">
+                <%= form.label :images, class: "form-label" %>
+                <%= form.file_field :images, multiple: true, class: "form-control image-preview-input", data: { preview_target: '#product_images_preview' } %>
+              </div>
 
-                <div id="product_images_preview" class="image-preview-container"></div>
+              <div class="mb-12 col-lg-12">
+                <%= form.label :short_description, class: "form-label" %>
+                <%= form.text_field :short_description, class: "form-control" %>
+              </div>
 
-                <div class="mb-6 col-lg-12">
-                  <%= form.label :images, class: "form-label" %>
-                  <%= form.file_field :images, multiple: true, class: "form-control image-preview-input", data: { preview_target: '#product_images_preview' } %>
-                </div>
-
-                <div class="mb-12 col-lg-12">
-                  <%= form.label :short_description, class: "form-label" %>
-                  <%= form.text_field :short_description, class: "form-control" %>
-                </div>
-
-                <div class="mb-12 col-lg-12">
-                  <%= form.label :long_description, class: "form-label" %>
-                  <%= form.text_area :long_description, class: "form-control" %>
-                </div>
+              <div class="mb-12 col-lg-12">
+                <%= form.label :long_description, class: "form-label" %>
+                <%= form.text_area :long_description, class: "form-control" %>
+              </div>
 
 
                   <!-- Add a button for uploading images via Dropzone -->

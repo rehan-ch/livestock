@@ -28,7 +28,11 @@
                 <%= form.select(:status, Service.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
               </div>
 
-                <div id="cover_image_preview" class="image-preview-container"></div>
+                <div id="cover_image_preview" class="image-preview-container">
+                  <% if service.cover_image.attached? %>
+                    <%= image_tag service.cover_image, class: "img-thumbnail", style: "max-width: 200px" %>
+                  <% end %>
+                </div>
 
                 <div class="mb-6 col-lg-12">
                   <%= form.label :cover_image, class: "form-label" %>
