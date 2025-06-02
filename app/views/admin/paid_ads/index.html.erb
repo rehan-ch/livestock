@@ -13,10 +13,6 @@
                 <input class="form-control" type="search" name="search" placeholder="Search by user or ID" aria-label="Search" value="<%= params[:search] %>" />
               </form>
             </div>
-            <!-- select option -->
-            <div class="col-lg-2 col-md-4 col-12">
-              <%= select_tag :status, options_for_select([['All Status', ''], ['Pending', 'pending'], ['Approved', 'approved'], ['Rejected', 'rejected']], params[:status]), class: 'form-select', data: { controller: 'status-filter' } %>
-            </div>
           </div>
         </div>
         <!-- card body -->
@@ -34,7 +30,6 @@
                   <th>Status</th>
                   <th>Total Amount</th>
                   <th>Proof Image</th>
-                  <th>Created At</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -58,7 +53,6 @@
                     <td>
                       <%= image_tag ad.proof_image, width: "50px", height: "50px", class: "img-thumbnail" if ad.proof_image.attached? %>
                     </td>
-                    <td><%= ad.created_at.strftime("%Y-%m-%d %H:%M") %></td>
                     <td>
                       <div class="d-flex gap-2">
                         <%= link_to admin_paid_ad_path(ad), class: "btn btn-primary", title: "View" do %>
