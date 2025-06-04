@@ -42,7 +42,7 @@
                   <td><%= product.category.name %></td>
 
                   <td>
-                    <span class="badge <%= product.status == 'approved' ? 'bg-success' : product.status == 'rejected' ? 'bg-danger' : product.status == 'draft' ? 'bg-info' : 'bg-warning' %> text-light-primary"><%= product.status %></span>
+                    <span class="badge <%= product.status == 'pending' ? 'bg-warning' : product.status == 'approved' ? 'bg-success' : 'bg-danger' %> text-light-primary"><%= product.status.titleize %></span>
                   </td>
                   <td><%= product.price %></td>
                   <td><%= product.height %></td>

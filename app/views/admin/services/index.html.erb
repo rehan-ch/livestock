@@ -25,7 +25,7 @@
                     <%= image_tag url_for(service.cover_image), alt: service.title, class: "icon-shape icon-md" if service.cover_image.attached? %>
                   </td>
                   <td><a href="#" class="text-reset"><%= service.title %></a></td>
-                  <td><span class="badge <%= service.status == 'approved' || service.status == 'published' ? 'bg-success' : service.status == 'rejected' ? 'bg-danger' : 'bg-warning' %> text-light-primary"><%= service.status %></span></td>
+                  <td><span class="badge <%= service.status == 'approved' || service.status == 'published' ? 'bg-success' : service.status == 'rejected' ? 'bg-danger' : 'bg-warning' %> text-light-primary"><%= service.status.titleize %></span></td>
                   <td>
                     <%= link_to edit_admin_service_path(service), class: "btn btn-primary" do %>
                       Edit

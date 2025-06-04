@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   validates :primary_image, presence: true
   validates :name, presence: true
   validates :price, presence: true
-  validates :sex, presence: true
+  validate :gender_presence
   validates :short_description, presence: true
   validates :city, presence: true
   validate :user_has_available_ads, on: :create
@@ -97,6 +97,12 @@ class Product < ApplicationRecord
   end
 
   private
+
+  def gender_presence
+    if sex.blank?
+      errors.add(:gender, "can't be blank")
+    end
+  end
 
   def notify_admin
     AdminMailer.new_ad_notification(self).deliver_later
