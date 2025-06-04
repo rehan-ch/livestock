@@ -8,7 +8,17 @@ class Category < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  scope :parent_categories, -> { where(parent_id: nil)}
+  scope :parent_categories, -> { where(parent_id: nil) }
+  scope :archived, -> { where(archived: true) }
+  scope :unarchived, -> { where(archived: false) }
+
+  def archive!
+    update!(archived: true)
+  end
+
+  def unarchive!
+    update!(archived: false)
+  end
 
   def thumbnail
     return nil unless image.attached?

@@ -63,7 +63,7 @@
               </button>
 
               <ul class="dropdown-menu dropdown-menu-lg">
-                <% Category.parent_categories.each do |category| %>
+                <% Category.parent_categories.unarchived.each do |category| %>
                   <li class="dropdown-menu-list">
                     <a href="<%= products_path(category_id: category.id) %>" class="dropdown-item d-flex justify-content-between mb-1 py-1">
                       <div>
@@ -77,17 +77,17 @@
 
                         <span class="ms-1"><%= category.name&.humanize %></span>
                       </div>
-                      <% if category.sub_categories.present? %>
+                      <% if category.sub_categories.unarchived.present? %>
                         <div>
                           <i class="feather-icon icon-chevron-right"></i>
                         </div>
                       <% end %>
                     </a>
-                    <% if category.sub_categories.present? %>
+                    <% if category.sub_categories.unarchived.present? %>
                       <div class="dropdown-menu-list-submenu">
                         <div>
                           <ul class="list-unstyled">
-                            <% category.sub_categories.each do |sub_category| %>
+                            <% category.sub_categories.unarchived.each do |sub_category| %>
                               <li>
                                 <a href="<%= products_path(category_id: sub_category.id) %>" class="dropdown-item"><%= sub_category.name&.humanize %></a>
                               </li>
