@@ -3,7 +3,7 @@
     <%= link_to service_path(service.id) do %>
       <div class="img-zoom">
         <% if service.cover_image.attached? %>
-          <%= image_tag url_for(service.cover_image), alt: service.title, class: "img-fluid rounded w-100 fixed-dimension-img" %>
+          <%= image_tag url_for(service.cover_image), alt: service.title, class: "rounded w-100 fixed-dimension-img" %>
         <% else %>
           <div class="fixed-dimension-img placeholder"></div>
         <% end %>
