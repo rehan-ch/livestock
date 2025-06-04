@@ -44,7 +44,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', to: 'dashboard#index'
-    resources :categories
+    resources :categories do
+      member do
+        patch :archive
+        patch :unarchive
+      end
+    end
     resources :services
     resources :blogs
     resources :products, path: 'my_ads' do

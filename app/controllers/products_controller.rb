@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.approved
+                       .joins(:category)
+                       .merge(Category.unarchived)
                        .filter_by_query(params[:q])
                        .filter_by_category(params[:category_id])
                        .filter_by_self_stock(params[:self_stock])
@@ -11,7 +13,7 @@ class ProductsController < ApplicationController
                        .filter_by_city(params[:city])
                        .page(params[:page])
                        .per(20)
-    @categories = Category.parent_categories
+    @categories = Category.parent_categories.unarchived
   end
 
   # GET /products/1 or /products/1.json

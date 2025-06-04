@@ -1,5 +1,5 @@
 class Admin::CategoriesController < Admin::BaseController
-  before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :set_category, only: %i[ show edit update destroy archive unarchive ]
 
   # GET /categories or /categories.json
   def index
@@ -49,10 +49,33 @@ class Admin::CategoriesController < Admin::BaseController
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
-    @category.destroy!
+    @category.archive!
+    @category.sub_categories.each do |sub_category|
+      sub_category.archive!
+    end
 
     respond_to do |format|
-      format.html { redirect_to admin_categories_path, notice: "category was successfully destroyed." }
+      format.html { redirect_to admin_categories_path, notice: "Category was successfully archived." }
+      format.json { head :no_content }
+    end
+  end
+
+  # POST /categories/1/archive
+  def archive
+    @category.archive!
+
+    respond_to do |format|
+      format.html { redirect_to admin_categories_path, notice: "Category was successfully archived." }
+      format.json { head :no_content }
+    end
+  end
+
+  # POST /categories/1/unarchive
+  def unarchive
+    @category.unarchive!
+
+    respond_to do |format|
+      format.html { redirect_to admin_categories_path, notice: "Category was successfully unarchived." }
       format.json { head :no_content }
     end
   end
