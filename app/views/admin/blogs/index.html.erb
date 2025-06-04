@@ -34,7 +34,7 @@
                           <%= image_tag url_for(blog.banner_image), alt: blog.title, class: "icon-shape icon-md" if blog.banner_image.attached? %>
                         </td>
                         <td><a href="#" class="text-reset"><%= blog.title %></a></td>
-                        <td><%= blog.status %></td>
+                        <td><span class="badge <%= blog.status == 'approved' || blog.status == 'published' ? 'bg-success' : blog.status == 'rejected' ? 'bg-danger' : 'bg-warning' %> text-light-primary"><%= blog.status.titleize %></span></td>
                         <td><%= blog.published_at.present? ? blog.published_at.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %></td>
                         <td>
                           <%= link_to edit_admin_blog_path(blog), class: "btn btn-primary" do %>

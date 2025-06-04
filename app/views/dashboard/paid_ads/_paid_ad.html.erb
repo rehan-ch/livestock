@@ -32,7 +32,7 @@
           <div class="d-flex align-items-center mb-3">
             <i class="bi bi-circle-fill me-2 <%= @paid_ad.status == 'approved' ? 'text-success' : 'text-warning' %>"></i>
             <strong class="text-muted">Status:</strong>
-            <span class="ms-2"><%= @paid_ad.status.humanize %></span>
+            <span class="ms-2"><%= @paid_ad.status.titleize %></span>
           </div>
         </div>
 
