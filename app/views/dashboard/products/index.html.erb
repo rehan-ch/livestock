@@ -26,6 +26,7 @@
                 <th>Category</th>
                 <th>Status</th>
                 <th>Price</th>
+                <th>Views</th>
                 <th>Hight</th>
                 <th>Weight</th>
                 <th>Breed</th>
@@ -45,6 +46,7 @@
                     <span class="badge <%= product.status == 'pending' ? 'bg-warning' : product.status == 'approved' ? 'bg-success' : 'bg-danger' %> text-light-primary"><%= product.status.titleize %></span>
                   </td>
                   <td><%= product.price %></td>
+                  <td><%= product.view_count %></td>
                   <td><%= product.height %></td>
                   <td><%= product.weight %></td>
                   <td><%= product.breed %></td>

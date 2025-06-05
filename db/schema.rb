@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_04_080309) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_05_123011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -147,6 +147,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_04_080309) do
     t.decimal "age", precision: 5, scale: 2
     t.boolean "pregnant"
     t.decimal "daily_milk_quantity"
+    t.integer "view_count", default: 0, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end

@@ -18,7 +18,8 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
-   @related_products = @product.category.products.page(page).per(5)
+    @product.increment_view_count
+    @related_products = @product.category.products.page(page).per(5)
   end
 
   def start_chat

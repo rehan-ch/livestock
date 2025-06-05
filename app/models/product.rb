@@ -82,6 +82,10 @@ class Product < ApplicationRecord
 
   after_create :notify_admin, :update_user_number_of_ads
 
+  def increment_view_count
+    increment!(:view_count)
+  end
+
   def watermarked_images
     images.map do |img|
       img.variant(resize_to_fit: [700, 700], gravity: "center", pointsize: "100", fill: "#0aad0a30",weight: "500", draw: "rotate -30 text 0,0 'Livestock.pk'").processed
