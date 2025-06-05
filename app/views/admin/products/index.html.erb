@@ -31,6 +31,7 @@
                 <th>Category</th>
                 <th>Status</th>
                 <th>Price</th>
+                <th>Views</th>
                 <th>Image</th>
                 <th>Actions</th>
               </tr>
@@ -44,6 +45,7 @@
                     <span class="badge <%= product.status == 'approved' ? 'bg-success' : product.status == 'rejected' ? 'bg-danger' : product.status == 'draft' ? 'bg-info' : 'bg-warning' %> text-light-primary"><%= product.status.titleize %></span>
                   </td>
                   <td><%= product.price %></td>
+                  <td><%= product.view_count %></td>
                   <td>
                     <a href="#!">
                       <%= image_tag url_for(product.watermarked_primary_image), alt: product.short_description, class: 'icon-shape icon-md' if product.primary_image.attached? %>

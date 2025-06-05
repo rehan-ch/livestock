@@ -200,6 +200,21 @@
                 Seller Info
               </button>
             </li>
+            <!-- nav item -->
+            <li class="nav-item" role="presentation">
+              <!-- btn -->
+              <button
+                class="nav-link"
+                id="viewCount-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#viewCount-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="viewCount-tab-pane"
+                aria-selected="false">
+                View Count
+              </button>
+            </li>
           </ul>
           <!-- tab content -->
           <div class="tab-content" id="myTabContent">
@@ -221,6 +236,12 @@
 =end%>
             <!-- tab pane -->
             <div class="tab-pane fade" id="sellerInfo-tab-pane" role="tabpanel" aria-labelledby="sellerInfo-tab" tabindex="0"><%= render 'products/shared/product_details' %></div>
+            <!-- tab pane -->
+            <div class="tab-pane fade" id="viewCount-tab-pane" role="tabpanel" aria-labelledby="viewCount-tab" tabindex="0">
+              <div class="p-4">
+                <h4>Total Views: <%= @product.view_count || 0 %></h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
