@@ -45,3 +45,25 @@ end
 
   Product.create(params)
 end
+
+# Create social media links
+SocialMediaLink.create!(
+  platform: 'Facebook',
+  url: 'https://www.facebook.com/LivestockPakistan?mibextid=ZbWKwL',
+  icon_class: 'facebook',
+  active: true
+)
+
+SocialMediaLink.create!(
+  platform: 'TikTok',
+  url: 'https://www.tiktok.com/@livestock.pk?_t=8n5KdeJFc8H&_r=1',
+  icon_class: 'tiktok',
+  active: true
+)
+
+SocialMediaLink.create!(
+  platform: 'Instagram',
+  url: 'https://www.instagram.com/livestock.pk?igsh=MWN1d2prazY4Zm11cQ==',
+  icon_class: 'instagram',
+  active: true
+)

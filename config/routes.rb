@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     end
     resources :services
     resources :blogs
+    resources :social_media_links
     resources :products, path: 'my_ads' do
       member do
         patch :approve

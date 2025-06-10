@@ -90,6 +90,14 @@
           <% end %>
         </li>
         <li class="nav-item">
+          <%= link_to admin_social_media_links_path, class: "nav-link #{active_tab('social_media_links')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-share"></i></span>
+              <span class="nav-link-text">Social Media Links</span>
+            </div>
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to admin_users_path, class: "nav-link #{active_tab('users')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
