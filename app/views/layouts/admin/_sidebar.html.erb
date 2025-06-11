@@ -98,6 +98,14 @@
           <% end %>
         </li>
         <li class="nav-item">
+          <%= link_to admin_sliders_path, class: "nav-link #{active_tab('sliders')}" do %>
+            <div class="d-flex align-items-center">
+              <span class="nav-link-icon"><i class="bi bi-images"></i></span>
+              <span class="nav-link-text">Sliders</span>
+            </div>
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to admin_users_path, class: "nav-link #{active_tab('users')}" do %>
             <div class="d-flex align-items-center">
               <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>

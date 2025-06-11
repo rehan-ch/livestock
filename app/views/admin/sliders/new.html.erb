@@ -1,0 +1,16 @@
+<div class="container">
+  <%= render partial: "/admin/shared/breadcrum" %>
+  
+  <div class="row">
+    <div class="col-xl-12 col-12 mb-5">
+      <div class="card h-100 card-lg">
+        <div class="card-header">
+          <h4 class="mb-0">Add New Slider</h4>
+        </div>
+        <div class="card-body">
+          <%= render 'form', slider: @slider %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
