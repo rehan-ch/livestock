@@ -23,8 +23,8 @@
       <!-- button -->
       <div>
         <% if action_name == "index" %>
-        <a href="<%= send("new_admin_#{controller_name.classify.downcase}_path") rescue nil %>" class="btn btn-primary">Add <%= class_name %></a>
-          <% end %>
+          <a href="<%= send("new_admin_#{controller_name.singularize}_path") rescue nil %>" class="btn btn-primary">Add <%= class_name %></a>
+        <% end %>
       </div>
     </div>
   </div>
