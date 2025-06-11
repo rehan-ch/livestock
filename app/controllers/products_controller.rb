@@ -11,8 +11,9 @@ class ProductsController < ApplicationController
                        .filter_by_self_stock(params[:self_stock])
                        .filter_by_price(params[:start_price], params[:end_price])
                        .filter_by_city(params[:city])
+                       .then { |products| apply_sorting(products) }
                        .page(params[:page])
-                       .per(20)
+                       .per(params[:per_page] || 20)
     @categories = Category.parent_categories.unarchived
   end
 
@@ -34,5 +35,18 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def apply_sorting(products)
+      case params[:sort]
+      when 'price_asc'
+        products.reorder(price: :asc)
+      when 'price_desc'
+        products.reorder(price: :desc)
+      when 'created_at'
+        products.reorder(created_at: :desc)
+      else
+        products.reorder(created_at: :desc)
+      end
     end
 end

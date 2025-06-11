@@ -46,22 +46,29 @@
       <div class="d-flex mt-2 mt-lg-0">
         <div class="me-2 flex-grow-1">
           <!-- select option -->
-          <select class="form-select">
-            <option selected>Show: 50</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-          </select>
-        </div>
-        <div>
-          <!-- select option -->
-          <select class="form-select">
-            <option selected>Sort by: Featured</option>
-            <option value="Low to High">Price: Low to High</option>
-            <option value="High to Low">Price: High to Low</option>
-            <option value="Release Date">Release Date</option>
-            <option value="Avg. Rating">Avg. Rating</option>
-          </select>
+          <%= form_with url: products_path, method: :get, data: { controller: "form", action: "change->form#submit" } do |f| %>
+            <%= f.hidden_field :q, value: params[:q] %>
+            <%= f.hidden_field :category_id, value: params[:category_id] %>
+            <%= f.hidden_field :self_stock, value: params[:self_stock] %>
+            <%= f.hidden_field :start_price, value: params[:start_price] %>
+            <%= f.hidden_field :end_price, value: params[:end_price] %>
+            <%= f.hidden_field :city, value: params[:city] %>
+            <div class="d-flex gap-2">
+              <%= f.select :per_page, 
+                  options_for_select([['10 per page', 10], ['20 per page', 20], ['30 per page', 30]], params[:per_page] || 20),
+                  {},
+                  { class: "form-select" } %>
+              <%= f.select :sort,
+                  options_for_select([
+                    ['Sort by: Featured', ''],
+                    ['Price: Low to High', 'price_asc'],
+                    ['Price: High to Low', 'price_desc'],
+                    ['Release Date', 'created_at']
+                  ], params[:sort]),
+                  {},
+                  { class: "form-select" } %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
