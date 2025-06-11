@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :sliders
     get '/', to: 'dashboard#index'
     resources :categories do
       member do

@@ -1,0 +1,78 @@
+<%= form_with(model: [:admin, slider], local: true, html: { multipart: true }) do |f| %>
+  <% if slider.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(slider.errors.count, "error") %> prohibited this slider from being saved:</h4>
+      <ul>
+        <% slider.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :title, class: "form-label" %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Enter slider title" %>
+        <div class="form-text">Enter a descriptive title for the slider</div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :position, class: "form-label" %>
+        <%= f.number_field :position, class: "form-control", placeholder: "Enter position number" %>
+        <div class="form-text">Lower numbers will appear first</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :content, class: "form-label" %>
+    <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "Enter slider content" %>
+    <div class="form-text">Enter the main text content for the slider</div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :button_text, class: "form-label" %>
+        <%= f.text_field :button_text, class: "form-control", placeholder: "Enter button text" %>
+        <div class="form-text">Text to display on the button (optional)</div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :button_link, class: "form-label" %>
+        <%= f.text_field :button_link, class: "form-control", placeholder: "Enter button link" %>
+        <div class="form-text">URL where the button should link to (optional)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :image, class: "form-label" %>
+    <%= f.file_field :image, class: "form-control" %>
+    <div class="form-text">Upload an image for the slider background</div>
+    <% if slider.image.attached? %>
+      <div class="mt-2">
+        <%= image_tag slider.image, class: 'img-thumbnail', style: 'max-width: 200px' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check">
+      <%= f.check_box :active, class: "form-check-input" %>
+      <%= f.label :active, "Active", class: "form-check-label" %>
+      <div class="form-text">Check this to make this slider visible on the homepage</div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", admin_sliders_path, class: "btn btn-secondary" %>
+  </div>
+<% end %> 
