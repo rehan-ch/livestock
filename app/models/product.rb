@@ -25,7 +25,7 @@ class Product < ApplicationRecord
 
   scope :filter_by_status, ->(status) { where(status: status) if status.present? && status.downcase !="all"}
 
-  scope :filter_by_query, ->(query) { where('LOWER(name) LIKE ?', "%#{query.downcase}%") if query.present? }
+  scope :filter_by_query, ->(query) { where('LOWER(products.name) LIKE ?', "%#{query.downcase}%") if query.present? }
 
   scope :filter_by_category, ->(category_id) { where(category_id: category_id) if category_id.present? }
 
