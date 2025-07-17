@@ -33,6 +33,7 @@
                     <%= link_to admin_service_path(service), class: "btn btn-primary" do %>
                       Show
                     <% end %>
+                    <%= link_to 'Delete', admin_service_path(service), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this service?' }, class: 'btn btn-danger' %>
                   </td>
                 </tr>
               <% end %>
