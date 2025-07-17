@@ -38,11 +38,6 @@
                 <%= form.text_field :tag_keywords, class: "form-control" %>
               </div>
 
-                <div class="mb-6 col-lg-12">
-                  <%= form.label :status %>
-                  <%= form.select(:status, Blog.statuses.keys.map {|status| [status.titleize,status]}, {}, {class: "form-control"}) %>
-                </div>
-
                 <div class="mb-3 col-lg-12">
                   <h4 class="mb-3 h5">Cover Image</h4>
                   <div id="cover_image_preview" class="image-preview-container">

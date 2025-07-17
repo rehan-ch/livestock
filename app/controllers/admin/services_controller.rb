@@ -52,7 +52,7 @@ class Admin::ServicesController < Admin::BaseController
     @service.destroy!
 
     respond_to do |format|
-      format.html { redirect_to services_url, notice: "service was successfully destroyed." }
+      format.html { redirect_to admin_services_path, notice: "service was successfully destroyed." }
       format.json { head :no_content }
     end
   end
