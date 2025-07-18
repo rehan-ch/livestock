@@ -10,7 +10,6 @@
         <li class="nav-item">
           <%= link_to dashboard_path, class: "nav-link #{active_tab('dashboard')}" do %>
             <div class="d-flex align-items-center">
-              <span class="nav-link-icon"><i class="bi bi-house"></i></span>
               <span class="nav-link-text">Dashboard</span>
             </div>
           <% end %>
@@ -19,7 +18,6 @@
         <li class="nav-item">
           <%= link_to dashboard_paid_ads_path, class: "nav-link #{active_tab('paid_ads')}" do %>
             <div class="d-flex align-items-center">
-              <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
               <span class="nav-link-text">Paid Ads Requests</span>
             </div>
           <% end %>
@@ -27,7 +25,6 @@
         <li class="nav-item">
           <a class="nav-link <%= active_tab('products').present? ? 'collapse parent-active' : '' %>" href="#navCategoriesOrders" data-bs-toggle="collapse" role=button data-bs-target="#navCategoriesOrders" aria-expanded="true" aria-controls="navCategoriesOrders">
             <div class="d-flex align-items-center">
-              <span class="nav-link-icon"><i class="bi bi-bag"></i></span>
               <span class="nav-link-text">My Ads</span>
             </div>
           </a>
