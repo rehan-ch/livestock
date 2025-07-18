@@ -461,3 +461,7 @@ span{
 .messages-container::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+.nav-link.dropdown-toggle::after,
+a[data-bs-toggle="collapse"]::after {
+  display: none !important;
+}
